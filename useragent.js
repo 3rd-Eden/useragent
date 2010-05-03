@@ -29,7 +29,6 @@ exports.parser = function parser( ua, js_ua ){
 		// check if we have positive match
 		match = parser_obj.regexp.exec( ua );
 		if( match ){
-			sys.puts( JSON.stringify( match ));
 			// check if we need to replace some items
 			if( parser_obj.family_replacement ){
 				if( parser_obj.family_replacement.match( /\$1/ ) )
