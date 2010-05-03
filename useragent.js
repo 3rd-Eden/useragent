@@ -159,7 +159,8 @@ var browser_slash_v123_names = [
 		'iCab',
 		'NetNewsWire',
 		'Iron',
-		'Iris'
+		'Iris',
+		'SeaRequin'
 	].join( "|" ),
 	
 	browser_slash_v12_names = [
