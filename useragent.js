@@ -4,15 +4,16 @@ exports.browser = function browser( ua ){
 	// make sure we are dealing with a lowercase useragent string
 	ua = ua.toLowerCase();
 	
-	// based on work of John Resig
+	// inspired by the jQuery browser sniff
 	return {
 		version: ( ua.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [ 0, "0" ] )[1],
-		webkit: /webkit/.test( ua ),
-		opera: /opera/.test( ua ),
-		ie: /msie/.test( ua ) && !/opera/.test( ua ),
-		firefox: /mozilla/.test( ua ) && !/(compatible|webkit)/.test( ua ),
-		chrome: /google/.test( ua ) && /webkit/.test( ua ),
-		mobile_safari: /Apple.*Mobile.*Safari/.test( ua )
+		webkit: ua.indexOf( "webkit" ) !== -1,
+		opera: ua.indexOf( "opera" ) !== -1,
+		ie: ua.indexOf( "msie" ) !== -1 && !this.opera,
+		firefox: ua.indexOf( "mozilla" ) !== -1 && ! ( this.webkit || ua.indexOf( "compatible" ) !== -1 ),
+		chrome: ua.indexOf( "chrome" ) !== -1 && this.webkit,
+		safari: ua.indexOf( "safari") !== -1 && !this.chrome,
+		mobile_safari: ua.indexOf( "apple" ) !== -1 && ua.indexOf( "mobile" ) !== -1 && ua.indexOf( "safari" ) !== -1
 	}
 };
 
@@ -23,15 +24,16 @@ exports.parser = function parser( ua, js_ua ){
 	
 	// check we can parse down the ua based the parse object
 	function parse( parser_obj ){
-		var V1 = V2 = V3 = family = false,
+		var V1 = V2 = V3 = falsefamily = false,
 			match;
 			
 		// check if we have positive match
 		match = parser_obj.regexp.exec( ua );
+		
 		if( match ){
 			// check if we need to replace some items
 			if( parser_obj.family_replacement ){
-				if( parser_obj.family_replacement.match( /\$1/ ) )
+				if( parser_obj.family_replacement.indexOf( "$1" ) !== -1 )
 					family = parser_obj.family_replacement.replace( /\$1/, match[0] );
 				else
 					family = parser_obj.family_replacement;
@@ -49,19 +51,17 @@ exports.parser = function parser( ua, js_ua ){
 				if( match.length >= 4 )
 					V3 = match[4];
 			}
-				
-			// return the parse results
-			return {
-				match: match[0], // the matched string
-				family: family || "Other",
-				V1: V1,
-				V2: V2,
-				V3: V3
-			}
 		}
 		
-		// no match, proceed with feeding me parser_obj's
-		return false;
+			
+		// return the parse results
+		return {
+			match: match ? match[0] : false, // the matched string
+			family: family || "Other",
+			V1: V1,
+			V2: V2,
+			V3: V3
+		}
 	};
 	
 	// create a pretty user agent string from the ua object
@@ -96,12 +96,12 @@ exports.parser = function parser( ua, js_ua ){
 		ua_obj = parse( browsers[i] );
 		
 		// no need to continue parsing other sequence
-		if( ua_obj && ua_obj.family )
+		if( ua_obj.match )
 			break;
 	}
 	
 	// are we working with a chrome frame perhaps?
-	if( js_ua && ua.search( "chromeframe" ) != -1 )
+	if( js_ua && ua.indexOf( "chromeframe" ) != -1 )
 		ua_obj.family = "Chrome Frame(" + ua_obj.family + " " + ua_obj.V1 + ")";
 	
 	return {
@@ -275,5 +275,6 @@ var browser_slash_v123_names = [
 		{ regexp:/(SamsungSGHi560)/, family_replacement:'Samsung SGHi560' },
 		{ regexp:/^(SonyEricssonK800i)/, family_replacement:'Sony Ericsson K800i' },
 		{ regexp:/(Teleca Q7)/ },
-		{ regexp:/(MSIE) (\d+)\.(\d+)/, family_replacement:'Internet Explorer' }
+		{ regexp:/(MSIE) (\d+)\.(\d+)/, family_replacement:'Internet Explorer' },
+		{ regexp:/(SymbianOS)\/(\d+)/, family_replacement:'Symbian OS' }
 	];
