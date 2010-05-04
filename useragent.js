@@ -275,6 +275,5 @@ var browser_slash_v123_names = [
 		{ regexp:/(SamsungSGHi560)/, family_replacement:'Samsung SGHi560' },
 		{ regexp:/^(SonyEricssonK800i)/, family_replacement:'Sony Ericsson K800i' },
 		{ regexp:/(Teleca Q7)/ },
-		{ regexp:/(MSIE) (\d+)\.(\d+)/, family_replacement:'Internet Explorer' },
-		{ regexp:/(SymbianOS)\/(\d+)/, family_replacement:'Symbian OS' }
+		{ regexp:/(MSIE) (\d+)\.(\d+)/, family_replacement:'Internet Explorer' }
 	];
