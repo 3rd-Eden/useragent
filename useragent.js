@@ -13,7 +13,7 @@ exports.browser = function browser( ua ){
 		firefox: ua.indexOf( "mozilla" ) !== -1 && ! ( this.webkit || ua.indexOf( "compatible" ) !== -1 ),
 		chrome: ua.indexOf( "chrome" ) !== -1 && this.webkit,
 		safari: ua.indexOf( "safari") !== -1 && !this.chrome,
-		mobile_safari: ua.indexOf( "apple" ) !== -1 && ua.indexOf( "mobile" ) !== -1 && ua.indexOf( "safari" ) !== -1
+		mobile_safari: ua.indexOf( "apple" ) !== -1 && ua.indexOf( "mobile" ) !== -1 && this.safari
 	}
 };
 
@@ -72,14 +72,15 @@ exports.parser = function parser( ua, js_ua ){
 		
 		// generate a pretty output format
 		if( ua.V1 ){
-			format += " $1";
+			format = format + " $1";
 			if( ua.V2 ){
-				format += ".$2";
+				format = format + ".$2";
 				if( ua.V3 ){
-					if( /^\d+$/.test( ua.V3 ) )
-						format += ".$3";
+					// check if its a digit or not, 
+					if( !isNaN( ua.V3 ) )
+						format = format + ".$3";
 					else
-						format += "$3";
+						format = format + "$3";
 				}
 			}
 		}
