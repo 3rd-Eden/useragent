@@ -1,0 +1,32 @@
+{ 
+	"name": "useragent",
+	"version": "0.1.0",
+	"description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting",
+	"author": "Arnout Kazemier",
+	"main": "./useragent.js",
+	"keywords":[
+		"User-Agent",
+		"useragent",
+		"browserscope",
+		"parser"
+	],
+	"maintainers": [
+		{
+			"name":"Arnout Kazemier",
+			"email":"info@3rd-Eden.com",
+			"web":"http://www.3rd-Eden.com"
+		}
+	],
+	"licenses": [
+		{
+			"type": "Apache",
+			"url": "https://github.com/3rd-Eden/node-useragent/blob/master/LICENSE.txt"
+		}
+	],
+	"repositories": [
+		{
+			"type": "git",
+			"url" : "http://github.com/3rd-Eden/node-useragent.git"	
+		}
+	]
+}
