@@ -104,7 +104,19 @@ exports.parser = function parser( ua, js_ua ){
 	// are we working with a chrome frame perhaps?
 	if( js_ua && ua.indexOf( "chromeframe" ) != -1 )
 		ua_obj.family = "Chrome Frame(" + ua_obj.family + " " + ua_obj.V1 + ")";
-	
+
+	// guess operating system [ dronnikov@gmail.com ]
+	var captures;
+	for (var i = 0, len = operatingSystems.length; i < len; i += 1) {
+		var checkOs = operatingSystems[i];
+		if (captures = checkOs.regexp.exec(ua)) {
+			ua_obj.os = checkOs.os.indexOf('$1') === -1
+				? checkOs.os
+				: checkOs.os.replace(/\$(\d+)/g, function(_, n){return captures[n]});
+			break;
+		}
+	}
+
 	return {
 		// return results
 		family: ua_obj.family,
@@ -112,7 +124,8 @@ exports.parser = function parser( ua, js_ua ){
 		V2: ua_obj.V2,
 		V3: ua_obj.V3,
 		match: ua_obj.match,
-		
+		os: ua_obj.os,
+
 		// return methods that can be used
 		pretty: pretty
 	}
@@ -277,4 +290,15 @@ var browser_slash_v123_names = [
 		{ regexp:/^(SonyEricssonK800i)/, family_replacement:'Sony Ericsson K800i' },
 		{ regexp:/(Teleca Q7)/ },
 		{ regexp:/(MSIE) (\d+)\.(\d+)/, family_replacement:'Internet Explorer' }
+	],
+
+	operatingSystems = [
+		{ regexp: /ipad/i, os: 'iPad' },
+		{ regexp: /windows nt 6\.0/i, os: 'Windows Vista' },
+		{ regexp: /windows nt 6\.\d+/i, os: 'Windows 7' },
+		{ regexp: /windows nt 5\.2+/i, os: 'Windows 2003'},
+		{ regexp: /windows nt 5\.1+/i, os: 'Windows XP'},
+		{ regexp: /windows nt 5\.0+/i, os: 'Windows 2000'},
+		{ regexp: /os x (\d+)[._](\d+)/i, os: 'OS X $1.$2'},
+		{ regexp: /linux/i, os: 'Linux'}
 	];
