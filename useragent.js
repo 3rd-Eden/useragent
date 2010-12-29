@@ -303,6 +303,6 @@ var browser_slash_v123_names = [
 		{ regexp: /(windows) nt 5\.2+/i, family_replacement:"Windows", V1_replacement:"2003"},
 		{ regexp: /(windows) nt 5\.1+/i, family_replacement:"Windows", V1_replacement:"XP"},
 		{ regexp: /(windows) nt 5\.0+/i, family_replacement:"Windows", V1_replacement:"2000"},
-		{ regexp: /(os x) (\d+)[._](\d+)(?:[._](\d+))/i, family_replacement:"OS X"},
+		{ regexp: /(os x) (\d+)[._](\d+)(?:[._](\d+))?/i, family_replacement:"OS X"},
 		{ regexp: /(linux)/i, family_replacement:"Linux"}
 	];

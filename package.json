@@ -1,6 +1,6 @@
 { 
 	"name": "useragent",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting",
 	"author": "Arnout Kazemier",
 	"main": "./useragent.js",
