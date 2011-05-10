@@ -3,12 +3,12 @@ var fs = require('fs'),
 	useragent = require('../useragent');
 
 fs.readFile( './useragents/user_agent_data.csv', function( err, result ){
-	
+
 	if( err )
 		return sys.puts( "can't locate file" );
 
 	// split file in single rows
-	var results = result.split( "\n" ), i = results.length,
+	var results = result.toString().split( "\n" ), i = results.length,
 			// start times
 		total, start = ( new Date() ).valueOf(), failed = [];
 
@@ -26,12 +26,12 @@ fs.readFile( './useragents/user_agent_data.csv', function( err, result ){
 		}( results[i].split( "," ) ))
 	};
 
-	// report 
+	// report
 	if( failed.length ){
 		sys.puts( "Failed " + failed.length + " out of " + results.length + " tests." );
 	} else {
 		sys.puts( "\\o/ yay, passed all " + results.length + " tests \\o/" );
 	}
-	
+
 	sys.puts( "Executed in " + (( new Date()).valueOf() - start) + " ms");
 });
