@@ -3,33 +3,33 @@
 exports.browser = function browser( ua ){
 	// make sure we are dealing with a lowercase useragent string
 	ua = ua.toLowerCase();
-	
+
 	// inspired by the jQuery browser sniff
-	return {
-		version: ( ua.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [ 0, "0" ] )[1],
-		webkit: ua.indexOf( "webkit" ) !== -1,
-		opera: ua.indexOf( "opera" ) !== -1,
-		ie: ua.indexOf( "msie" ) !== -1 && !this.opera,
-		firefox: ua.indexOf( "mozilla" ) !== -1 && ! ( this.webkit || ua.indexOf( "compatible" ) !== -1 ),
-		chrome: ua.indexOf( "chrome" ) !== -1 && this.webkit,
-		safari: ua.indexOf( "safari") !== -1 && !this.chrome,
-		mobile_safari: ua.indexOf( "apple" ) !== -1 && ua.indexOf( "mobile" ) !== -1 && this.safari
-	}
+	var result = {};
+	result.version = ( ua.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [ 0, "0" ] )[1];
+	result.webkit = ua.indexOf( "webkit" ) !== -1;
+	result.opera = ua.indexOf( "opera" ) !== -1;
+	result.ie = ua.indexOf( "msie" ) !== -1 && !result.opera;
+	result.firefox = ua.indexOf( "mozilla" ) !== -1 && ! ( result.webkit || ua.indexOf( "compatible" ) !== -1 );
+	result.chrome = ua.indexOf( "chrome" ) !== -1 && result.webkit;
+	result.safari = ua.indexOf( "safari") !== -1 && !result.chrome;
+	result.mobile_safari = ua.indexOf( "apple" ) !== -1 && ua.indexOf( "mobile" ) !== -1 && result.safari;
+	return result;
 };
 
 exports.parser = function parser( ua, js_ua ){
 	var V1 = V2 = V3 = family = false,
 		i = 0, length = browsers.length,
 		os, ua_obj, sequence;
-	
+
 	// check we can parse down the ua based the parse object
 	function parse( parser_obj ){
 		var V1 = V2 = V3 = falsefamily = false,
 			match;
-			
+
 		// check if we have positive match
 		match = parser_obj.regexp.exec( ua );
-		
+
 		if( match ){
 			// check if we need to replace some items
 			if( parser_obj.family_replacement ){
@@ -37,23 +37,23 @@ exports.parser = function parser( ua, js_ua ){
 					family = parser_obj.family_replacement.replace( /\$1/, match[0] );
 				else
 					family = parser_obj.family_replacement;
-			} else 
+			} else
 				family = match[1];
-			
+
 			// check for which version information is available
 			if( parser_obj.V1_replacement )
 				V1 = parser_obj.V1_replacement;
 			else if( match.length >= 2 )
 				V1 = match[2];
-			
+
 			if( match.length >= 3 ){
 				V2 = match[3];
 				if( match.length >= 4 )
 					V3 = match[4];
 			}
 		}
-		
-			
+
+
 		// return the parse results
 		return {
 			match: match ? match[0] : false, // the matched string
@@ -63,20 +63,20 @@ exports.parser = function parser( ua, js_ua ){
 			V3: V3
 		}
 	};
-	
+
 	// create a pretty user agent string from the ua object
 	function pretty( user_agent, os ){
 		// use a supplied ua obj, or the buildin
 		var ua = user_agent ? user_agent : ua_obj
 			format = "$0";
-		
+
 		// generate a pretty output format
 		if( ua.V1 ){
 			format = format + " $1";
 			if( ua.V2 ){
 				format = format + ".$2";
 				if( ua.V3 ){
-					// check if its a digit or not, 
+					// check if its a digit or not,
 					if( !isNaN( ua.V3 ) )
 						format = format + ".$3";
 					else
@@ -84,11 +84,11 @@ exports.parser = function parser( ua, js_ua ){
 				}
 			}
 		}
-		
+
 		// operating system
 		if( ua.os && os )
 			format = format + " / $4";
-		
+
 		// replace placeholder with actual content
 		return format.replace( "$0", ua.family )
 					 .replace( "$1", ua.V1 )
@@ -96,16 +96,16 @@ exports.parser = function parser( ua, js_ua ){
 					 .replace( "$3", ua.V3 )
 					 .replace( "$4", ua.os )
 	};
-	
+
 	// the actual finding of the correct user agent group.
 	for( ; i < length; i++ ){
 		ua_obj = parse( browsers[i] );
-		
+
 		// no need to continue parsing other sequence
 		if( ua_obj.match )
 			break;
 	}
-	
+
 	// are we working with a chrome frame perhaps?
 	if( js_ua && ua.indexOf( "chromeframe" ) != -1 )
 		ua_obj.family = "Chrome Frame(" + ua_obj.family + " " + ua_obj.V1 + ")";
@@ -136,7 +136,7 @@ exports.parser = function parser( ua, js_ua ){
 };
 
 // doing a .join("|") because its easier to maintain as array,
-// if you want raw perfomance, compile this a string. 
+// if you want raw perfomance, compile this a string.
 var browser_slash_v123_names = [
 		"Jasmine",
 		"ANTGalio",
@@ -180,7 +180,7 @@ var browser_slash_v123_names = [
 		"Iris",
 		"SeaRequin"
 	].join( "|" ),
-	
+
 	browser_slash_v12_names = [
 		"Bolt",
 		"Jasmine",
@@ -222,13 +222,13 @@ var browser_slash_v123_names = [
 		"Stainless",
 		"Orca"
 	].join( "|" ),
-	
+
 	// the parser regexp storage, this will be used by the UA parser
 	browsers = [
 		// TOP CASES
 		// opera must go first
 		{ regexp: /^(Opera)\/(\d+)\.(\d+) \(Nintendo Wii/, family_replacement:"Wii" },
-		
+
 		// must go before browser v1.v2
 		// eg: Minefield/3.1a1pre
 		{ regexp:/(Namoroka|Shiretoko|Minefield)\/(\d+)\.(\d+)\.(\d+(?:pre)?)/, family_replacement:"Firefox ($1)" },
@@ -246,14 +246,14 @@ var browser_slash_v123_names = [
 		// Opera will stop at 9.80 and hide the real version in the Version string
 		// http://dev.opera.com/articles/view/opera-ua-string-changes/
 		{ regexp:/(Fennec)\/(\d+)\.(\d+)(pre)/ },
-		
+
 		{ regexp:/(Firefox)\/(\d+)\.(\d+)\.(\d+(?:pre)?) \(Swiftfox\)/, family_replacement:"Swiftfox" },
 		{ regexp:/(Firefox)\/(\d+)\.(\d+)([ab]\d+[a-z]*)? \(Swiftfox\)/, family_replacement:"Swiftfox" },
-		
+
 		// lowercase konqueror
 		{ regexp:/(konqueror)\/(\d+)\.(\d+)\.(\d+)/, family_replacement:"Konqueror" },
-		
-		
+
+
 		// MAIN CASES, this will match about 50% of the browsers
 		// browsers with v123
 		{ regexp:new RegExp( "(" + browser_slash_v123_names + ")\\/(\\d+)\\.(\\d+)\\.(\\d+)" ) },
@@ -267,7 +267,7 @@ var browser_slash_v123_names = [
 		// do these after the "edge" cases
 		{ regexp:/(Firefox)\/(\d+)\.(\d+)\.(\d+)/ },
 		{ regexp:/(Firefox)\/(\d+)\.(\d+)(pre|[ab]\d+[a-z]*)?/ },
-		
+
 		// SPECIAL CASES
 		{ regexp:/(Obigo|OBIGO)[^\d]*(\d+)(?:.(\d+))?/, family_replacement:"Obigo" },
 		{ regexp:/(MAXTHON|Maxthon) (\d+)\.(\d+)/, family_replacement:"Maxthon" },
