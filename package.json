@@ -21,6 +21,10 @@
   , "dependencies": {
         "yamlparser": "0.0.2"
       , "request": "2.1.1"
-      , "semver": "1.0.10"
+      , "semver": "1.0.9"
+    }
+  , "scripts": {
+        "prepublish": "./bin/update.js"
+      , "postinstall": "./bin/update.js"
     }
 }
