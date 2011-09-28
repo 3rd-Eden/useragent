@@ -5,7 +5,6 @@ run-tests:
 		-t 4000 \
 		-I support \
 		-I lib \
-		--serial \
 		$(TESTFLAGS) \
 		$(TESTS)
 
