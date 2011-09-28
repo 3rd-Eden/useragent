@@ -23,6 +23,11 @@
       , "request": "2.1.1"
       , "semver": "1.0.9"
     }
+  , "devDependencies": {
+        "should": "0.3.1"
+      , "expresso": "0.8.1"
+      , "long-stack-traces": "0.1.2"
+    }
   , "scripts": {
         "prepublish": "./bin/update.js"
       , "postinstall": "./bin/update.js"
