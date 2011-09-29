@@ -1,0 +1,11 @@
+{
+    "name": "ua-benchmarker"
+  , "description": "benchmarks the different user agent parsers to see their parse performance"
+  , "version": "0.0.0"
+  , "dependencies": {
+        "microtime": ""
+      , "benchmark": ""
+      , "useragent": "0.1.2"
+      , "ua-parser": "0.2.3"
+    }
+}
