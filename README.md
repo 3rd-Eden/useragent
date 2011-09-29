@@ -1,43 +1,61 @@
-#node-useragent
+# useragent
 
-A user agent string parser for Node.js. Based on the Browserscope.org UA parser so we can actually get accurate version numbers of the browsers
-instead parsing out the render engine version numbers. 
+Useragent is a port of browserscope.org's user agent parser project which
+allows you to parse user agent strings with high accuracy by using hand tuned
+dedicated regular expressions for browser matching. Regular user agent parser
+have major issues because they usually parse out the version number of the
+render engine instead of the version number of the browser.
 
-## Installation
+Because user agent parsing will always be like shooting a moving target because
+browser vendors keep making subtile changes to them it's important to keep your
+the regular expressions database up to date. When you install useragent it will
+automatically download the latest regexp database from the ua-parser project
+and transform it in to a dedicated nodejs require statement. This way you will
+always be up to date.
 
-Using the npm package manager
+But there few more tricks, so keep reading on until you hit the API section.
 
-	npm install useragent
-	
+### Installation
 
-Through git
+Installation is done using the Node Package Manager (npm). If you don't have
+npm installed on your system you can download it from
+[npmjs.org](http://npmjs.org)
 
-	git clone git://github.com/3rd-Eden/node-useragent.git
-	
-	
+```
+npm install useragent
+```
 
-## What can it do
+### API / Working the codez
 
-I could write a whole story about it, but just fire check out the example `node example.js` and navigate to `http://127.0.0.1:8000/`
-In your browser you will see the following ( if you are using Chrome like I did ): 
+Include the useragent parser in you node.js application:
 
-Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.559.0 Safari/534.10
+```js
+var useragent = require('useragent');
+```
 
-userAgent.is
-	`{"version":"534.10","webkit":true,"opera":false,"ie":false,"firefox":true,"safari":true,"mobile_safari":false}`
-userAgent.parser
-	`{"family":"Chrome","V1":"8","V2":"0","V3":"559","match":"Chrome/8.0.559","os":{"match":"OS X 10_6_4","family":"OS X","V1":"10","V2":"6","V3":"4"}}`
-userAgent response.pretty
-	`Chrome 8.0.559`
-userAgent response.prettyOs
-	`OS X 10.6.4`
+`useragent` has 2 methods:
 
-As you can see in the example above, there are different ways of parsing the user-agent string. Usually using .browser() would be enough to do some low level user-agent targeting. It parses it in a way that most client side libraries would parse the user-agent. This is however not that accurate. As you can see in the in the output above the .browser() tell us the version if 533.8, but the real version of the browser is 4.0.4. 
+1. `useragent.is(useragent string).browsername` This api provides you with a
+   quick and dirty browser lookup. The underlying code is usually found on
+   client side scripts so it's not the same quality as our parse method but it
+   does the job.
 
-The .parser() generates a user_agent object, this contains the:
-- Browser / Family name.
-- Version number information ( V1.V2.V3 ).
-- Os object, contains the Family and version numbers.
-- Matched string of the user agent.
-- pretty(), a method that prints out the browser in pretty string.
-- prettyOs, a method that prints out the operating system in a pretty string.
+   `useragent.is` returns a object with potential matched browser names
+
+   ```js
+   useragent.is('ua string').firefox // true
+   useragent.is('ua string').safari // false
+   var ua = useragent.is('ua string')
+   {
+     version: '3'
+     webkit: false
+     opera: false
+     ie: false
+     chrome: false
+     safari: false
+     mobile_safari: false
+     firefox: true
+   }
+   ```
+
+2. `useragent.parse(useragent string)` This initiates our parser`.. bla bla
