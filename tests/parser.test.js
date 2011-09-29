@@ -53,5 +53,6 @@ module.exports = {
  'simple detections': function () {
    useragent.is(ua).chrome.should.be_true;
    useragent.is(ua).webkit.should.be_true;
+   useragent.is(ua).firefox.should.be_false;
  }
 }
