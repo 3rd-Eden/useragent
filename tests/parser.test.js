@@ -22,9 +22,10 @@ module.exports = {
     agent.patch.should.equal('0');
 
     agent.os.should.equal('Other');
-    agent.toVersion().should.equal('');
-    agent.toString().should.equal('Other');
-    agent.toJSON().should.equal('{"family":"Other","major":0,"minor":0,"patch":0,"os":"Other"}');
+    agent.toVersion().should.equal('0.0.0');
+    agent.toString().should.equal('Other 0.0.0');
+    agent.toAgent().should.equal('Other 0.0.0');
+    agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","os":"Other"}');
   },
 
  'correctly parse chromes user agent': function () {
