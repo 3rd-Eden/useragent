@@ -43,16 +43,9 @@ module.exports = {
    agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
  },
 
- 'satisfy that range selector': function () {
-   var agent = useragent.parse(ua);
-
-   agent.satisfies('15.x || >=19.5.0 || 25.0.0 - 17.2.3').should.be_true;
-   agent.satisfies('>16.12.0').should.be_false;
- },
-
  'simple detections': function () {
    useragent.is(ua).chrome.should.be_true;
    useragent.is(ua).webkit.should.be_true;
    useragent.is(ua).firefox.should.be_false;
  }
-}
+};
