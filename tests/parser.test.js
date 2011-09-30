@@ -44,12 +44,12 @@ module.exports = {
   },
 
   'simple detections': function () {
-   useragent.is(ua).chrome.should.be_true;
-   useragent.is(ua).webkit.should.be_true;
-   useragent.is(ua).firefox.should.be_false;
- },
+    useragent.is(ua).chrome.should.be_true;
+    useragent.is(ua).webkit.should.be_true;
+    useragent.is(ua).firefox.should.be_false;
+  },
 
- 'reparse from agent string': function () {
+  'reparse from agent string': function () {
     var agent = useragent.fromString('Chrome 15.0.874 / Mac OS X');
 
     agent.family.should.equal('Chrome');
@@ -64,7 +64,7 @@ module.exports = {
     agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
   },
 
- 'reparse from agent string without operating system': function () {
+  'reparse from agent string without operating system': function () {
     var agent = useragent.fromString('Chrome 15.0.874');
 
     agent.family.should.equal('Chrome');
