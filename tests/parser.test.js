@@ -28,24 +28,52 @@ module.exports = {
     agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","os":"Other"}');
   },
 
- 'correctly parse chromes user agent': function () {
-   var agent = useragent.parse(ua);
+  'correctly parse chromes user agent': function () {
+    var agent = useragent.parse(ua);
 
-   agent.family.should.equal('Chrome');
-   agent.major.should.equal('15');
-   agent.minor.should.equal('0');
-   agent.patch.should.equal('874');
+    agent.family.should.equal('Chrome');
+    agent.major.should.equal('15');
+    agent.minor.should.equal('0');
+    agent.patch.should.equal('874');
 
-   agent.os.should.equal('Mac OS X');
-   agent.toVersion().should.equal('15.0.874');
-   agent.toString().should.equal('Chrome 15.0.874 / Mac OS X');
-   agent.toAgent().should.equal('Chrome 15.0.874');
-   agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
- },
+    agent.os.should.equal('Mac OS X');
+    agent.toVersion().should.equal('15.0.874');
+    agent.toString().should.equal('Chrome 15.0.874 / Mac OS X');
+    agent.toAgent().should.equal('Chrome 15.0.874');
+    agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
+  },
 
- 'simple detections': function () {
+  'simple detections': function () {
    useragent.is(ua).chrome.should.be_true;
    useragent.is(ua).webkit.should.be_true;
    useragent.is(ua).firefox.should.be_false;
- }
+ },
+
+ 'reparse from agent string': function () {
+    var agent = useragent.fromString('Chrome 15.0.874 / Mac OS X');
+
+    agent.family.should.equal('Chrome');
+    agent.major.should.equal('15');
+    agent.minor.should.equal('0');
+    agent.patch.should.equal('874');
+
+    agent.os.should.equal('Mac OS X');
+    agent.toVersion().should.equal('15.0.874');
+    agent.toString().should.equal('Chrome 15.0.874 / Mac OS X');
+    agent.toAgent().should.equal('Chrome 15.0.874');
+    agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
+  },
+
+ 'reparse from agent string without operating system': function () {
+    var agent = useragent.fromString('Chrome 15.0.874');
+
+    agent.family.should.equal('Chrome');
+    agent.major.should.equal('15');
+    agent.minor.should.equal('0');
+    agent.patch.should.equal('874');
+
+    agent.os.should.equal('Other');
+    agent.toVersion().should.equal('15.0.874');
+    agent.toAgent().should.equal('Chrome 15.0.874');
+  }
 };
