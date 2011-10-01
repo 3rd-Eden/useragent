@@ -7,10 +7,10 @@ have major issues because they usually parse out the version number of the
 render engine instead of the version number of the browser.
 
 Because user agent parsing will always be like shooting a moving target because
-browser vendors keep making subtile changes to them it's important to keep your
+browser vendors keep making subtle changes to them it's important to keep your
 the regular expressions database up to date. When you install useragent it will
 automatically download the latest regexp database from the ua-parser project
-and transform it in to a dedicated nodejs require statement. This way you will
+and transform it in to a dedicated node.js require statement. This way you will
 always be up to date.
 
 But there few more tricks, so keep reading on until you hit the API section.
@@ -93,6 +93,88 @@ the same result, but it's just cached.
 
 Parses the result of `agent.toString()` back to a new Agent instance.
 
+```js
+var agent = useragent.parse(req.headers.useragent)
+  , another = useragent.fromString(agent.toString());
+
+console.log(agent == another);
+```
+
 #### useragent.fromJSON(agent.toJSON());
 
 Parses the result of `agent.toJSON()` back to a new Agent instance.
+
+```js
+var agent = useragent.parse(req.headers.useragent)
+  , another = useragent.fromJSON(agent.toJSON());
+
+console.log(agent == another);
+```
+
+### Agents
+
+Most of the methods mentioned above return a Agent instance. This Agent exposes
+the parsed out information from the user agent strings. This allows us to
+extend the agent with more methods that do not nessesarly need to be in the
+core agent instance, allowing us to expose a plugin interface for third party
+developers.
+
+You can read out the following properties:
+
+* `family` The browser family, or browser name, it defaults to Other.
+* `major` The major version number of the family, it defaults to 0.
+* `minor` The minor version number of the family, it defaults to 0.
+* `patch` The patch version number of the family, it defaults to 0.
+* `os` The operating system of the user, it defaults to Other.
+
+While most version number information is a string, I have chosen to present
+them all as string because a browser can also be identified as beta or alpha.
+When the family name or os can not be determined we will default to the string
+Other.
+
+The following methods are available:
+
+#### Agent.toAgent();
+
+Returns the family and version number concatinated in a nice human readable
+string.
+
+```js
+var agent = useragent.parse(req.headers.useragent);
+agent.toAgent(); // 'Chrome 15.0.874'
+```
+
+#### Agent.toString();
+
+Returns the results of the `Agent.toAgent()` but also adds the parsed operating
+system to the string in a human readable format.
+
+```js
+var agent = useragent.parse(req.headers.useragent);
+agent.toString(); // 'Chrome 15.0.874 / Mac OS X'
+
+// as it's a to string method you can also concat it with another string
+
+'your useragent is ' + agent; // 'your useragent is Chrome 15.0.874 / Mac OS X'
+```
+
+#### Agent.toVersion();
+
+Returns the version of the browser in a human readable string.
+
+```js
+var agent = useragent.parse(req.headers.useragent);
+agent.toVersion(); // '15.0.874'
+```
+
+#### Agent.toJSON();
+
+Generates a stringified JSON output of the agent, this can later be used again
+to create a new Agent instance using the `useragent.fromJSON` method.
+
+```js
+var agent = useragent.parse(req.headers.useragent);
+agent.toJSON(); //'{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}'
+```
+
+### Adding more features to the Agent
