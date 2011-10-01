@@ -35,8 +35,7 @@
       , "long-stack-traces": "0.1.2"
     }
   , "scripts": {
-        "prepublish": "./bin/update.js"
-      , "postinstall": "./bin/update.js"
+        "postinstall": "./bin/update.js"
       , "update": "./bin/update.js"
     }
 }
