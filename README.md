@@ -15,6 +15,27 @@ always be up to date.
 
 But there few more tricks, so keep reading on until you hit the API section.
 
+### Performance
+
+The 1.0 release of the useragent parser spots a major performance improvement
+of the old parser, it also has a reduced memory level because we recompiled the
+regex list to make a smaller impact.
+
+Some stats from the benchmark:
+
+> Starting the benchmark, parsing 47 useragent strings per run
+> Executed benchmark (useragent2)
+> Count (86), Cycles (96), Elapsed (5.028), Hz (1640.9779913574882)
+>
+> Executed benchmark (useragent1)
+> Count (56), Cycles (96), Elapsed (5.03), Hz (1063.7910527195145)
+
+As you can see that useragent 2 (1.0) is much faster then original parser. The
+test above was executed on a iMac 2010 and Node.js v0.4.12. The code has been
+optimized to take full advantage of the upcoming V8 crankshaft support in
+node.js and you will another performance boost from it. Free performance boost,
+so that is pretty bad ass.
+
 ### Installation
 
 Installation is done using the Node Package Manager (npm). If you don't have
@@ -32,6 +53,28 @@ Include the useragent parser in you node.js application:
 ```js
 var useragent = require('useragent');
 ```
+
+The useragent library allows you do use the automatically installed regex
+library or you can fetch it live from the remote servers. So if you are
+paranoid and always want your regex library to be up to date to match with
+agent the widest range of useragent strings you can do:
+
+```js
+var useragent = require('useragent');
+useragent(true);
+```
+
+This will async load the database from the server and compile it to a proper
+JavaScript supported format. If it fails to compile or load it from the remote
+location it will just fallback silently to the shipped version.
+
+But there are more ways to update your regex library, when the useragent is
+installed on your system we automatically start a update process to see if the
+shipped version is out of date or not, if we can fetch one we will store that
+one instead so you have latest version available for you when you install.
+
+In addition to this, doing a `npm update useragent` should also re-fetch the
+library for you. So many ways to stay up to date ;).
 
 #### useragent.is(useragent string).browsername;
 
@@ -178,3 +221,39 @@ agent.toJSON(); //'{"family":"Chrome","major":"15","minor":"0","patch":"874","os
 ```
 
 ### Adding more features to the Agent
+
+As I wanted to keep the core of the useragent parser as clean and fast as
+possible I decided to move some of the initally planned features to a new
+`plugin` file.
+
+These extenstions to the Agent prototype can be loaded by requiring the
+`useragent/features` file:
+
+```js
+var useragent = require('useragent');
+require('useragent/features');
+```
+
+The inital release introduces 1 new method, satisfies, which allows you to see
+if the version number of the browser satisfies a certain range. It uses the
+semver library to do all the range calculations but here is a small summary of
+the supported range styles:
+
+* `>1.2.3` Greater than a specific version.
+* `<1.2.3` Less than.
+* `1.2.3 - 2.3.4` := `>=1.2.3 <=2.3.4`.
+* `~1.2.3` := `>=1.2.3 <1.3.0`.
+* `~1.2` := `>=1.2.0 <2.0.0`.
+* `~1` := `>=1.0.0 <2.0.0`.
+* `1.2.x` := `>=1.2.0 <1.3.0`.
+* `1.x` := `>=1.0.0 <2.0.0`.
+
+#### Agent.satisfies('range style here');
+
+Check if the agent matches the supplied range.
+
+```js
+var agent = useragent.parse(req.headers.useragent);
+agent.satisfies('15.x || >=19.5.0 || 25.0.0 - 17.2.3'); // true
+agent.satisfies('>16.12.0'); // false
+```
