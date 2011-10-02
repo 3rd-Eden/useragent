@@ -23,12 +23,14 @@ regex list to make a smaller impact.
 
 Some stats from the benchmark:
 
+> ```
 > Starting the benchmark, parsing 47 useragent strings per run
 > Executed benchmark (useragent2)
 > Count (86), Cycles (96), Elapsed (5.028), Hz (1640.9779913574882)
 >
 > Executed benchmark (useragent1)
 > Count (56), Cycles (96), Elapsed (5.03), Hz (1063.7910527195145)
+> ```
 
 As you can see that useragent 2 (1.0) is much faster then original parser. The
 test above was executed on a iMac 2010 and Node.js v0.4.12. The code has been
