@@ -46,6 +46,21 @@ npm installed on your system you can download it from
 npm install useragent
 ```
 
+### Migrating from 0.1.2 to 1.0.0
+
+If you are upgrading from 0.1.2 to 1.0.0 these changes will affect your:
+
+* `useragent.browser(ua)` has been renamed to `useragent.is(ua)`.
+* `useragent.parser(ua, jsua)` has been renamed to `useragent.parse(ua, jsua)`.
+* `result.pretty()` has been renamed to `result.toAgent()`.
+* `result.V1` has been renamed to `result.major`.
+* `result.V2` has been renamed to `result.minor`.
+* `result.V3` has been renamed to `result.patch`.
+* `result.prettyOS()` has been removed.
+* `result.match` has been removed.
+
+For more detailed information, check out the API below.
+
 ### API / Working the codez
 
 Include the useragent parser in you node.js application:
