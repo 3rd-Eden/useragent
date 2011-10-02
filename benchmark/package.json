@@ -7,5 +7,6 @@
       , "benchmark": ""
       , "useragent": "0.1.2"
       , "ua-parser": "0.2.3"
+      , "useragent_parser": "1.0.0"
     }
 }

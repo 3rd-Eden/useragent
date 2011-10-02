@@ -14,7 +14,8 @@ var microtime = require('microtime')
 
 var useragent2 = require('../')
   , useragent = require('useragent')
-  , uaparser = require('ua-parser');
+  , uaparser = require('ua-parser')
+  , useragent_parser = require('useragent_parser');
 
 /**
  * Setup the test-files
@@ -39,6 +40,11 @@ froomfroom.add('useragent2', function () {
 .add('useragent1', function () {
   for (var i = 0; i < length; i++ ) {
     useragent.parser(testcases[i]);
+  }
+})
+.add('useragent_parser', function () {
+  for (var i = 0; i < length; i++ ) {
+    useragent_parser.parse(testcases[i]);
   }
 })
 .add('ua-parser', function () {
