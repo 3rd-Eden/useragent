@@ -100,9 +100,9 @@ our parse method but it does the job.
 `useragent.is` returns a object with potential matched browser names
 
 ```js
-useragent.is('ua string').firefox // true
-useragent.is('ua string').safari // false
-var ua = useragent.is('ua string')
+useragent.is(req.headers['user-agent']).firefox // true
+useragent.is(req.headers['user-agent']).safari // false
+var ua = useragent.is(req.headers['user-agent'])
 
 // the object
 {
@@ -132,10 +132,10 @@ information in different predefined formats. See the Agent section for more
 information.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 
 // example for parsing both the useragent header and a optional js useragent
-var agent2 = useragent.parse(req.headers.useragent, req.query.jsuseragent);
+var agent2 = useragent.parse(req.headers['user-agent'], req.query.jsuseragent);
 ```
 
 #### useragent.lookup(useragent string[, js useragent]);
@@ -152,7 +152,7 @@ the same result, but it's just cached.
 Parses the result of `agent.toString()` back to a new Agent instance.
 
 ```js
-var agent = useragent.parse(req.headers.useragent)
+var agent = useragent.parse(req.headers['user-agent'])
   , another = useragent.fromString(agent.toString());
 
 console.log(agent == another);
@@ -163,7 +163,7 @@ console.log(agent == another);
 Parses the result of `agent.toJSON()` back to a new Agent instance.
 
 ```js
-var agent = useragent.parse(req.headers.useragent)
+var agent = useragent.parse(req.headers['user-agent'])
   , another = useragent.fromJSON(agent.toJSON());
 
 console.log(agent == another);
@@ -198,7 +198,7 @@ Returns the family and version number concatinated in a nice human readable
 string.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 agent.toAgent(); // 'Chrome 15.0.874'
 ```
 
@@ -208,7 +208,7 @@ Returns the results of the `Agent.toAgent()` but also adds the parsed operating
 system to the string in a human readable format.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 agent.toString(); // 'Chrome 15.0.874 / Mac OS X'
 
 // as it's a to string method you can also concat it with another string
@@ -221,7 +221,7 @@ agent.toString(); // 'Chrome 15.0.874 / Mac OS X'
 Returns the version of the browser in a human readable string.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 agent.toVersion(); // '15.0.874'
 ```
 
@@ -231,7 +231,7 @@ Generates a stringified JSON output of the agent, this can later be used again
 to create a new Agent instance using the `useragent.fromJSON` method.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 agent.toJSON(); //'{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}'
 ```
 
@@ -268,7 +268,7 @@ the supported range styles:
 Check if the agent matches the supplied range.
 
 ```js
-var agent = useragent.parse(req.headers.useragent);
+var agent = useragent.parse(req.headers['user-agent']);
 agent.satisfies('15.x || >=19.5.0 || 25.0.0 - 17.2.3'); // true
 agent.satisfies('>16.12.0'); // false
 ```
