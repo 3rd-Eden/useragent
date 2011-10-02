@@ -8,6 +8,7 @@ var useragent = require('../')
 // of errors.
 [
     'testcases.yaml'
+  , 'static.custom.yaml'
   , 'firefoxes.yaml'
   , 'pgts.yaml'
 ].forEach(function (filename) {
