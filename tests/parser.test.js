@@ -13,6 +13,21 @@ module.exports = {
     useragent.version.should.match(/^\d+\.\d+\.\d+$/);
   },
 
+  'parser should not throw errors when no useragent has been given': function () {
+    var agent = useragent.parse();
+
+    agent.family.should.equal('Other');
+    agent.major.should.equal('0');
+    agent.minor.should.equal('0');
+    agent.patch.should.equal('0');
+
+    agent.os.should.equal('Other');
+    agent.toVersion().should.equal('0.0.0');
+    agent.toString().should.equal('Other 0.0.0');
+    agent.toAgent().should.equal('Other 0.0.0');
+    agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","os":"Other"}');
+  },
+
   'parser should not throw errors and default to unkown': function () {
     var agent = useragent.parse('');
 
