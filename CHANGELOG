@@ -1,0 +1,4 @@
+* __v1.0.1__ Added support for cURL, Wget and thunderbird using a custom
+useragent definition file.
+
+* __v1.0.0__ Complete rewrite of the API and major performance improvements.

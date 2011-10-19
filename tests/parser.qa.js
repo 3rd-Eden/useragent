@@ -3,10 +3,14 @@ var useragent = require('../')
   , yaml = require('yamlparser')
   , fs = require('fs');
 
+// run over the testcases, some might fail, some might not. This is just qu
+// test to see if we can parse without errors, and with a reasonable amount
+// of errors.
 [
     'testcases.yaml'
+  , 'static.custom.yaml'
   , 'firefoxes.yaml'
-//  , 'pgts.yaml'
+  , 'pgts.yaml'
 ].forEach(function (filename) {
   var testcases = fs.readFileSync(__dirname +'/fixtures/' + filename).toString()
     , parsedyaml = yaml.eval(testcases);
@@ -25,13 +29,14 @@ var useragent = require('../')
     var js_ua;
     if (test.js_ua) {
       js_ua = (Function('return ' + test.js_ua)()).js_user_agent_string;
-      console.log(js_ua);
     }
 
     exports[filename + ': ' + test.user_agent_string] = function () {
       var agent = useragent.parse(test.user_agent_string, js_ua);
 
       agent.family.should.equal(test.family);
+      // we need to test if v1 is a string, because the yamlparser transforms
+      // empty v1: statements to {}
       agent.major.should.equal(typeof test.v1 == 'string' ? test.v1 : '0');
       agent.minor.should.equal(typeof test.v2 == 'string' ? test.v2 : '0');
       agent.patch.should.equal(typeof test.v3 == 'string' ? test.v3 : '0');
