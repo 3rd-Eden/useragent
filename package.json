@@ -1,6 +1,6 @@
 { 
     "name": "useragent"
-  , "version": "1.0.2"
+  , "version": "1.0.3"
   , "description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting"
   , "author": "Arnout Kazemier"
   , "main": "./index.js"
@@ -27,7 +27,7 @@
   , "dependencies": {
         "yamlparser": "0.0.2"
       , "request": "2.1.1"
-      , "semver": "1.0.9"
+      , "semver": "1.0.11"
     }
   , "devDependencies": {
         "should": "0.3.1"
