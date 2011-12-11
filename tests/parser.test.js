@@ -81,6 +81,10 @@ describe('useragent', function () {
   describe('#is', function () {
     var chrome = ua
       , firefox = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0) Gecko/20100101 Firefox/8.0'
+      , ie = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; yie8)'
+      , opera = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; de) Opera 11.51'
+      , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
+      , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
 
     it('should not throw errors when called without arguments', function () {
       useragent.is()
@@ -88,23 +92,69 @@ describe('useragent', function () {
     })
 
     it('should correctly detect google chrome', function () {
-      useragent.is(chrome).chrome.should.be_true
-      useragent.is(chrome).webkit.should.be_true
-      useragent.is(chrome).firefox.should.be_false
-      useragent.is(chrome).mozilla.should.be_false
-      useragent.is(chrome).ie.should.be_false
-      useragent.is(chrome).opera.should.be_false
-      useragent.is(chrome).mobile_safari.should.be_false
+      useragent.is(chrome).chrome.should.be.true
+      useragent.is(chrome).webkit.should.be.true
+      useragent.is(chrome).safari.should.be.false
+      useragent.is(chrome).firefox.should.be.false
+      useragent.is(chrome).mozilla.should.be.false
+      useragent.is(chrome).ie.should.be.false
+      useragent.is(chrome).opera.should.be.false
+      useragent.is(chrome).mobile_safari.should.be.false
     })
 
     it('should correctly detect firefox', function () {
-      useragent.is(firefox).chrome.should.be_false
-      useragent.is(firefox).webkit.should.be_false
-      useragent.is(firefox).firefox.should.be_true
-      useragent.is(firefox).mozilla.should.be_false
-      useragent.is(firefox).ie.should.be_false
-      useragent.is(firefox).opera.should.be_false
-      useragent.is(firefox).mobile_safari.should.be_false
+      useragent.is(firefox).chrome.should.be.false
+      useragent.is(firefox).webkit.should.be.false
+      useragent.is(firefox).safari.should.be.false
+      useragent.is(firefox).firefox.should.be.true
+      useragent.is(firefox).mozilla.should.be.true
+      useragent.is(firefox).ie.should.be.false
+      useragent.is(firefox).opera.should.be.false
+      useragent.is(firefox).mobile_safari.should.be.false
+    })
+
+    it('should correctly detect internet explorer', function () {
+      useragent.is(ie).chrome.should.be.false
+      useragent.is(ie).webkit.should.be.false
+      useragent.is(ie).safari.should.be.false
+      useragent.is(ie).firefox.should.be.false
+      useragent.is(ie).mozilla.should.be.false
+      useragent.is(ie).ie.should.be.true
+      useragent.is(ie).opera.should.be.false
+      useragent.is(ie).mobile_safari.should.be.false
+    })
+
+    it('should correctly detect opera', function () {
+      useragent.is(opera).chrome.should.be.false
+      useragent.is(opera).webkit.should.be.false
+      useragent.is(opera).safari.should.be.false
+      useragent.is(opera).firefox.should.be.false
+      useragent.is(opera).mozilla.should.be.false
+      useragent.is(opera).ie.should.be.false
+      useragent.is(opera).opera.should.be.true
+      useragent.is(opera).mobile_safari.should.be.false
+    })
+
+    it('should correctly detect safari', function () {
+      useragent.is(safari).chrome.should.be.false
+      useragent.is(safari).webkit.should.be.true
+      useragent.is(safari).safari.should.be.true
+      useragent.is(safari).firefox.should.be.false
+      useragent.is(safari).mozilla.should.be.false
+      useragent.is(safari).ie.should.be.false
+      useragent.is(safari).opera.should.be.false
+      useragent.is(safari).mobile_safari.should.be.false
+    })
+
+    it('should correctly detect safari-mobile', function () {
+      useragent.is(ipod).chrome.should.be.false
+      useragent.is(ipod).webkit.should.be.true
+      useragent.is(ipod).safari.should.be.true
+      useragent.is(ipod).firefox.should.be.false
+      useragent.is(ipod).mozilla.should.be.false
+      useragent.is(ipod).ie.should.be.false
+      useragent.is(ipod).opera.should.be.false
+      useragent.is(ipod).mobile_safari.should.be.true
     })
   })
 
