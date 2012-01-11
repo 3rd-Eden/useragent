@@ -1,6 +1,6 @@
-{ 
+{
     "name": "useragent"
-  , "version": "1.0.4"
+  , "version": "1.0.5"
   , "description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting"
   , "author": "Arnout Kazemier"
   , "main": "./index.js"
@@ -35,8 +35,8 @@
       , "long-stack-traces": "0.1.2"
     }
   , "scripts": {
-        "postinstall": "./bin/update.js"
-      , "update": "./bin/update.js"
+        "postinstall": "node ./bin/update.js"
+      , "update": "node ./bin/update.js"
       , "test": "make test"
     }
 }

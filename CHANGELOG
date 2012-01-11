@@ -1,3 +1,6 @@
+* __v1.0.5__ Potential fix for #11 where it doesn't install the stuff in windows
+this also brings a fresh update of the agents.js
+
 * __v1.0.3__ Rewritten the `is` method so it doesn't display IE as true for
 firefox, chrome etc fixes #10 and #7
 
