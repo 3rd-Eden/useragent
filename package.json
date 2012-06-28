@@ -10,23 +10,17 @@
       , "email":"info@3rd-Eden.com"
       , "web":"http://www.3rd-Eden.com"
     }]
-  , "licenses": [
-        {
-            "type": "Apache-2.0"
-          , "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
-        }
-      , {
-            "type": "MIT"
-          , "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
-        }
-    ]
+  , "license": {
+        "type": "MIT"
+      , "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
+    }
   , "repository": {
         "type": "git"
       , "url" : "http://github.com/3rd-Eden/useragent.git"
     }
   , "dependencies": {
         "yamlparser": "0.0.2"
-      , "request": "2.9.202"
+      , "request": "2.9.203"
       , "semver": "1.0.14"
     }
   , "devDependencies": {
