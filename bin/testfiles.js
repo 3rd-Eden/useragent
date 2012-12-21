@@ -5,9 +5,9 @@ var request = require('request')
   , fs = require('fs');
 
 var files = {
-    'pgts.yaml': 'http://ua-parser.googlecode.com/svn/trunk/test/resources/pgts_browser_list.yaml'
-  , 'testcases.yaml': 'http://ua-parser.googlecode.com/svn/trunk/test/resources/test_user_agent_parser.yaml'
-  , 'firefoxes.yaml': 'http://ua-parser.googlecode.com/svn/trunk/test/resources/firefox_user_agent_strings.yaml'
+    'pgts.yaml': 'https://raw.github.com/tobie/ua-parser/master/test_resources/pgts_browser_list.yaml'
+  , 'testcases.yaml': 'https://raw.github.com/tobie/ua-parser/master/test_resources/test_user_agent_parser.yaml'
+  , 'firefoxes.yaml': 'https://raw.github.com/tobie/ua-parser/master/test_resources/firefox_user_agent_strings.yaml'
 };
 
 /**
