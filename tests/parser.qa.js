@@ -37,9 +37,9 @@ var useragent = require('../')
       agent.family.should.equal(test.family);
       // we need to test if v1 is a string, because the yamlparser transforms
       // empty v1: statements to {}
-      agent.major.should.equal(typeof test.v1 == 'string' ? test.v1 : '0');
-      agent.minor.should.equal(typeof test.v2 == 'string' ? test.v2 : '0');
-      agent.patch.should.equal(typeof test.v3 == 'string' ? test.v3 : '0');
+      agent.major.should.equal(typeof test.major == 'string' ? test.major : '0');
+      agent.minor.should.equal(typeof test.minor == 'string' ? test.minor : '0');
+      agent.patch.should.equal(typeof test.patch == 'string' ? test.patch : '0');
     }
   });
 });
