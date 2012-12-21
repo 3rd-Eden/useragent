@@ -3,6 +3,9 @@ ALL_QA = $(shell find tests/ -name '*.qa.js')
 REPORTER = spec
 UI = bdd
 
+test:
+	@$(MAKE) TESTS="$(ALL_TESTS)" run-tests
+
 run-tests:
 	@./node_modules/.bin/mocha \
 		--require should \
@@ -11,10 +14,8 @@ run-tests:
 		--growl \
 		$(TESTS)
 
-test:
-	@$(MAKE) TESTS="$(ALL_TESTS)" run-tests
-
 qa:
 	@$(MAKE) TESTS="$(ALL_QA)" UI=exports run-tests
 
-.PHONY: test
+.PHONY: test qa run-tests
+
