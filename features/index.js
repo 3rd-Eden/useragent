@@ -4,7 +4,7 @@
  * Plugin dependencies
  */
 
-var Agent = require('../lib/useragent').Agent
+var Agent = require('../').Agent
   , semver = require('semver');
 
 /**

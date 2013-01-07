@@ -4,7 +4,7 @@
  * Library dependencies.
  */
 
-var agents = require('./agents');
+var agents = require('./lib/agents');
 
 /**
  * The representation of a parsed user agent.
@@ -199,7 +199,7 @@ function updater (refresh) {
   // check if we need to refresh the code from the live servers this does not
   // impact the rest of the library, it will just update the `agents` code.
   if (refresh) {
-    require('./update')(function updating (err, set) {
+    require('./lib/update')(function updating (err, set) {
       if (err) return; // use old set on error
 
       // update our agents and lenghts
