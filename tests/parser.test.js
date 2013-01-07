@@ -44,7 +44,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('0.0.0')
       agent.toString().should.equal('Other 0.0.0')
       agent.toAgent().should.equal('Other 0.0.0')
-      agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","os":"Other"}')
+      agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":"Generic Computer","os":"Other"}')
     })
 
     it('should not throw errors on empty strings and default to unkown', function () {
@@ -59,7 +59,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('0.0.0')
       agent.toString().should.equal('Other 0.0.0')
       agent.toAgent().should.equal('Other 0.0.0')
-      agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","os":"Other"}')
+      agent.toJSON().should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":"Generic Computer","os":"Other"}')
     })
 
     it('should correctly parse chromes user agent', function () {
@@ -74,7 +74,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('15.0.874')
       agent.toString().should.equal('Chrome 15.0.874 / Mac OS X')
       agent.toAgent().should.equal('Chrome 15.0.874')
-      agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}')
+      agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":"Generic Computer","os":"Mac OS X"}')
     })
   })
 
@@ -171,7 +171,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('15.0.874')
       agent.toString().should.equal('Chrome 15.0.874 / Mac OS X')
       agent.toAgent().should.equal('Chrome 15.0.874')
-      agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}')
+      agent.toJSON().should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":"Generic Computer","os":"Mac OS X"}')
     })
 
     it('should reparse an Agent string without operating system', function () {
