@@ -1,10 +1,24 @@
-"use strict";
+'use strict';
 
 /**
- * Library dependencies.
+ * This is where all the magic comes from, specially crafted for `useragent`.
  */
+var regexps = require('./lib/regexps');
 
-var agents = require('./lib/agents');
+/**
+ * Reduce references by storing the lookups.
+ */
+// OperatingSystem parsers:
+var osparsers = regexps.os
+  , osparserslength = osparsers.length;
+
+// UserAgent parsers:
+var agentparsers = regexps.browser
+  , agentparserslength = agentparsers.length;
+
+// Device parsers:
+var deviceparsers = regexps.device
+  , deviceparserslength = deviceparsers.length;
 
 /**
  * The representation of a parsed user agent.
@@ -14,32 +28,100 @@ var agents = require('./lib/agents');
  * @param {String} major Major version of the browser
  * @param {String} minor Minor version of the browser
  * @param {String} patch Patch version of the browser
- * @param {String} os Operating system
- * @param {String} device Device name
+ * @param {String} source The actual user agent string
  * @api public
  */
-
-function Agent (family, major, minor, patch, os, device) {
+function Agent(family, major, minor, patch, source) {
   this.family = family || 'Other';
   this.major = major || '0';
   this.minor = minor || '0';
   this.patch = patch || '0';
-  this.os = os || 'Other';
-  this.device = device || 'Generic Computer';
+  this.source = source || '';
 }
 
 /**
- * Generates a string output of the parsed user agent.
+ * OnDemand parsing of the Operating System.
+ *
+ * @type {OperatingSystem}
+ * @api public
+ */
+Object.defineProperty(Agent.prototype, 'os', {
+  get: function lazyparse() {
+    var userAgent = this.source
+      , length = osparserslength
+      , parsers = osparsers
+      , i = 0
+      , parser
+      , res;
+
+    for (; i < length; i++) {
+      if (res = userAgent.match(parsers[i].parser)) {
+        parser = parsers[i];
+
+        if (parser.family) res[1] = parser.family.replace('$1', res[1]);
+        if (parser.major) res[2] = parser.major;
+        if (parser.minor) res[3] = parser.minor;
+        if (parser.patch) res[4] = parser.patch;
+
+        break;
+      }
+    }
+
+    // Default to Array if we didn't find a match.
+    res = res || [];
+
+    return Object.defineProperty(this, 'os', {
+        value: new OperatingSystem(res[1], res[2], res[3], res[4])
+    }).os;
+  }
+});
+
+/**
+ * OnDemand parsing of the Device type.
+ *
+ * @type {Device}
+ * @api public
+ */
+Object.defineProperty(Agent.prototype, 'device', {
+  get: function lazyparse() {
+    var userAgent = this.source
+      , length = deviceparserslength
+      , parsers = deviceparsers
+      , i = 0
+      , parser
+      , res;
+
+    for (; i < length; i++) {
+      if (res = userAgent.match(parsers[i].parser)) {
+        parser = parsers[i];
+
+        if (parser.family) res[1] = parser.family.replace('$1', res[1]);
+        if (parser.major) res[2] = parser.major;
+        if (parser.minor) res[3] = parser.minor;
+        if (parser.patch) res[4] = parser.patch;
+
+        break;
+      }
+    }
+
+    // Default to Array if we didn't find a match.
+    res = res || [];
+
+    return Object.defineProperty(this, 'device', {
+        value: new Device(res[1], res[2], res[3], res[4])
+    }).device;
+  }
+});
+/*** Generates a string output of the parsed user agent.
  *
  * @returns {String}
  * @api public
  */
-
-Agent.prototype.toAgent = function toAgent () {
+Agent.prototype.toAgent = function toAgent() {
   var output = this.family
     , version = this.toVersion();
 
-  if (version) output += ' ' + version;
+  if (version) output += ' '+ version;
   return output;
 };
 
@@ -49,8 +131,7 @@ Agent.prototype.toAgent = function toAgent () {
  * @returns {String}  "UserAgent 0.0.0 / OS"
  * @api public
  */
-
-Agent.prototype.toString = function toString () {
+Agent.prototype.toString = function toString() {
   var agent = this.toAgent()
     , os = this.os !== 'Other' ? this.os : false;
 
@@ -63,8 +144,79 @@ Agent.prototype.toString = function toString () {
  * @returns {String}
  * @api public
  */
+Agent.prototype.toVersion = function toVersion() {
+  var version = '';
 
-Agent.prototype.toVersion = function toVersion () {
+  if (this.major) {
+    version += this.major;
+    if (+this.minor) {
+     version += '.' + this.minor;
+     // Special case here, the patch can also be Alpha, Beta etc so we need
+     // to check if it's a string or not.
+     if (this.patch) {
+      version += (isNaN(+this.patch) ? ' ' : '.') + this.patch;
+     }
+    }
+  }
+
+  return version;
+};
+
+/**
+ * Outputs a JSON string of the Agent.
+ *
+ * @returns {String}
+ * @api public
+ */
+Agent.prototype.toJSON = function toJSON() {
+  return JSON.stringify({
+      family: this.family
+    , major: this.major
+    , minor: this.minor
+    , patch: this.patch
+    , device: this.device
+    , os: this.os
+  });
+};
+
+/**
+ * The representation of a parsed Operating System.
+ *
+ * @constructor
+ * @param {String} family The name of the os
+ * @param {String} major Major version of the os
+ * @param {String} minor Minor version of the os
+ * @param {String} patch Patch version of the os
+ * @api public
+ */
+function OperatingSystem(family, major, minor, patch) {
+  this.family = family || 'Other';
+  this.major = major || '0';
+  this.minor = minor || '0';
+  this.patch = patch || '0';
+}
+
+/**
+ * Generates a stringified version of the Operating System.
+ *
+ * @returns {String} "Operating System 0.0.0"
+ * @api public
+ */
+OperatingSystem.prototype.toString = function toString() {
+  var output = this.family
+    , version = this.toVersion();
+
+  if (version) output += ' '+ version;
+  return output;
+};
+
+/**
+ * Generates the version of the Operating System.
+ *
+ * @returns {String}
+ * @api public
+ */
+OperatingSystem.prototype.toVersion = function toVersion() {
   var version = '';
 
   if (this.major) {
@@ -83,108 +235,41 @@ Agent.prototype.toVersion = function toVersion () {
 };
 
 /**
- * Outputs a JSON string of the Agent
+ * Outputs a JSON string of the OS
  *
  * @returns {String}
  * @api public
  */
-
-Agent.prototype.toJSON = function toJSON () {
+OperatingSystem.prototype.toJSON = function toJSON(){
   return JSON.stringify({
       family: this.family
     , major: this.major
     , minor: this.minor
     , patch: this.patch
     , device: this.device
-    , os: this.os
   });
 };
 
 /**
- * Parses the user agent string with the generated parsers from the
- * ua-parser project on google code.
+ * The representation of a parsed Device.
  *
- * @param {String} useragent The user agent string
- * @param {String} jsagent Optional UA from js to detect chrome frame
- * @returns {Agent}
+ * @constructor
+ * @param {String} family The name of the os
  * @api public
  */
-
-function parse (useragent, jsagent) {
-  if (!useragent) return new Agent;
-
-  var ua, os, device, i
-    , browsers = parse.browsers
-    , oss = parse.os
-    , devices = parse.devices
-    , ualength = parse.ua_length
-    , oslength = parse.os_length
-    , deviceslength = parse.devices_length;
-
-  // find the user agent
-  for (i = 0; i < ualength; i++) {
-    if (ua = useragent.match(browsers[i].r)) {
-      var browser = browsers[i];
-      if (browser.family) ua[1] = browser.family.replace('$1', ua[1]);
-      if (browser.major) ua[2] = browser.major;
-      if (browser.minor) ua[3] = browser.minor;
-
-      break;
-    }
-  }
-
-  // find the os
-  for (i = 0; i < oslength; i++) {
-    if (os = useragent.match(oss[i].r)) {
-      os[1] = oss[i].os
-        ? oss[i].os.replace('$1', os[1])
-        : os[1];
-
-      break;
-    }
-  }
-
-  for (i = 0; i < deviceslength; i++) {
-    if (device = useragent.match(devices[i].r)) {
-      device[1] = devices[i].device
-        ? devices[i].device.replace('$1', device[1])
-        : device[1];
-
-      break;
-    }
-  }
-
-  ua = ua || [];
-  os = os || [];
-  device = device || [];
-
-  // detect chrome frame, but make sure it's enabled! So we need to check for
-  // the Chrome/ so we know that it's actually using Chrome under the hood
-  if (jsagent &&
-      (jsagent.indexOf('Chrome/') !== -1 && useragent.indexOf('chromeframe') !== -1)
-  ) {
-    ua[1] = 'Chrome Frame (' + ua[1] + ' ' + ua[2] + ')';
-    var parser = parse(jsagent);
-
-    // update to the new correct version numbers of chrome frame
-    ua[2] = parser.major;
-    ua[3] = parser.minor;
-    ua[4] = parser.patch;
-  }
-
-  return new Agent(ua[1], ua[2], ua[3], ua[4], os[1], device[1]);
+function Device(family) {
+  this.family = family || 'Other';
 }
 
 /**
- * Quick lookup references, object lookups are faster than global lookup
+ * Get string representation.
+ *
+ * @returns {String}
+ * @api public
  */
-
-parse.browsers = agents.browser;
-parse.os = agents.os;
-parse.devices = agents.device;
-parse.ua_length = parse.browsers.length;
-parse.os_length = parse.os.length;
-parse.devices_length = parse.devices.length;
+Device.prototype.toString = function toString() {
+  return this.family;
+};
 
 /**
  * Small nifty thick that allows us to download a fresh set regexs from t3h
@@ -194,27 +279,101 @@ parse.devices_length = parse.devices.length;
  * @param {Boolean} refresh Refresh the dataset from the remote
  * @api public
  */
+module.exports = function updater() {
+  require('./lib/update')(function updating(err, results) {
+    if (err) return; // fail silently
 
-function updater (refresh) {
-  // check if we need to refresh the code from the live servers this does not
-  // impact the rest of the library, it will just update the `agents` code.
-  if (refresh) {
-    require('./lib/update')(function updating (err, set) {
-      if (err) return; // use old set on error
+    regexps = results;
 
-      // update our agents and lenghts
-      agents = set;
+    // OperatingSystem parsers:
+    osparsers = regexps.os;
+    osparserslength = osparsers.length;
 
-      // update the references to the browsers
-      parse.browsers = agents.browser;
-      parse.os = agents.os;
+    // UserAgent parsers:
+    agentparsers = regexps.browser;
+    agentparserslength = agentparsers.length;
 
-      // count the browsers and operating systems again
-      parse.ua_length = parse.browsers.length;
-      parse.os_length = parse.os.length;
-    });
+    // Device parsers:
+    deviceparsers = regexps.device;
+    deviceparserslength = deviceparsers.length;
+  });
+};
+
+// Override the exports with our newly set module.exports
+exports = module.exports;
+
+/**
+ * Nao that we have setup all the different classes and configured it we can
+ * actually start assembling and exposing everything.
+ */
+exports.Device = Device;
+exports.OperatingSystem = OperatingSystem;
+exports.Agent = Agent;
+
+/**
+ * Parses the user agent string with the generated parsers from the
+ * ua-parser project on google code.
+ *
+ * @param {String} userAgent The user agent string
+ * @param {String} jsAgent Optional UA from js to detect chrome frame
+ * @returns {Agent}
+ * @api public
+ */
+exports.parse = function parse(userAgent, jsAgent) {
+  if (!userAgent) return new Agent();
+
+  var length = agentparserslength
+    , parsers = agentparsers
+    , i = 0
+    , parser
+    , res;
+
+  for (; i < length; i++) {
+    if (res = userAgent.match(parsers[i].parser)) {
+      parser = parsers[i];
+
+      if (parser.family) res[1] = parser.family.replace('$1', res[1]);
+      if (parser.major) res[2] = parser.major;
+      if (parser.minor) res[3] = parser.minor;
+      if (parser.patch) res[4] = parser.patch;
+
+      break;
+    }
   }
-}
+
+  // Default to Array if we didn't find a match.
+  res = res || [];
+
+  // Detect Chrome Frame, but make sure it's enabled! So we need to check for
+  // the Chrome/ so we know that it's actually using Chrome under the hood.
+  if (jsAgent && ~jsAgent.indexOf('Chrome/') && ~userAgent.indexOf('chromeframe')) {
+    res[1] = 'Chrome Frame ('+ res[1] +' '+ res[2] +')';
+
+    // Run the JavaScripted userAgent string through the parser again so we can
+    // update the version numbers;
+    parser = parse(jsAgent);
+    res[2] = parser.major;
+    res[3] = parser.minor;
+    res[4] = parser.patch;
+  }
+
+  return new Agent(res[1], res[2], res[3], res[4], userAgent);
+};
+
+/**
+ * If you are doing a lot of lookups you might want to cache the results of the
+ * parsed user agent string instead, in memory.
+ *
+ * @param {String} userAgent The user agent string
+ * @param {String} jsAgent Optional UA from js to detect chrome frame
+ * @api public
+ */
+var dictionary = {};
+exports.lookup = function lookup(userAgent, jsAgent) {
+  var key = (userAgent || '')+(jsAgent || '');
+
+  return dictionary[key] || (dictionary[key] = exports.parse(userAgent, jsAgent));
+};
 
 /**
  * Does a more inaccurate but more common check for useragents identification.
@@ -225,19 +384,18 @@ function updater (refresh) {
  * @returns {Object} matches
  * @api public
  */
-
-function is (useragent) {
+exports.is = function is(useragent) {
   var ua = (useragent || '').toLowerCase()
     , details = {
-        webkit: false
-      , mozilla: false
-      , chrome: false
-      , safari: false
-      , mobile_safari: false
-      , opera: false
-      , ie: false
+        chrome: false
       , firefox: false
-      , version: (ua.match(is.versionRE) || [0, "0"])[1]
+      , ie: false
+      , mobile_safari: false
+      , mozilla: false
+      , opera: false
+      , safari: false
+      , webkit: false
+      , version: (ua.match(exports.is.versionRE) || [0, "0"])[1]
     };
 
   if (~ua.indexOf('webkit')) {
@@ -254,7 +412,7 @@ function is (useragent) {
     }
   } else if (~ua.indexOf('opera')) {
     details.opera = true;
-  } else if (~ua.indexOf('mozilla') && ua.indexOf('compatible') < 0) {
+  } else if (~ua.indexOf('mozilla') && !~ua.indexOf('compatible')) {
     details.mozilla = true;
 
     if (~ua.indexOf('firefox')) details.firefox = true;
@@ -263,7 +421,7 @@ function is (useragent) {
   }
 
   return details;
-}
+};
 
 /**
  * Parses out the version numbers.
@@ -271,128 +429,12 @@ function is (useragent) {
  * @type {RegExp}
  * @api private
  */
-
-is.versionRE = /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/;
-
-/**
- * Converts the result of Agent.toString() back to a new Agent.
- *
- * @param {String} prettyAgent
- * @returns {Agent}
- * @api public
- */
-
-function fromString (prettyAgent) {
-  var parts = prettyAgent.split(' / ')
-    , partition = parts[0].split(' ')
-    , versions = partition[1].split('.');
-
-  // return a new user agent instance
-  return new Agent(partition[0]
-    , versions[0]
-    , versions[1]
-    , partition.length === 3 ? partition[2] : versions[2]
-    , parts.length === 2 ? parts[1] : null
-  );
-}
-
-/**
- * Transforms a JSON structure back to a new Agent
- *
- * @param {Object} data The JSON output of a Agent.toJSON()
- * @returns {Agent}
- * @api public
- */
-
-function fromJSON (data) {
-  return new Agent(data.family, data.major, data.minor, data.patch, data.os);
-}
-
-/**
- * If you are doing a lot of lookups you might want to cache the results of the
- * parsed user agent string instead, in memory.
- *
- * It takes the same arguments as the regular parse function.
- * @api public
- */
-
-function dictionary (ua, jsua) {
-  var key = ua + jsua
-    , match = dictionary.lookup[key];
-
-  if (match) return match;
-  return (dictionary.lookup[key] = parse(ua, jsua));
-}
-
-/**
- * The dictionary for lookups
- *
- * @type {Object}
- * @api private
- */
-
-dictionary.lookup = {};
-
-/**
- * Expose the Agent constructor.
- *
- * @api private
- */
-
-updater.Agent = Agent;
-
-/**
- * Expose the useragent parser.
- *
- * @api public
- */
-
-updater.parse = parse;
-
-/**
- * Expose the dictionary method for faster lookups.
- *
- * @api public
- */
-
-updater.lookup = dictionary;
-
-/**
- * Expose our agent string parser.
- *
- * @api public
- */
-
-updater.fromString = fromString;
-
-/**
- * Expose our agent json parser.
- *
- * @api public
- */
-
-updater.fromJSON = fromJSON;
-
-/**
- * Expose our quick useragent tester.
- *
- * @api public
- */
-
-updater.is = is;
+exports.is.versionRE = /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/;
 
 /**
  * Library version.
  *
+ * @type {String}
  * @api public
  */
-
-updater.version = '1.0.5';
-
-/**
- * Expose the updater.
- *
- * @api public
- */
-
-module.exports = updater;
+exports.version = require('./package.json').version;

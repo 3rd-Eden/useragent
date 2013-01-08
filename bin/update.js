@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-var updater = require('../lib/update');
-updater(function updating (err, data) {
-  "use strict";
+'use strict';
 
-  if (err) return console.error('Update unsuccessfull due to errors', err.message);
-
-  // yay no issues
+/**
+ * Update our definition file.
+ */
+require('../lib/update').update(function updating(err, data) {
+  if (err) return console.error('Update unsuccessfull due to reasons', err.message);
   console.log('Successfully fetched and generated new parsers from the internets.');
 });
