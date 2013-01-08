@@ -149,8 +149,10 @@ Agent.prototype.toVersion = function toVersion() {
 
   if (this.major) {
     version += this.major;
-    if (+this.minor) {
+
+    if (this.minor) {
      version += '.' + this.minor;
+
      // Special case here, the patch can also be Alpha, Beta etc so we need
      // to check if it's a string or not.
      if (this.patch) {
@@ -169,14 +171,14 @@ Agent.prototype.toVersion = function toVersion() {
  * @api public
  */
 Agent.prototype.toJSON = function toJSON() {
-  return JSON.stringify({
+  return {
       family: this.family
     , major: this.major
     , minor: this.minor
     , patch: this.patch
     , device: this.device
     , os: this.os
-  });
+  };
 };
 
 /**
@@ -191,9 +193,9 @@ Agent.prototype.toJSON = function toJSON() {
  */
 function OperatingSystem(family, major, minor, patch) {
   this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.major = major || '';
+  this.minor = minor || '';
+  this.patch = patch || '';
 }
 
 /**
@@ -221,9 +223,11 @@ OperatingSystem.prototype.toVersion = function toVersion() {
 
   if (this.major) {
     version += this.major;
+
     if (this.minor) {
      version += '.' + this.minor;
-     // special case here, the patch can also be Alpha, Beta etc so we need
+
+     // Special case here, the patch can also be Alpha, Beta etc so we need
      // to check if it's a string or not.
      if (this.patch) {
       version += (isNaN(+this.patch) ? ' ' : '.') + this.patch;
@@ -235,19 +239,19 @@ OperatingSystem.prototype.toVersion = function toVersion() {
 };
 
 /**
- * Outputs a JSON string of the OS
+ * Outputs a JSON string of the OS, values are defaulted to undefined so they
+ * are not outputed in the stringify.
  *
  * @returns {String}
  * @api public
  */
 OperatingSystem.prototype.toJSON = function toJSON(){
-  return JSON.stringify({
+  return {
       family: this.family
-    , major: this.major
-    , minor: this.minor
-    , patch: this.patch
-    , device: this.device
-  });
+    , major: this.major || undefined
+    , minor: this.minor || undefined
+    , patch: this.patch || undefined
+  };
 };
 
 /**
@@ -269,6 +273,19 @@ function Device(family) {
  */
 Device.prototype.toString = function toString() {
   return this.family;
+};
+
+/**
+ * Outputs a JSON string of the Device, values are defaulted to undefined so they
+ * are not outputed in the stringify.
+ *
+ * @returns {String}
+ * @api public
+ */
+Device.prototype.toJSON = function toJSON() {
+  return {
+    family: this.family
+  };
 };
 
 /**
