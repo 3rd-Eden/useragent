@@ -1,6 +1,6 @@
 # useragent 
 
-Current build status:[![BuildStatus](https://secure.travis-ci.org/3rd-Eden/useragent.png)](http://travis-ci.org/3rd-Eden/useragent)
+Current build status: [![BuildStatus](https://secure.travis-ci.org/3rd-Eden/useragent.png?branch=master)](http://travis-ci.org/3rd-Eden/useragent)
 
 Useragent is a port of browserscope.org's user agent parser project which
 allows you to parse user agent strings with high accuracy by using hand tuned
