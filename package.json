@@ -1,7 +1,7 @@
 {
     "name": "useragent"
   , "version": "2.0.0"
-  , "description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting"
+  , "description": "Fastest, most accurate & effecient user agent string parser, uses browserscope's research for parsing"
   , "author": "Arnout Kazemier"
   , "main": "./index.js"
   , "keywords":[
