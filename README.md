@@ -361,6 +361,8 @@ For small changes between version please review the [changelog][changelog].
   behaviour.
 - `agent.os` is now an `OperatingSystem` instance with version numbers. If you
   still a string only representation do `agent.os.toString()`.
+- `semver` has been removed from the dependencies, so if you are using the
+  `require('useragent/features')` you need to add it to your own dependencies
 
 #### Upgrading from 0.1.2 to 1.0.0
 
