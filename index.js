@@ -55,23 +55,23 @@ Object.defineProperty(Agent.prototype, 'os', {
       , res;
 
     for (; i < length; i++) {
-      if (res = userAgent.match(parsers[i].parser)) {
+      if (res = userAgent.match(parsers[i][0])) {
         parser = parsers[i];
 
-        if (parser.family) res[1] = parser.family.replace('$1', res[1]);
-        if (parser.major) res[2] = parser.major;
-        if (parser.minor) res[3] = parser.minor;
-        if (parser.patch) res[4] = parser.patch;
-
+        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
         break;
       }
     }
 
-    // Default to Array if we didn't find a match.
-    res = res || [];
-
     return Object.defineProperty(this, 'os', {
-        value: new OperatingSystem(res[1], res[2], res[3], res[4])
+        value: !parser || !res
+          ? new OperatingSystem()
+          : new OperatingSystem(
+                res[1]
+              , parser[2] || res[2]
+              , parser[3] || res[3]
+              , parser[4] || res[4]
+            )
     }).os;
   },
 
@@ -106,23 +106,23 @@ Object.defineProperty(Agent.prototype, 'device', {
       , res;
 
     for (; i < length; i++) {
-      if (res = userAgent.match(parsers[i].parser)) {
+      if (res = userAgent.match(parsers[i][0])) {
         parser = parsers[i];
 
-        if (parser.family) res[1] = parser.family.replace('$1', res[1]);
-        if (parser.major) res[2] = parser.major;
-        if (parser.minor) res[3] = parser.minor;
-        if (parser.patch) res[4] = parser.patch;
-
+        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
         break;
       }
     }
 
-    // Default to Array if we didn't find a match.
-    res = res || [];
-
     return Object.defineProperty(this, 'device', {
-        value: new Device(res[1], res[2], res[3], res[4])
+        value: !parser || !res
+          ? new Device()
+          : new Device(
+                res[1]
+              , parser[2] || res[2]
+              , parser[3] || res[3]
+              , parser[4] || res[4]
+            )
     }).device;
   },
 
@@ -374,20 +374,25 @@ exports.parse = function parse(userAgent, jsAgent) {
     , res;
 
   for (; i < length; i++) {
-    if (res = userAgent.match(parsers[i].parser)) {
+    if (res = parsers[i][0].exec(userAgent)) {
       parser = parsers[i];
 
-      if (parser.family) res[1] = parser.family.replace('$1', res[1]);
-      if (parser.major) res[2] = parser.major;
-      if (parser.minor) res[3] = parser.minor;
-      if (parser.patch) res[4] = parser.patch;
+      if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+      if (!jsAgent) return new Agent(
+          res[1]
+        , parser[2] || res[2]
+        , parser[3] || res[3]
+        , parser[4] || res[4]
+        , userAgent
+      );
 
       break;
     }
   }
 
-  // Default to Array if we didn't find a match.
-  res = res || [];
+  // Return early if we didn't find an match, but might still be able to parse
+  // the os and device, so make sure we supply it with the source
+  if (!parser || !res) return new Agent('', '', '', '', userAgent);
 
   // Detect Chrome Frame, but make sure it's enabled! So we need to check for
   // the Chrome/ so we know that it's actually using Chrome under the hood.
@@ -397,12 +402,18 @@ exports.parse = function parse(userAgent, jsAgent) {
     // Run the JavaScripted userAgent string through the parser again so we can
     // update the version numbers;
     parser = parse(jsAgent);
-    res[2] = parser.major;
-    res[3] = parser.minor;
-    res[4] = parser.patch;
+    parser[2] = parser.major;
+    parser[3] = parser.minor;
+    parser[4] = parser.patch;
   }
 
-  return new Agent(res[1], res[2], res[3], res[4], userAgent);
+  return new Agent(
+      res[1]
+    , parser[2] || res[2]
+    , parser[3] || res[3]
+    , parser[4] || res[4]
+    , userAgent
+  );
 };
 
 /**

@@ -71,7 +71,7 @@ froomfroom
   );
 })
 .on('complete', function () {
-  console.log(this.filter('fastest').pluck('name') + ' has/have the fastest parser');
+  console.log(this.filter('fastest').pluck('name') + ' is the fastest parser');
 });
 
 /**
