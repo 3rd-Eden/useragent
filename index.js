@@ -73,6 +73,20 @@ Object.defineProperty(Agent.prototype, 'os', {
     return Object.defineProperty(this, 'os', {
         value: new OperatingSystem(res[1], res[2], res[3], res[4])
     }).os;
+  },
+
+  /**
+   * Bypass the OnDemand parsing and set an OperatingSystem instance.
+   *
+   * @param {OperatingSystem} os
+   * @api public
+   */
+  set: function set(os) {
+    if (!(os instanceof OperatingSystem)) return false;
+
+    return Object.defineProperty(this, 'os', {
+      value: os
+    }).os;
   }
 });
 
@@ -109,6 +123,20 @@ Object.defineProperty(Agent.prototype, 'device', {
 
     return Object.defineProperty(this, 'device', {
         value: new Device(res[1], res[2], res[3], res[4])
+    }).device;
+  },
+
+  /**
+   * Bypass the OnDemand parsing and set an Device instance.
+   *
+   * @param {Device} device
+   * @api public
+   */
+  set: function set(device) {
+    if (!(device instanceof Device)) return false;
+
+    return Object.defineProperty(this, 'device', {
+      value: device
     }).device;
   }
 });
