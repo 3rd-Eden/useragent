@@ -55,7 +55,7 @@ Object.defineProperty(Agent.prototype, 'os', {
       , res;
 
     for (; i < length; i++) {
-      if (res = userAgent.match(parsers[i][0])) {
+      if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
         if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
@@ -106,7 +106,7 @@ Object.defineProperty(Agent.prototype, 'device', {
       , res;
 
     for (; i < length; i++) {
-      if (res = userAgent.match(parsers[i][0])) {
+      if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
         if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
@@ -397,7 +397,7 @@ exports.parse = function parse(userAgent, jsAgent) {
   // Detect Chrome Frame, but make sure it's enabled! So we need to check for
   // the Chrome/ so we know that it's actually using Chrome under the hood.
   if (jsAgent && ~jsAgent.indexOf('Chrome/') && ~userAgent.indexOf('chromeframe')) {
-    res[1] = 'Chrome Frame ('+ res[1] +' '+ res[2] +')';
+    res[1] = 'Chrome Frame (IE '+ res[1] +'.'+ res[2] +')';
 
     // Run the JavaScripted userAgent string through the parser again so we can
     // update the version numbers;
