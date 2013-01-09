@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Benchmark dependencies.
  */
@@ -16,13 +17,18 @@ var useragent2 = require('../')
   , useragent = require('useragent');
 
 /**
+ * Figure out which test we want to run.
+ */
+var file = process.argv.slice(2)[0] || 'testcases';
+
+/**
  * Setup the test-files.
  */
-var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', 'testcases.yaml')
+var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', file+'.yaml')
   , yammy = yaml.eval(fs.readFileSync(useragentlist).toString()).test_cases
   , testcases = yammy.map(function (test) {
       return test.user_agent_string;
-    })
+    }).slice(0, 1000)
   , length = testcases.length;
 
 /**
@@ -59,4 +65,4 @@ froomfroom
 /**
  * Start the benchmark, froom frooom!!
  */
-froomfroom.run();
+froomfroom.run({ minSamples: 100 });
