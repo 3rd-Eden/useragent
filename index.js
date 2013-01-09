@@ -289,9 +289,52 @@ OperatingSystem.prototype.toJSON = function toJSON(){
  * @param {String} family The name of the os
  * @api public
  */
-function Device(family) {
+function Device(family, major, minor, patch) {
   this.family = family || 'Other';
+  this.major = major || '';
+  this.minor = minor || '';
+  this.patch = patch || '';
 }
+
+/**
+ * Generates a stringified version of the Device.
+ *
+ * @returns {String} "Device 0.0.0"
+ * @api public
+ */
+Device.prototype.toString = function toString() {
+  var output = this.family
+    , version = this.toVersion();
+
+  if (version) output += ' '+ version;
+  return output;
+};
+
+/**
+ * Generates the version of the Device.
+ *
+ * @returns {String}
+ * @api public
+ */
+Device.prototype.toVersion = function toVersion() {
+  var version = '';
+
+  if (this.major) {
+    version += this.major;
+
+    if (this.minor) {
+     version += '.' + this.minor;
+
+     // Special case here, the patch can also be Alpha, Beta etc so we need
+     // to check if it's a string or not.
+     if (this.patch) {
+      version += (isNaN(+this.patch) ? ' ' : '.') + this.patch;
+     }
+    }
+  }
+
+  return version;
+};
 
 /**
  * Get string representation.
@@ -300,7 +343,11 @@ function Device(family) {
  * @api public
  */
 Device.prototype.toString = function toString() {
-  return this.family;
+  var output = this.family
+    , version = this.toVersion();
+
+  if (version) output += ' '+ version;
+  return output;
 };
 
 /**
@@ -312,7 +359,10 @@ Device.prototype.toString = function toString() {
  */
 Device.prototype.toJSON = function toJSON() {
   return {
-    family: this.family
+      family: this.family
+    , major: this.major || undefined
+    , minor: this.minor || undefined
+    , patch: this.patch || undefined
   };
 };
 
