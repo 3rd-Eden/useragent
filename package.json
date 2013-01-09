@@ -4,7 +4,22 @@
   , "description": "User-Agent string parser based on Browserscope.org algorithms for more browser reporting"
   , "author": "Arnout Kazemier"
   , "main": "./index.js"
-  , "keywords":[ "user-agent", "useragent", "browserscope", "ua", "parser", "agent", "user agent"]
+  , "keywords":[
+        "agent"
+      , "browser"
+      , "browserscope"
+      , "os"
+      , "parse"
+      , "parser"
+      , "ua"
+      , "ua-parse"
+      , "ua-parser"
+      , "user agent"
+      , "user"
+      , "user-agent"
+      , "useragent"
+      , "version"
+    ]
   , "maintainers": [{
         "name":"Arnout Kazemier"
       , "email":"info@3rd-Eden.com"
@@ -18,18 +33,15 @@
         "type": "git"
       , "url" : "http://github.com/3rd-Eden/useragent.git"
     }
-  , "dependencies": {
-        "yamlparser": "0.0.2"
-      , "request": "2.9.203"
-      , "semver": "1.0.14"
-    }
   , "devDependencies": {
         "should": "*"
       , "mocha": "*"
       , "long-stack-traces": "0.1.2"
+      , "yamlparser": "0.0.2"
+      , "request": "2.9.203"
+      , "semver": "1.0.14"
     }
   , "scripts": {
-        "update": "node ./bin/update.js"
-      , "test": "make test"
+        "test": "make test"
     }
 }

@@ -1,7 +1,8 @@
 'use strict';
 
+
 /**
- * Benchmark dependencies
+ * Benchmark dependencies.
  */
 var microtime = require('microtime')
   , benchmark = require('benchmark')
@@ -10,28 +11,29 @@ var microtime = require('microtime')
   , fs = require('fs');
 
 /**
- * Useragent parsers
+ * Useragent parsers.
  */
 var useragent2 = require('../')
-  , useragent = require('useragent')
-  , uaparser = require('ua-parser')
-  , useragent_parser = require('useragent_parser')
-  , useragent_parser2 = require('useragent-parser');
+  , useragent = require('useragent');
+
+/**
+ * Figure out which test we want to run.
+ */
+var file = process.argv.slice(2)[0] || 'testcases';
 
 /**
  * Setup the test-files.
  */
-var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', 'testcases.yaml')
+var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', file+'.yaml')
   , yammy = yaml.eval(fs.readFileSync(useragentlist).toString()).test_cases
   , testcases = yammy.map(function (test) {
       return test.user_agent_string;
-    })
+    }).slice(0, 1000)
   , length = testcases.length;
 
 /**
  * Setup the benchmark
  */
-
 var froomfroom = new benchmark.Suite;
 
 froomfroom
@@ -40,29 +42,9 @@ froomfroom
     useragent2.parse(testcases[i]);
   }
 })
-.add('useragent latest dictionary', function () {
-  for (var i = 0; i < length; i++ ) {
-    useragent2.lookup(testcases[i]);
-  }
-})
 .add('useragent1', function () {
   for (var i = 0; i < length; i++ ) {
-    useragent.parser(testcases[i]);
-  }
-})
-.add('useragent_parser', function () {
-  for (var i = 0; i < length; i++ ) {
-    useragent_parser.parse(testcases[i]);
-  }
-})
-.add('useragent-parser', function (){
-  for (var i = 0; i < length; i++ ) {
-    useragent_parser2.parse(testcases[i]);
-  }
-})
-.add('ua-parser', function () {
-  for (var i = 0; i < length; i++ ) {
-    uaparser.parse(testcases[i]);
+    useragent.parse(testcases[i]);
   }
 })
 .on('cycle', function (event) {
@@ -83,5 +65,4 @@ froomfroom
 /**
  * Start the benchmark, froom frooom!!
  */
-console.log('Starting the benchmark, parsing ' + length + ' useragent strings per run');
-froomfroom.run();
+froomfroom.run({ minSamples: 100 });

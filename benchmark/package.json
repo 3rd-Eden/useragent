@@ -5,8 +5,9 @@
   , "dependencies": {
         "microtime": ""
       , "benchmark": ""
-      , "useragent": "0.1.2"
-      , "ua-parser": "0.2.3"
+      , "useragent": "1.1.0"
+      , "ua-parser": "0.3.1"
       , "useragent_parser": "1.0.0"
+      , "useragent-parser": "0.1.1"
     }
 }

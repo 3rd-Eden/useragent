@@ -10,3 +10,5 @@ user_agent_parsers:
 
 os_parsers:
   - regex: '(Red Hat)'
+
+device_parsers:
