@@ -6,6 +6,8 @@
   - The `Agent#toJSON` method now returns an object instread of JSON string. Use
     `JSON.stringify(agent)` instead.
   - Removed the fromAgent method
+  - semver is removed from the dependencies, if you use the useragent/features
+    you should add it to your own dependencies.
 
 ## Version 1.0
 * __v1.1.0__
