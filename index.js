@@ -409,6 +409,10 @@ exports.parse = function parse(userAgent, jsAgent) {
  * If you are doing a lot of lookups you might want to cache the results of the
  * parsed user agent string instead, in memory.
  *
+ * @TODO We probably want to create 2 dictionary's here 1 for the Agent
+ * instances and one for the userAgent instance mapping so we can re-use simular
+ * Agent instance and lower our memory consumption.
+ *
  * @param {String} userAgent The user agent string
  * @param {String} jsAgent Optional UA from js to detect chrome frame
  * @api public
@@ -475,6 +479,39 @@ exports.is = function is(useragent) {
  * @api private
  */
 exports.is.versionRE = /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/;
+
+/**
+ * Transform a JSON object back to a valid userAgent string
+ *
+ * @param {Object} details
+ * @returns {Agent}
+ */
+exports.fromJSON = function fromJSON(details) {
+  if (typeof details === 'string') details = JSON.parse(details);
+
+  var agent = new Agent(details.family, details.major, details.minor, details.patch)
+    , os = details.os;
+
+  // The device family was added in v2.0
+  if ('device' in details) {
+    agent.device = new Device(details.device.family);
+  } else {
+    agent.device = new Device();
+  }
+
+  if ('os' in details && os) {
+    // In v1.1.0 we only parsed out the Operating System name, not the full
+    // version which we added in v2.0. To provide backwards compatible we should
+    // we should set the details.os as family
+    if (typeof os === 'string') {
+      agent.os = new OperatingSystem(os);
+    } else {
+      agent.os = new OperatingSystem(os.family, os.major, os.minor, os.patch);
+    }
+  }
+
+  return agent;
+};
 
 /**
  * Library version.

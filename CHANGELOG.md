@@ -5,7 +5,6 @@
   - Introduced deferred OnDemand parsing for Operating and Devices
   - The `Agent#toJSON` method now returns an object instread of JSON string. Use
     `JSON.stringify(agent)` instead.
-  - Removed the fromJSON method
   - Removed the fromAgent method
 
 ## Version 1.0

@@ -99,6 +99,39 @@ describe('useragent', function () {
     });
   });
 
+  describe('#fromJSON', function () {
+    it('should re-generate the Agent instance', function () {
+      var agent = useragent.parse(ua)
+        , string = JSON.stringify(agent)
+        , agent2 = useragent.fromJSON(string);
+
+      agent2.family.should.equal(agent.family);
+      agent2.major.should.equal(agent.major);
+      agent2.minor.should.equal(agent.minor);
+      agent2.patch.should.equal(agent.patch);
+
+      agent2.device.family.should.equal(agent.device.family);
+
+      agent2.os.family.should.equal(agent.os.family);
+      agent2.os.major.should.equal(agent.os.major);
+      agent2.os.minor.should.equal(agent.os.minor);
+      agent2.os.patch.should.equal(agent.os.patch);
+    });
+
+    it('should also work with legacy JSON', function () {
+      var agent = useragent.fromJSON('{"family":"Chrome","major":"15","minor":"0","patch":"874","os":"Mac OS X"}');
+
+      agent.family.should.equal('Chrome');
+      agent.major.should.equal('15');
+      agent.minor.should.equal('0');
+      agent.patch.should.equal('874');
+
+      agent.device.family.should.equal('Other');
+
+      agent.os.family.should.equal('Mac OS X');
+    });
+  });
+
   describe('#is', function () {
     var chrome = ua
       , firefox = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0) Gecko/20100101 Firefox/8.0'
