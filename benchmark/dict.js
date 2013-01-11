@@ -56,7 +56,7 @@ froomfroom
 })
 .add('ua-parser', function () {
   for (var i = 0; i < length; i++ ) {
-    uaparser.parse(testcases[i]);
+    uaparser.parseUA(testcases[i]);
   }
 })
 .on('cycle', function (event) {
