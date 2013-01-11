@@ -26,16 +26,16 @@ engineering effort has been worth it as [this benchmark shows][benchmark]:
 Starting the benchmark, parsing 62 useragent strings per run
 
 Executed benchmark against node module: "useragent"
-Count (49), Cycles (4), Elapsed (5.531), Hz (946.8647887795141)
+Count (61), Cycles (5), Elapsed (5.559), Hz (1141.3739447904327)
 
 Executed benchmark against node module: "useragent_parser"
-Count (25), Cycles (2), Elapsed (5.359), Hz (463.63241573609633)
+Count (29), Cycles (3), Elapsed (5.448), Hz (545.6817291171243)
 
 Executed benchmark against node module: "useragent-parser"
-Count (13), Cycles (4), Elapsed (5.468), Hz (246.70547120951275)
+Count (16), Cycles (4), Elapsed (5.48), Hz (304.5373431830105)
 
 Executed benchmark against node module: "ua-parser"
-Count (13), Cycles (3), Elapsed (5.481), Hz (243.57388988788998)
+Count (54), Cycles (3), Elapsed (5.512), Hz (1018.7561434659247)
 
 Module: "useragent" is the user agent fastest parser.
 ```
