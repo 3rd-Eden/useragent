@@ -9,6 +9,10 @@
   - semver is removed from the dependencies, if you use the useragent/features
     you should add it to your own dependencies.
 
+* __v2.0.1__
+  - Fixed broken reference to the update module.
+  - Updated with some new parsers.
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9
