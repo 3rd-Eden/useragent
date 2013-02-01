@@ -375,7 +375,7 @@ Device.prototype.toJSON = function toJSON() {
  * @api public
  */
 module.exports = function updater() {
-  require('./lib/update')(function updating(err, results) {
+  require('./lib/update').update(function updating(err, results) {
     if (err) return; // fail silently
 
     regexps = results;
