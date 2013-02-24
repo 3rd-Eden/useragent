@@ -13,6 +13,10 @@
   - Fixed broken reference to the update module.
   - Updated with some new parsers.
 
+* __v2.0.2__
+  - Use LRU-cache for the lookups so it doesn't create a memory "leak" #22
+  - Updated with some new parsers.
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9
