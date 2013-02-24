@@ -1,47 +1,52 @@
 {
-    "name": "useragent"
-  , "version": "2.0.1"
-  , "description": "Fastest, most accurate & effecient user agent string parser, uses browserscope's research for parsing"
-  , "author": "Arnout Kazemier"
-  , "main": "./index.js"
-  , "keywords":[
-        "agent"
-      , "browser"
-      , "browserscope"
-      , "os"
-      , "parse"
-      , "parser"
-      , "ua"
-      , "ua-parse"
-      , "ua-parser"
-      , "user agent"
-      , "user"
-      , "user-agent"
-      , "useragent"
-      , "version"
-    ]
-  , "maintainers": [{
-        "name":"Arnout Kazemier"
-      , "email":"info@3rd-Eden.com"
-      , "web":"http://www.3rd-Eden.com"
-    }]
-  , "license": {
-        "type": "MIT"
-      , "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
+  "name": "useragent",
+  "version": "2.0.1",
+  "description": "Fastest, most accurate & effecient user agent string parser, uses browserscope's research for parsing",
+  "author": "Arnout Kazemier",
+  "main": "./index.js",
+  "keywords": [
+    "agent",
+    "browser",
+    "browserscope",
+    "os",
+    "parse",
+    "parser",
+    "ua",
+    "ua-parse",
+    "ua-parser",
+    "user agent",
+    "user",
+    "user-agent",
+    "useragent",
+    "version"
+  ],
+  "maintainers": [
+    {
+      "name": "Arnout Kazemier",
+      "email": "info@3rd-Eden.com",
+      "web": "http://www.3rd-Eden.com"
     }
-  , "repository": {
-        "type": "git"
-      , "url" : "http://github.com/3rd-Eden/useragent.git"
-    }
-  , "devDependencies": {
-        "should": "*"
-      , "mocha": "*"
-      , "long-stack-traces": "0.1.2"
-      , "yamlparser": "0.0.2"
-      , "request": "2.9.203"
-      , "semver": "1.0.14"
-    }
-  , "scripts": {
-        "test": "make test"
-    }
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/3rd-Eden/useragent.git"
+  },
+  "devDependencies": {
+    "should": "*",
+    "mocha": "*",
+    "long-stack-traces": "0.1.2",
+    "yamlparser": "0.0.2",
+    "request": "2.9.203",
+    "semver": "1.0.14"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "lru-cache": "~2.2.2"
+  }
 }

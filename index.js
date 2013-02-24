@@ -478,11 +478,15 @@ exports.parse = function parse(userAgent, jsAgent) {
  * @param {String} jsAgent Optional UA from js to detect chrome frame
  * @api public
  */
-var dictionary = {};
+var LRU = require('lru-cache')(5000);
 exports.lookup = function lookup(userAgent, jsAgent) {
-  var key = (userAgent || '')+(jsAgent || '');
+  var key = (userAgent || '')+(jsAgent || '')
+    , cached = LRU.get(key);
 
-  return dictionary[key] || (dictionary[key] = exports.parse(userAgent, jsAgent));
+  if (cached) return cached;
+  LRU.set(key, (cached = exports.parse(userAgent, jsAgent)));
+
+  return cached;
 };
 
 /**
