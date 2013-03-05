@@ -17,6 +17,10 @@
   - Use LRU-cache for the lookups so it doesn't create a memory "leak" #22
   - Updated with some new parsers.
 
+* __v2.0.3__
+  - Updated regexp library with new parsers as Opera's latest browser which runs
+    WebKit was detected as Chrome Mobile.
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9
