@@ -77,7 +77,13 @@ useragent(true);
 
 This will async load the database from the server and compile it to a proper
 JavaScript supported format. If it fails to compile or load it from the remote
-location it will just fall back silently to the shipped version.
+location it will just fall back silently to the shipped version. If you want to
+use this feature you need to add `yamlparser` and `request` to your package.json
+
+```
+npm install yamlparser --save
+npm install request --save
+```
 
 #### useragent.parse(useragent string[, js useragent]);
 
