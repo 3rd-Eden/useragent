@@ -375,23 +375,30 @@ Device.prototype.toJSON = function toJSON() {
  * @api public
  */
 module.exports = function updater() {
-  require('./lib/update').update(function updating(err, results) {
-    if (err) return; // fail silently
+  try {
+    require('./lib/update').update(function updating(err, results) {
+      if (err) return; // fail silently
 
-    regexps = results;
+      regexps = results;
 
-    // OperatingSystem parsers:
-    osparsers = regexps.os;
-    osparserslength = osparsers.length;
+      // OperatingSystem parsers:
+      osparsers = regexps.os;
+      osparserslength = osparsers.length;
 
-    // UserAgent parsers:
-    agentparsers = regexps.browser;
-    agentparserslength = agentparsers.length;
+      // UserAgent parsers:
+      agentparsers = regexps.browser;
+      agentparserslength = agentparsers.length;
 
-    // Device parsers:
-    deviceparsers = regexps.device;
-    deviceparserslength = deviceparsers.length;
-  });
+      // Device parsers:
+      deviceparsers = regexps.device;
+      deviceparserslength = deviceparsers.length;
+    });
+  } catch (e) {
+    console.error('If you want to use automatic updating, please add:');
+    console.error('  - request (npm install request --save)');
+    console.error('  - yamlparser (npm install yamlparser --save)');
+    console.error('To your own package.json');
+  }
 };
 
 // Override the exports with our newly set module.exports

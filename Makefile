@@ -14,6 +14,9 @@ run-tests:
 		--growl \
 		$(TESTS)
 
+update:
+	node ./bin/update.js
+
 qa:
 	@$(MAKE) TESTS="$(ALL_QA)" UI=exports run-tests
 
