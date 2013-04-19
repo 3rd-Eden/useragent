@@ -21,6 +21,11 @@
   - Updated regexp library with new parsers as Opera's latest browser which runs
     WebKit was detected as Chrome Mobile.
 
+* __v2.0.4__
+  - Added support for IE11 and PhantomJS. In addition to that when you run the
+    updater without the correct dependencies it will just output an error
+    instead of throwing an error.
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9
