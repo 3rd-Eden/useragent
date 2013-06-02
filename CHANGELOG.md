@@ -26,6 +26,9 @@
     updater without the correct dependencies it will just output an error
     instead of throwing an error.
 
+* __v2.0.5__
+  - Upgraded the regular expressions to support Opera Next
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9

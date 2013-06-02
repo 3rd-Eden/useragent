@@ -1,6 +1,6 @@
 {
   "name": "useragent",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Fastest, most accurate & effecient user agent string parser, uses Browserscope's research for parsing",
   "author": "Arnout Kazemier",
   "main": "./index.js",
@@ -41,7 +41,8 @@
     "long-stack-traces": "0.1.2",
     "yamlparser": "0.0.2",
     "request": "2.9.203",
-    "semver": "1.0.14"
+    "semver": "1.0.14",
+    "pre-commit": "0.0.3"
   },
   "scripts": {
     "test": "make test"
