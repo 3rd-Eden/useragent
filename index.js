@@ -377,7 +377,11 @@ Device.prototype.toJSON = function toJSON() {
 module.exports = function updater() {
   try {
     require('./lib/update').update(function updating(err, results) {
-      if (err) return; // fail silently
+      if (err) {
+        console.log('[useragent] Failed to update the parsed due to an error:');
+        console.log('[useragent] '+ (err.message ? err.message : err));
+        return;
+      }
 
       regexps = results;
 
@@ -394,10 +398,10 @@ module.exports = function updater() {
       deviceparserslength = deviceparsers.length;
     });
   } catch (e) {
-    console.error('If you want to use automatic updating, please add:');
-    console.error('  - request (npm install request --save)');
-    console.error('  - yamlparser (npm install yamlparser --save)');
-    console.error('To your own package.json');
+    console.error('[useragent] If you want to use automatic updating, please add:');
+    console.error('[useragent]   - request (npm install request --save)');
+    console.error('[useragent]   - yamlparser (npm install yamlparser --save)');
+    console.error('[useragent] To your own package.json');
   }
 };
 
