@@ -29,6 +29,10 @@
 * __v2.0.5__
   - Upgraded the regular expressions to support Opera Next
 
+* __v2.0.6__
+  - Only write the parse file when there isn't an error. #30
+  - Output an error in the console when we fail to compile new parsers #30
+
 ## Version 1.0
 * __v1.1.0__
   - Removed the postupdate hook, it was causing to much issues #9
