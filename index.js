@@ -286,7 +286,10 @@ OperatingSystem.prototype.toJSON = function toJSON(){
  * The representation of a parsed Device.
  *
  * @constructor
- * @param {String} family The name of the os
+ * @param {String} family The name of the device
+ * @param {String} major Major version of the device
+ * @param {String} minor Minor version of the device
+ * @param {String} patch Patch version of the device
  * @api public
  */
 function Device(family, major, minor, patch) {
