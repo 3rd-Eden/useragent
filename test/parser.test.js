@@ -9,27 +9,27 @@ describe('useragent', function () {
   });
 
   it('should expose the Agent interface', function () {
-    useragent.Agent.should.be.a('function');
+    useragent.Agent.should.be.a.Function;
   });
 
   it('should expose the OperatingSystem interface', function () {
-    useragent.OperatingSystem.should.be.a('function');
+    useragent.OperatingSystem.should.be.a.Function;
   });
 
   it('should expose the Device interface', function () {
-    useragent.Device.should.be.a('function');
+    useragent.Device.should.be.a.Function;
   });
 
   it('should expose the dictionary lookup', function () {
-    useragent.lookup.should.be.a('function');
+    useragent.lookup.should.be.a.Function;
   });
 
   it('should expose the parser', function () {
-    useragent.parse.should.be.a('function');
+    useragent.parse.should.be.a.Function;
   });
 
   it('should expose the useragent tester', function () {
-    useragent.is.should.be.a('function');
+    useragent.is.should.be.a.Function;
   });
 
   describe('#parse', function () {
