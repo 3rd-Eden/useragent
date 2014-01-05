@@ -523,11 +523,16 @@ exports.is = function is(useragent) {
       , opera: false
       , safari: false
       , webkit: false
+      , android: false
       , version: (ua.match(exports.is.versionRE) || [0, "0"])[1]
     };
 
   if (~ua.indexOf('webkit')) {
     details.webkit = true;
+
+    if (~ua.indexOf('android')){
+      details.android = true;
+    }
 
     if (~ua.indexOf('chrome')) {
       details.chrome = true;
