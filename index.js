@@ -540,13 +540,14 @@ exports.is = function is(useragent) {
     }
   } else if (~ua.indexOf('opera')) {
     details.opera = true;
+  } else if (~ua.indexOf('trident')) {
+    details.ie = true;
   } else if (~ua.indexOf('mozilla') && !~ua.indexOf('compatible')) {
     details.mozilla = true;
 
     if (~ua.indexOf('firefox')) details.firefox = true;
-  } else if (~ua.indexOf('msie')) {
-    details.ie = true;
-  }
+  } 
+
 
   return details;
 };

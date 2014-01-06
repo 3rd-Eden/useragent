@@ -136,6 +136,7 @@ describe('useragent', function () {
     var chrome = ua
       , firefox = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0) Gecko/20100101 Firefox/8.0'
       , ie = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; yie8)'
+      , ie11 = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
       , opera = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; de) Opera 11.51'
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
       , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5';
@@ -176,6 +177,15 @@ describe('useragent', function () {
       useragent.is(ie).ie.should.equal(true);
       useragent.is(ie).opera.should.equal(false);
       useragent.is(ie).mobile_safari.should.equal(false);
+
+      useragent.is(ie11).chrome.should.equal(false);
+      useragent.is(ie11).webkit.should.equal(false);
+      useragent.is(ie11).safari.should.equal(false);
+      useragent.is(ie11).firefox.should.equal(false);
+      useragent.is(ie11).mozilla.should.equal(false);
+      useragent.is(ie11).ie.should.equal(true);
+      useragent.is(ie11).opera.should.equal(false);
+      useragent.is(ie11).mobile_safari.should.equal(false);
     });
 
     it('should correctly detect opera', function () {
