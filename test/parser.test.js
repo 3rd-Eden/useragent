@@ -9,27 +9,27 @@ describe('useragent', function () {
   });
 
   it('should expose the Agent interface', function () {
-    useragent.Agent.should.be.a('function');
+    useragent.Agent.should.be.a.Function;
   });
 
   it('should expose the OperatingSystem interface', function () {
-    useragent.OperatingSystem.should.be.a('function');
+    useragent.OperatingSystem.should.be.a.Function;
   });
 
   it('should expose the Device interface', function () {
-    useragent.Device.should.be.a('function');
+    useragent.Device.should.be.a.Function;
   });
 
   it('should expose the dictionary lookup', function () {
-    useragent.lookup.should.be.a('function');
+    useragent.lookup.should.be.a.Function;
   });
 
   it('should expose the parser', function () {
-    useragent.parse.should.be.a('function');
+    useragent.parse.should.be.a.Function;
   });
 
   it('should expose the useragent tester', function () {
-    useragent.is.should.be.a('function');
+    useragent.is.should.be.a.Function;
   });
 
   describe('#parse', function () {
@@ -139,7 +139,8 @@ describe('useragent', function () {
       , ie11 = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
       , opera = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; de) Opera 11.51'
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
-      , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5';
+      , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
+      , android = 'Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
 
     it('should not throw errors when called without arguments', function () {
       useragent.is();
@@ -155,6 +156,7 @@ describe('useragent', function () {
       useragent.is(chrome).ie.should.equal(false);
       useragent.is(chrome).opera.should.equal(false);
       useragent.is(chrome).mobile_safari.should.equal(false);
+      useragent.is(chrome).android.should.equal(false);
     });
 
     it('should correctly detect firefox', function () {
@@ -166,6 +168,7 @@ describe('useragent', function () {
       useragent.is(firefox).ie.should.equal(false);
       useragent.is(firefox).opera.should.equal(false);
       useragent.is(firefox).mobile_safari.should.equal(false);
+      useragent.is(firefox).android.should.equal(false);
     });
 
     it('should correctly detect internet explorer', function () {
@@ -177,7 +180,8 @@ describe('useragent', function () {
       useragent.is(ie).ie.should.equal(true);
       useragent.is(ie).opera.should.equal(false);
       useragent.is(ie).mobile_safari.should.equal(false);
-
+      useragent.is(ie).android.should.equal(false);
+      
       useragent.is(ie11).chrome.should.equal(false);
       useragent.is(ie11).webkit.should.equal(false);
       useragent.is(ie11).safari.should.equal(false);
@@ -186,6 +190,7 @@ describe('useragent', function () {
       useragent.is(ie11).ie.should.equal(true);
       useragent.is(ie11).opera.should.equal(false);
       useragent.is(ie11).mobile_safari.should.equal(false);
+      useragent.is(ie11).android.should.equal(false);
     });
 
     it('should correctly detect opera', function () {
@@ -197,6 +202,7 @@ describe('useragent', function () {
       useragent.is(opera).ie.should.equal(false);
       useragent.is(opera).opera.should.equal(true);
       useragent.is(opera).mobile_safari.should.equal(false);
+      useragent.is(opera).android.should.equal(false);
     });
 
     it('should correctly detect safari', function () {
@@ -208,6 +214,7 @@ describe('useragent', function () {
       useragent.is(safari).ie.should.equal(false);
       useragent.is(safari).opera.should.equal(false);
       useragent.is(safari).mobile_safari.should.equal(false);
+      useragent.is(safari).android.should.equal(false);
     });
 
     it('should correctly detect safari-mobile', function () {
@@ -219,6 +226,19 @@ describe('useragent', function () {
       useragent.is(ipod).ie.should.equal(false);
       useragent.is(ipod).opera.should.equal(false);
       useragent.is(ipod).mobile_safari.should.equal(true);
+      useragent.is(ipod).android.should.equal(false);
+    });
+
+    it('should correctly detect android', function () {
+      useragent.is(android).chrome.should.equal(false);
+      useragent.is(android).webkit.should.equal(true);
+      useragent.is(android).safari.should.equal(true);
+      useragent.is(android).firefox.should.equal(false);
+      useragent.is(android).mozilla.should.equal(false);
+      useragent.is(android).ie.should.equal(false);
+      useragent.is(android).opera.should.equal(false);
+      useragent.is(android).mobile_safari.should.equal(true);
+      useragent.is(android).android.should.equal(true);
     });
   });
 });

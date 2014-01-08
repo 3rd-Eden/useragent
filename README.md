@@ -168,6 +168,8 @@ var ua = useragent.is(req.headers['user-agent'])
   safari: false
   mobile_safari: false
   firefox: true
+  mozilla: true
+  android: false
 }
 ```
 
