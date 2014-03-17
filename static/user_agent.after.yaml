@@ -10,5 +10,8 @@ user_agent_parsers:
 
 os_parsers:
   - regex: '(Red Hat)'
+ 
+  # See #33 for matching the iOS AFHTTPClient
+  - regex: '(iOS) (\d+)\.(\d+)(?:\.(\d+))?'
 
 device_parsers:
