@@ -15,5 +15,5 @@ var Agent = require('../').Agent
  * @api public
  */
 Agent.prototype.satisfies = function satisfies (range) {
-  return semver.satisfies(this.major + '.' + this.minor + '.' + this.patch, range);
+  return semver.satisfies((Number(this.major) || 0) + '.' + (Number(this.minor) || 0) + '.' + (Number(this.patch) || 0), range);
 };
