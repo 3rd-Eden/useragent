@@ -24,7 +24,7 @@ var file = process.argv.slice(2)[0] || 'testcases';
 /**
  * Setup the test-files.
  */
-var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', file+'.yaml')
+var useragentlist = path.join(__dirname, '..', 'test', 'fixtures', file+'.yaml')
   , yammy = yaml.eval(fs.readFileSync(useragentlist).toString()).test_cases
   , testcases = yammy.map(function (test) {
       return test.user_agent_string;

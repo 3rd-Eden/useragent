@@ -20,7 +20,7 @@ var useragent = require('../')
 /**
  * Setup the test-files.
  */
-var useragentlist = path.join(__dirname, '..', 'tests', 'fixtures', 'testcases.yaml')
+var useragentlist = path.join(__dirname, '..', 'test', 'fixtures', 'testcases.yaml')
   , yammy = yaml.eval(fs.readFileSync(useragentlist).toString()).test_cases
   , testcases = yammy.map(function (test) {
       return test.user_agent_string;
