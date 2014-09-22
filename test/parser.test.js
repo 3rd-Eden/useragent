@@ -61,11 +61,11 @@ describe('useragent', function () {
       agent.minor.should.equal('0');
       agent.patch.should.equal('0');
 
-      agent.os.toString().should.equal('Other');
+      agent.os.toString().should.equal('Other 0.0.0');
       agent.toVersion().should.equal('0.0.0');
-      agent.toString().should.equal('Other 0.0.0 / Other');
+      agent.toString().should.equal('Other 0.0.0 / Other 0.0.0');
       agent.toAgent().should.equal('Other 0.0.0');
-      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other"}}');
+      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
     });
 
     it('should not throw errors on empty strings and default to unkown', function () {
@@ -76,11 +76,11 @@ describe('useragent', function () {
       agent.minor.should.equal('0');
       agent.patch.should.equal('0');
 
-      agent.os.toString().should.equal('Other');
+      agent.os.toString().should.equal('Other 0.0.0');
       agent.toVersion().should.equal('0.0.0');
-      agent.toString().should.equal('Other 0.0.0 / Other');
+      agent.toString().should.equal('Other 0.0.0 / Other 0.0.0');
       agent.toAgent().should.equal('Other 0.0.0');
-      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other"}}');
+      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
     });
 
     it('should correctly parse chromes user agent', function () {

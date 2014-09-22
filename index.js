@@ -221,9 +221,9 @@ Agent.prototype.toJSON = function toJSON() {
  */
 function OperatingSystem(family, major, minor, patch) {
   this.family = family || 'Other';
-  this.major = major || '';
-  this.minor = minor || '';
-  this.patch = patch || '';
+  this.major = major || '0';
+  this.minor = minor || '0';
+  this.patch = patch || '0';
 }
 
 /**
@@ -551,7 +551,7 @@ exports.is = function is(useragent) {
     details.mozilla = true;
 
     if (~ua.indexOf('firefox')) details.firefox = true;
-  } 
+  }
 
 
   return details;
