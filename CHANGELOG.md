@@ -1,4 +1,10 @@
 ## Version 2.0
+* __v2.1__
+  - Default all values to minor,patch and major fields to 0 by default.
+
+* __v2.0.x__
+  - Parse file updates.
+
 * __v2.0.0__ *breaking*
   - Added support for Operating System version parsing
   - Added support for Device parsing
