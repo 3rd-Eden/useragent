@@ -97,6 +97,13 @@ describe('useragent', function () {
       agent.toAgent().should.equal('Chrome 15.0.874');
       JSON.stringify(agent).should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
     });
+
+    it('correctly parses iOS8', function () {
+      var agent = useragent.parse('Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A365 Safari/600.1.4');
+
+      agent.os.family.should.equal('iOS');
+      agent.os.major.should.equal('8');
+    });
   });
 
   describe('#fromJSON', function () {
@@ -181,7 +188,7 @@ describe('useragent', function () {
       useragent.is(ie).opera.should.equal(false);
       useragent.is(ie).mobile_safari.should.equal(false);
       useragent.is(ie).android.should.equal(false);
-      
+
       useragent.is(ie11).chrome.should.equal(false);
       useragent.is(ie11).webkit.should.equal(false);
       useragent.is(ie11).safari.should.equal(false);
