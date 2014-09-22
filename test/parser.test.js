@@ -65,7 +65,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('0.0.0');
       agent.toString().should.equal('Other 0.0.0 / Other 0.0.0');
       agent.toAgent().should.equal('Other 0.0.0');
-      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
+      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
     });
 
     it('should not throw errors on empty strings and default to unkown', function () {
@@ -80,7 +80,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('0.0.0');
       agent.toString().should.equal('Other 0.0.0 / Other 0.0.0');
       agent.toAgent().should.equal('Other 0.0.0');
-      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
+      JSON.stringify(agent).should.equal('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
     });
 
     it('should correctly parse chromes user agent', function () {
@@ -95,7 +95,7 @@ describe('useragent', function () {
       agent.toVersion().should.equal('15.0.874');
       agent.toString().should.equal('Chrome 15.0.874 / Mac OS X 10.7.1');
       agent.toAgent().should.equal('Chrome 15.0.874');
-      JSON.stringify(agent).should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      JSON.stringify(agent).should.equal('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
     });
 
     it('correctly parses iOS8', function () {
