@@ -48,7 +48,8 @@
   "scripts": {
     "test": "mocha $(find test -name '*.test.js')",
     "qa": "mocha --ui exports $(find test -name '*.qa.js')",
-    "update": "node ./bin/update.js"
+    "update": "node ./bin/update.js",
+    "prepublish": "npm run update"
   },
   "dependencies": {
     "lru-cache": "2.2.x"
