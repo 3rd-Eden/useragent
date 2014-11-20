@@ -340,20 +340,6 @@ Device.prototype.toVersion = function toVersion() {
 };
 
 /**
- * Get string representation.
- *
- * @returns {String}
- * @api public
- */
-Device.prototype.toString = function toString() {
-  var output = this.family
-    , version = this.toVersion();
-
-  if (version) output += ' '+ version;
-  return output;
-};
-
-/**
  * Outputs a JSON string of the Device, values are defaulted to undefined so they
  * are not outputed in the stringify.
  *
