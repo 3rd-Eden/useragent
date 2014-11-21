@@ -6,8 +6,6 @@ user_agent_parsers:
     family_replacement: 'cURL'
 
 os_parsers:
-  - regex: '(Red Hat)'
-
   # See #33 for matching the iOS AFHTTPClient
   - regex: '(iOS) (\d+)\.(\d+)(?:\.(\d+))?'
 
