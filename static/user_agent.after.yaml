@@ -1,7 +1,4 @@
 user_agent_parsers:
-  # browsers
-  - regex: '(Thunderbird)/(\d+)\.(\d+)\.?(\d+)?'
-
   # command line tools
   - regex: '(Wget)/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)'
 
