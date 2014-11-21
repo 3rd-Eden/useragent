@@ -1,7 +1,4 @@
 user_agent_parsers:
-  # browsers
-  - regex: '(Thunderbird)/(\d+)\.(\d+)\.?(\d+)?'
-
   # command line tools
   - regex: '(Wget)/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)'
 
@@ -9,8 +6,6 @@ user_agent_parsers:
     family_replacement: 'cURL'
 
 os_parsers:
-  - regex: '(Red Hat)'
- 
   # See #33 for matching the iOS AFHTTPClient
   - regex: '(iOS) (\d+)\.(\d+)(?:\.(\d+))?'
 
