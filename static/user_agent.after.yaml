@@ -15,6 +15,3 @@ os_parsers:
   - regex: '(iOS) (\d+)\.(\d+)(?:\.(\d+))?'
 
 device_parsers:
-  # Rival IQ crawler/bot
-  - regex: '(Rival IQ, rivaliq.com)'
-    device_replacement: 'Spider'
