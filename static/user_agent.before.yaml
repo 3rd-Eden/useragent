@@ -1,0 +1,11 @@
+user_agent_parsers:
+  # Rival IQ crawler/bot
+  - regex: '(Rival IQ, rivaliq.com)'
+    family_replacement: 'Rival IQ'
+
+os_parsers:
+
+device_parsers:
+  # Rival IQ crawler/bot
+  - regex: '(Rival IQ, rivaliq.com)'
+    device_replacement: 'Spider'
