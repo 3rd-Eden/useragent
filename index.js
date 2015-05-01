@@ -531,7 +531,7 @@ exports.is = function is(useragent) {
     }
   } else if (~ua.indexOf('opera')) {
     details.opera = true;
-  } else if (~ua.indexOf('trident')) {
+  } else if (~ua.indexOf('trident') || ~ua.indexOf('msie')) {
     details.ie = true;
   } else if (~ua.indexOf('mozilla') && !~ua.indexOf('compatible')) {
     details.mozilla = true;
