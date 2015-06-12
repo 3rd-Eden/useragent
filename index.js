@@ -363,7 +363,7 @@ Device.prototype.toJSON = function toJSON() {
  * @param {Boolean} refresh Refresh the dataset from the remote
  * @api public
  */
-module.exports = function updater() {
+/*module.exports = function updater() {
   try {
     require('./lib/update').update(function updating(err, results) {
       if (err) {
@@ -392,7 +392,7 @@ module.exports = function updater() {
     console.error('[useragent]   - yamlparser (npm install yamlparser --save)');
     console.error('[useragent] To your own package.json');
   }
-};
+};*/
 
 // Override the exports with our newly set module.exports
 exports = module.exports;
