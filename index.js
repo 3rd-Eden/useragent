@@ -20,6 +20,10 @@ var agentparsers = regexps.browser
 var deviceparsers = regexps.device
   , deviceparserslength = deviceparsers.length;
 
+// Default for unknown version
+var UnknownFamily = 'Other';
+var UnknownVersion = '0';
+
 /**
  * The representation of a parsed user agent.
  *
@@ -32,10 +36,10 @@ var deviceparsers = regexps.device
  * @api public
  */
 function Agent(family, major, minor, patch, source) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
   this.source = source || '';
 }
 
@@ -176,7 +180,7 @@ Agent.prototype.toAgent = function toAgent() {
  */
 Agent.prototype.toString = function toString() {
   var agent = this.toAgent()
-    , os = this.os !== 'Other' ? this.os : false;
+    , os = this.os !== UnknownFamily ? this.os : false;
 
   return agent + (os ? ' / ' + os : '');
 };
@@ -235,10 +239,10 @@ Agent.prototype.toJSON = function toJSON() {
  * @api public
  */
 function OperatingSystem(family, major, minor, patch) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
 }
 
 /**
@@ -308,10 +312,10 @@ OperatingSystem.prototype.toJSON = function toJSON(){
  * @api public
  */
 function Device(family, major, minor, patch) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
 }
 
 /**
@@ -598,6 +602,15 @@ exports.fromJSON = function fromJSON(details) {
 
   return agent;
 };
+
+
+exports.setUnknownFamilyString = function setUnknownFamilyString(s) {
+  UnknownFamily = s;
+}
+
+exports.setUnknownVersionString = function setUnknownVersionString(s) {
+  UnknownVersion = s;
+}
 
 /**
  * Library version.
