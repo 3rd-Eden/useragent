@@ -47,11 +47,12 @@ function replaceRegExResult(matches, templates) {
     var r = [];
     var m = matches.map(function(v){ v = typeof v === 'string' ? v.replace(/\&/g, '&&').replace(/\$/g, '&D') : v; });
     for(var t=1; t<=4; t++) {     // template[1..4]
-        r[t] = templates[t];
+        var tmpl = templates[t];
+        r[t] = tmpl[0];
         if (typeof r[t] === 'string') {
-            for(var i=1; i<=9; i++) { // $1..$9
+            tmpl[1].forEach(function(i){
                 r[t] = r[t].replace(new RegExp('\\$'+i, 'g'), matches[i] != undefined ? matches[i] : '');
-            }
+            });
             r[t] = r[t].replace(/&D/g, '$').replace(/&&/g, '&');
         }
     }
