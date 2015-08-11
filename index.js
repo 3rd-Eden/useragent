@@ -39,6 +39,21 @@ function Agent(family, major, minor, patch, source) {
   this.source = source || '';
 }
 
+function replaceRegExResult(matches, templates) {
+    var r = [];
+    var m = matches.map(function(v){ v = typeof v === 'string' ? v.replace(/\&/g, '&&').replace(/\$/g, '&D') : v; });
+    for(var t=1; t<=4; t++) {     // template[1..4]
+        r[t] = templates[t];
+        if (typeof r[t] === 'string') {
+            for(var i=1; i<=9; i++) { // $1..$9
+                r[t] = r[t].replace(new RegExp('\\$'+i, 'g'), matches[i] != undefined ? matches[i] : '');
+            }
+            r[t] = r[t].replace(/&D/g, '$').replace(/&&/g, '&');
+        }
+    }
+    return r;
+}
+
 /**
  * OnDemand parsing of the Operating System.
  *
@@ -58,7 +73,7 @@ Object.defineProperty(Agent.prototype, 'os', {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+        res = replaceRegExResult(res, parser);
         break;
       }
     }
@@ -68,9 +83,9 @@ Object.defineProperty(Agent.prototype, 'os', {
           ? new OperatingSystem()
           : new OperatingSystem(
                 res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+              , res[2]
+              , res[3]
+              , res[4]
             )
     }).os;
   },
@@ -109,7 +124,7 @@ Object.defineProperty(Agent.prototype, 'device', {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+        res = replaceRegExResult(res, parser);
         break;
       }
     }
@@ -119,9 +134,9 @@ Object.defineProperty(Agent.prototype, 'device', {
           ? new Device()
           : new Device(
                 res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+              , res[2]
+              , res[3]
+              , res[4]
             )
     }).device;
   },
@@ -427,12 +442,12 @@ exports.parse = function parse(userAgent, jsAgent) {
     if (res = parsers[i][0].exec(userAgent)) {
       parser = parsers[i];
 
-      if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+      res = replaceRegExResult(res, parser);
       if (!jsAgent) return new Agent(
           res[1]
-        , parser[2] || res[2]
-        , parser[3] || res[3]
-        , parser[4] || res[4]
+        , res[2]
+        , res[3]
+        , res[4]
         , userAgent
       );
 
