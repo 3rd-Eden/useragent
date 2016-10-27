@@ -410,7 +410,7 @@ exports.Agent = Agent;
  * ua-parser project on google code.
  *
  * @param {String} userAgent The user agent string
- * @param {String} jsAgent Optional UA from js to detect chrome frame
+ * @param {String} [jsAgent] Optional UA from js to detect chrome frame
  * @returns {Agent}
  * @api public
  */
