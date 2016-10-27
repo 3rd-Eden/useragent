@@ -360,12 +360,12 @@ Device.prototype.toJSON = function toJSON() {
  * Int3rNetz when we want to. We will be using the compiled version by default
  * but users can opt-in for updates.
  *
- * @param {Boolean} refresh Refresh the dataset from the remote
+ * @param {String} customRemote Refresh the dataset using data at custom remote location
  * @api public
  */
-module.exports = function updater() {
+module.exports = function updater(customRemote) {
   try {
-    require('./lib/update').update(function updating(err, results) {
+    require('./lib/update').update(customRemote, function updating(err, results) {
       if (err) {
         console.log('[useragent] Failed to update the parsed due to an error:');
         console.log('[useragent] '+ (err.message ? err.message : err));
