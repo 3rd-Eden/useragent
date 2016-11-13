@@ -55,6 +55,12 @@ npm install useragent --save
 The `--save` flag tells NPM to automatically add it to your `package.json` file.
 
 ---
+### See useragent in action
+
+[whatsmyua.info](http://www.whatsmyua.info/) shows what useragent reports for your current user 
+agent/OS/device, or for any arbitrary user agent string.
+
+--- 
 
 ### API
 
