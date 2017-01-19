@@ -104,6 +104,15 @@ describe('useragent', function () {
       agent.os.family.should.equal('iOS');
       agent.os.major.should.equal('8');
     });
+
+    it('correctly parses Chromecast', function () {
+      var agent = useragent.parse('Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257');
+
+      agent.os.family.should.equal('Chromecast');
+      agent.os.major.should.equal('1');
+      agent.os.minor.should.equal('22');
+      agent.os.patch.should.equal('74257');
+    });
   });
 
   describe('#fromJSON', function () {
@@ -147,7 +156,8 @@ describe('useragent', function () {
       , opera = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; de) Opera 11.51'
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
       , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
-      , android = 'Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1';
+      , android = 'Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
+      , chromecast = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257';
 
     it('should not throw errors when called without arguments', function () {
       useragent.is();
@@ -247,5 +257,18 @@ describe('useragent', function () {
       useragent.is(android).mobile_safari.should.equal(true);
       useragent.is(android).android.should.equal(true);
     });
+
+    it('should correctly detect chromecast', function () {
+      useragent.is(chromecast).chrome.should.equal(true);
+      useragent.is(chromecast).webkit.should.equal(true);
+      useragent.is(chromecast).safari.should.equal(false);
+      useragent.is(chromecast).firefox.should.equal(false);
+      useragent.is(chromecast).mozilla.should.equal(false);
+      useragent.is(chromecast).ie.should.equal(false);
+      useragent.is(chromecast).opera.should.equal(false);
+      useragent.is(chromecast).mobile_safari.should.equal(false);
+      useragent.is(chromecast).android.should.equal(false);
+    });
   });
 });
+
