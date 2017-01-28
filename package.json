@@ -56,6 +56,6 @@
   },
   "dependencies": {
     "lru-cache": "2.2.x",
-    "tmp": "0.0.31"
+    "tmp": "0.0.x"
   }
 }
