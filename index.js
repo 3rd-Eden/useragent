@@ -405,6 +405,12 @@ exports.Device = Device;
 exports.OperatingSystem = OperatingSystem;
 exports.Agent = Agent;
 
+/**
+ * Check if the userAgent is something we want to parse with regexp's.
+ *
+ * @param {String} userAgent The userAgent.
+ * @returns {Boolean}
+ */
 function isSafe(userAgent) {
   var consecutive = 0
     , code = 0;
