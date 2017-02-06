@@ -44,7 +44,10 @@
     "semver": "1.0.x",
     "pre-commit": "0.0.x"
   },
-  "pre-commit": ["test", "update"],
+  "pre-commit": [
+    "test",
+    "update"
+  ],
   "scripts": {
     "test": "mocha $(find test -name '*.test.js')",
     "qa": "mocha --ui exports $(find test -name '*.qa.js')",
@@ -52,6 +55,7 @@
     "prepublish": "npm run update"
   },
   "dependencies": {
-    "lru-cache": "2.2.x"
+    "lru-cache": "2.2.x",
+    "tmp": "0.0.x"
   }
 }
