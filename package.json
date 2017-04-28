@@ -55,6 +55,7 @@
     "prepublish": "npm run update"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "lru-cache": "2.2.x",
     "tmp": "0.0.x"
   }
