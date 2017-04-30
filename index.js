@@ -1,7 +1,6 @@
 'use strict';
 
-var core = require('./core'),
-_ = require('lodash');
+var core = require('./core');
 
 /**
  * Small nifty thick that allows us to download a fresh set regexs from t3h
@@ -42,7 +41,10 @@ module.exports = function updater() {
   }
 };
 
+
+Object.keys(core).forEach(function(key){
+  module.exports[key] = core[key];
+});
+
 // Override the exports with our newly set module.exports
 exports = module.exports;
-
-_.merge(exports, core);
