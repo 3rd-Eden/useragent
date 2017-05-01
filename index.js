@@ -10,7 +10,7 @@ var core = require('./core');
  * @param {Boolean} refresh Refresh the dataset from the remote
  * @api public
  */
-module.exports = function updater() {
+/*module.exports = function updater() {
   try {
     require('./lib/update').update(function updating(err, results) {
       if (err) {
@@ -39,7 +39,7 @@ module.exports = function updater() {
     console.error('[useragent]   - yamlparser (npm install yamlparser --save)');
     console.error('[useragent] To your own package.json');
   }
-};
+};*/
 
 
 Object.keys(core).forEach(function(key){
