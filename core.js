@@ -513,10 +513,10 @@ exports.is = function is(useragent) {
       details.chrome = true;
     } else if (~ua.indexOf('safari')) {
       details.safari = true;
-
-      if (~ua.indexOf('mobile') && ~ua.indexOf('apple')) {
-        details.mobile_safari = true;
-      }
+    }
+    if (~ua.indexOf('mobile') && ~ua.indexOf('apple')) {
+      details.safari = true;
+      details.mobile_safari = true;
     }
   } else if (~ua.indexOf('opera')) {
     details.opera = true;
