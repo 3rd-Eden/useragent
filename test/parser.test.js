@@ -157,7 +157,8 @@ describe('useragent', function () {
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
       , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
       , android = 'Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
-      , chromecast = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257';
+      , chromecast = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257'
+      , iphonewebview = 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F70';
 
     it('should not throw errors when called without arguments', function () {
       useragent.is();
@@ -244,6 +245,18 @@ describe('useragent', function () {
       useragent.is(ipod).opera.should.equal(false);
       useragent.is(ipod).mobile_safari.should.equal(true);
       useragent.is(ipod).android.should.equal(false);
+    });
+
+    it('should correctly detect iphone webview', function () {
+      useragent.is(iphonewebview).chrome.should.equal(false);
+      useragent.is(iphonewebview).webkit.should.equal(true);
+      useragent.is(iphonewebview).safari.should.equal(true);
+      useragent.is(iphonewebview).firefox.should.equal(false);
+      useragent.is(iphonewebview).mozilla.should.equal(false);
+      useragent.is(iphonewebview).ie.should.equal(false);
+      useragent.is(iphonewebview).opera.should.equal(false);
+      useragent.is(iphonewebview).mobile_safari.should.equal(true);
+      useragent.is(iphonewebview).android.should.equal(false);
     });
 
     it('should correctly detect android', function () {
