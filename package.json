@@ -36,8 +36,8 @@
     "url": "http://github.com/3rd-Eden/useragent.git"
   },
   "devDependencies": {
-    "should": "*",
-    "mocha": "*",
+    "should": "1.x.x",
+    "mocha": "2.x.x",
     "long-stack-traces": "0.1.x",
     "yamlparser": "0.0.x",
     "request": "2.9.x",
