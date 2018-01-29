@@ -1,6 +1,6 @@
 var useragent = require('../')
-  , should = require('should')
   , yaml = require('yamlparser')
+  , assume = require('assume')
   , fs = require('fs');
 
 // run over the testcases, some might fail, some might not. This is just qu
@@ -34,12 +34,12 @@ var useragent = require('../')
     exports[filename + ': ' + test.user_agent_string] = function () {
       var agent = useragent.parse(test.user_agent_string, js_ua);
 
-      agent.family.should.equal(test.family);
+      assume(agent.family).equals(test.family);
       // we need to test if v1 is a string, because the yamlparser transforms
       // empty v1: statements to {}
-      agent.major.should.equal(typeof test.major == 'string' ? test.major : '0');
-      agent.minor.should.equal(typeof test.minor == 'string' ? test.minor : '0');
-      agent.patch.should.equal(typeof test.patch == 'string' ? test.patch : '0');
+      assume(agent.major).equals(typeof test.major == 'string' ? test.major : '0');
+      assume(agent.minor).equals(typeof test.minor == 'string' ? test.minor : '0');
+      assume(agent.patch).equals(typeof test.patch == 'string' ? test.patch : '0');
     }
   });
 });
