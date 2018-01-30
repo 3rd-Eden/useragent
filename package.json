@@ -27,10 +27,7 @@
       "web": "http://www.3rd-Eden.com"
     }
   ],
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/3rd-Eden/useragent/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "http://github.com/3rd-Eden/useragent.git"
