@@ -415,6 +415,8 @@ function isSafe(userAgent) {
   var consecutive = 0
     , code = 0;
 
+  if (userAgent.length > 1000) return false;
+
   for (var i = 0; i < userAgent.length; i++) {
     code = userAgent.charCodeAt(i);
     // numbers between 0 and 9, letters between a and z, spaces and control
@@ -443,6 +445,10 @@ function isSafe(userAgent) {
  * @api public
  */
 exports.parse = function parse(userAgent, jsAgent) {
+  if (userAgent && userAgent.length > 1000) {
+    userAgent = userAgent.substring(0, 1000);
+  }
+
   if (!userAgent || !isSafe(userAgent)) return new Agent();
 
   var length = agentparserslength
