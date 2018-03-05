@@ -1,0 +1,640 @@
+0. pattern = "\b(008|Altresium|Argus|BaiduMobaider|BoardReader|DNSGroup|DataparkSearch|EDI|Goodzer|Grub|INGRID|Infohelfer|LinkedInBot|LOOQ|Nutch|PathDefender|Peew|PostPost|Steeler|Twitterbot|VSE|WebCrunch|WebZIP|Y!J-BR[A-Z]|YahooSeeker|envolk|sproose|wminer)\/(\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+SKIPPED
+0. pattern = "(1470\.net crawler|50\.nu|8bo Crawler Bot|Aboundex|Accoona-[A-z]+-Agent|AdsBot-Google(?:-[a-z]+)?|altavista|AppEngine-Google|archive.*?\.org_bot|archiver|Ask Jeeves|[Bb]ai[Dd]u[Ss]pider(?:-[A-Za-z]+)*|bingbot|BingPreview|blitzbot|BlogBridge|Bloglovin|BoardReader(?: [A-Za-z]+)*|boitho.com-dc|BotSeer|BUbiNG|\b\w*favicon\w*\b|\bYeti(?:-[a-z]+)?|Catchpoint(?: bot)?|[Cc]harlotte|Checklinks|clumboot|Comodo HTTP\(S\) Crawler|Comodo-Webinspector-Crawler|ConveraCrawler|CRAWL-E|CrawlConvera|Daumoa(?:-feedfetcher)?|Feed Seeker Bot|Feedbin|findlinks|Flamingo_SearchEngine|FollowSite Bot|furlbot|Genieo|gigabot|GomezAgent|gonzo1|(?:[a-zA-Z]+-)?Googlebot(?:-[a-zA-Z]+)?|Google SketchUp|grub-client|gsa-crawler|heritrix|HiddenMarket|holmes|HooWWWer|htdig|ia_archiver|ICC-Crawler|Icarus6j|ichiro(?:\/mobile)?|IconSurf|IlTrovatore(?:-Setaccio)?|InfuzApp|Innovazion Crawler|InternetArchive|IP2[a-z]+Bot|jbot\b|KaloogaBot|Kraken|Kurzor|larbin|LEIA|LesnikBot|Linguee Bot|LinkAider|LinkedInBot|Lite Bot|Llaut|lycos|Mail\.RU_Bot|masscan|masidani_bot|Mediapartners-Google|Microsoft .*? Bot|mogimogi|mozDex|MJ12bot|msnbot(?:-media *)?|msrbot|Mtps Feed Aggregation System|netresearch|Netvibes|NewsGator[^\/]*|^NING|Nutch[^\/]*|Nymesis|ObjectsSearch|Orbiter|OOZBOT|PagePeeker|PagesInventory|PaxleFramework|Peeplo Screenshot Bot|PlantyNet_WebRobot|Pompos|Qwantify|Read%20Later|Reaper|RedCarpet|Retreiver|Riddler|Rival IQ|scooter|Scrapy|Scrubby|searchsight|seekbot|semanticdiscovery|SemrushBot|Simpy|SimplePie|SEOstats|SimpleRSS|SiteCon|Slackbot-LinkExpanding|Slack-ImgProxy|Slurp|snappy|Speedy Spider|Squrl Java|Stringer|TheUsefulbot|ThumbShotsBot|Thumbshots\.ru|Tiny Tiny RSS|TwitterBot|WhatsApp|URL2PNG|Vagabondo|VoilaBot|^vortex|Votay bot|^voyager|WASALive.Bot|Web-sniffer|WebThumb|WeSEE:[A-z]+|WhatWeb|WIRE|WordPress|Wotbox|www\.almaden\.ibm\.com|Xenu(?:.s)? Link Sleuth|Xerka [A-z]+Bot|yacy(?:bot)?|Yahoo[a-z]*Seeker|Yahoo! Slurp|Yandex\w+|YodaoBot(?:-[A-z]+)?|YottaaMonitor|Yowedo|^Zao|^Zao-Crawler|ZeBot_www\.ze\.bz|ZooShot|ZyBorg)(?:[ \/]v?(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?"
+SKIPPED
+0. pattern = "(?:\/[A-Za-z0-9\.]+)? *((?:[A-Za-z0-9\-_\!\[\]:][A-Za-z0-9 \-_\!\[\]:]*)?(?:[Aa]rchiver|[Ii]ndexer|[Ss]craper|[Bb]ot|[Ss]pider|[Cc]rawl[a-z]*))\/(\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: /aa...aaCrawl...Crawld
+	IDA exploit string as JSON:	{"degree":2,"separators":["/a","a"],"pumps":["a","Crawl"],"suffix":"d"}
+	Prefix:		"/a"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"Crawl"
+	Suffix:		"d"
+0. pattern = "(?:\/[A-Za-z0-9\.]+)? *((?:[A-Za-z0-9_\!\[\]:][A-Za-z0-9 _\!\[\]:]*)?(?:[Aa]rchiver|[Ii]ndexer|[Ss]craper|[Bb]ot|[Ss]pider|[Cc]rawl[a-z]*)) (\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: /aa...aaCrawl...Crawld
+	IDA exploit string as JSON:	{"degree":2,"separators":["/a","a"],"pumps":["a","Crawl"],"suffix":"d"}
+	Prefix:		"/a"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"Crawl"
+	Suffix:		"d"
+0. pattern = "((?:[A-z0-9]+|[A-z\-]+ ?)?(?: the )?(?:[Ss][Pp][Ii][Dd][Ee][Rr]|[Ss]crape|[A-Za-z0-9-]*(?:[^C][^Uu])[Bb]ot|[Cc][Rr][Aa][Ww][Ll])[A-z0-9]*)(?:(?:[ \/]| v)(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: aa...aaaaBot...aaBotIC\x20SPID
+	IDA exploit string as JSON:	{"degree":2,"separators":["a","a"],"pumps":["a","aaBot"],"suffix":"IC SPID"}
+	Prefix:		"a"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"aaBot"
+	Suffix:		"IC\x20SPID"
+0. pattern = "(Chimera|SeaMonkey|Camino)\/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)?"
+Does not contain EDA
+Contains IDA, degree 1, with: Chimera/0.00...00.a
+	IDA exploit string as JSON:	{"degree":1,"separators":["Chimera/0.0"],"pumps":["0"],"suffix":"0.a"}
+	Prefix:		"Chimera/0.0"
+	Pump 0:		"0"
+	Suffix:		"0.a"
+0. pattern = "(Fennec)\/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)"
+Does not contain EDA
+Contains IDA, degree 1, with: Fennec/0.00...0/
+	IDA exploit string as JSON:	{"degree":1,"separators":["Fennec/0.0"],"pumps":["0"],"suffix":"/"}
+	Prefix:		"Fennec/0.0"
+	Pump 0:		"0"
+	Suffix:		"/"
+0. pattern = "(Netscape6)\/(\d+)\.(\d+)\.?([ab]?\d+)?"
+Does not contain EDA
+Contains IDA, degree 1, with: Netscape6/0.00...0a
+	IDA exploit string as JSON:	{"degree":1,"separators":["Netscape6/0.0"],"pumps":["0"],"suffix":"a"}
+	Prefix:		"Netscape6/0.0"
+	Pump 0:		"0"
+	Suffix:		"a"
+0. pattern = "(Opera)\/.+Opera Mobi.+Version\/(\d+)\.(\d+)"
+Does not contain EDA
+Contains IDA, degree 1, with: Opera/aOpera\x20Mobia...Opera\x20MobiasVe
+	IDA exploit string as JSON:	{"degree":1,"separators":["Opera/a"],"pumps":["Opera Mobia"],"suffix":"sVe"}
+	Prefix:		"Opera/a"
+	Pump 0:		"Opera\x20Mobia"
+	Suffix:		"sVe"
+0. pattern = "Gecko\/\d+ (Lightning)\/(\d+)\.(\d+)\.?((?:[ab]?\d+[a-z]*)|(?:\d*))"
+Does not contain EDA
+Contains IDA, degree 1, with: Gecko/0\x20Lightning/0.00...0/
+	IDA exploit string as JSON:	{"degree":1,"separators":["Gecko/0 Lightning/0.0"],"pumps":["0"],"suffix":"/"}
+	Prefix:		"Gecko/0\x20Lightning/0.0"
+	Pump 0:		"0"
+	Suffix:		"/"
+0. pattern = "(Chrome)\/(\d+)\.(\d+)\.(\d+)\.(\d+) Mobile(?:[ \/]|$)"
+SKIPPED
+0. pattern = "\b(MobileIron|FireWeb|Jasmine|ANTGalio|Midori|Fresco|Lobo|PaleMoon|Maxthon|Lynx|OmniWeb|Dillo|Camino|Demeter|Fluid|Fennec|Epiphany|Shiira|Sunrise|Spotify|Flock|Netscape|Lunascape|WebPilot|NetFront|Netfront|Konqueror|SeaMonkey|Kazehakase|Vienna|Iceape|Iceweasel|IceWeasel|Iron|K-Meleon|Sleipnir|Galeon|GranParadiso|Opera Mini|iCab|NetNewsWire|ThunderBrowse|Iris|UP\.Browser|Bunjalloo|Google Earth|Raven for Mac|Openwave|MacOutlook|Electron|OktaMobile)\/(\d+)\.(\d+)\.(\d+)"
+SKIPPED
+0. pattern = "(LG Player|Doppler|FancyMusic|MediaMonkey|Clementine) (\d+)\.(\d+)\.?([^.\s]+)?(?:\.([^.\s]+)?)?"
+Does not contain EDA
+Contains IDA, degree 1, with: LG\x20Player\x200.0a...aMo..
+	IDA exploit string as JSON:	{"degree":1,"separators":["LG Player 0.0"],"pumps":["a"],"suffix":"Mo.."}
+	Prefix:		"LG\x20Player\x200.0"
+	Pump 0:		"a"
+	Suffix:		"Mo.."
+0. pattern = "(philpodder)\/(\d+)\.(\d+)\.?([^.\s]+)?(?:\.([^.\s]+)?)?"
+Does not contain EDA
+Contains IDA, degree 1, with: philpodder/0.0a...aer..
+	IDA exploit string as JSON:	{"degree":1,"separators":["philpodder/0.0"],"pumps":["a"],"suffix":"er.."}
+	Prefix:		"philpodder/0.0"
+	Pump 0:		"a"
+	Suffix:		"er.."
+0. pattern = "(ESPN) Radio (\d+)\.(\d+)(?:\.(\d+)?)? ?[rv:]?(\d+)? "
+Does not contain EDA
+Contains IDA, degree 1, with: ESPN\x20Radio\x200.0.00...0\x200.0
+	IDA exploit string as JSON:	{"degree":1,"separators":["ESPN Radio 0.0.0"],"pumps":["0"],"suffix":" 0.0"}
+	Prefix:		"ESPN\x20Radio\x200.0.0"
+	Pump 0:		"0"
+	Suffix:		"\x200.0"
+0. pattern = "^(HTC) Streaming Player \S+ \/ \S+ \/ \S+ \/ (\d+)\.(\d+)(?:\.(\d+)?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: HTC\x20Streaming\x20Player\x20a\x20/\x20a...\x20/\x20aa\x20/\x20a...\x20/\x20ama
+	IDA exploit string as JSON:	{"degree":2,"separators":["HTC Streaming Player a","a"],"pumps":[" / a"," / a"],"suffix":"ma"}
+	Prefix:		"HTC\x20Streaming\x20Player\x20a"
+	Pump 0:		"\x20/\x20a"
+	Separator 1:	"a"
+	Pump 1:		"\x20/\x20a"
+	Suffix:		"ma"
+0. pattern = "^(foobar)\S+\/([^.\s]+)\.([^.\s]+)?(?:\.([^.\s]+)?)?"
+Does not contain EDA
+Contains IDA, degree 1, with: foobara/a.../ao././.
+	IDA exploit string as JSON:	{"degree":1,"separators":["foobara"],"pumps":["/a"],"suffix":"o././."}
+	Prefix:		"foobara"
+	Pump 0:		"/a"
+	Suffix:		"o././."
+0. pattern = "^(Clementine)\S+ ([^.\s]+)\.([^.\s]+)?(?:\.([^.\s]+)?)?"
+Does not contain EDA
+Contains IDA, degree 1, with: Clementinea\x20a...\x20aC.\x20.\x20.\x20a
+	IDA exploit string as JSON:	{"degree":1,"separators":["Clementinea"],"pumps":[" a"],"suffix":"C. . . a"}
+	Prefix:		"Clementinea"
+	Pump 0:		"\x20a"
+	Suffix:		"C.\x20.\x20.\x20a"
+0. pattern = "(Obigo|OBIGO)[^\d]*(\d+)(?:.(\d+))?"
+Does not contain EDA
+Contains IDA, degree 1, with: Obigoa0a0...a0i
+	IDA exploit string as JSON:	{"degree":1,"separators":["Obigoa0"],"pumps":["a0"],"suffix":"i"}
+	Prefix:		"Obigoa0"
+	Pump 0:		"a0"
+	Suffix:		"i"
+0. pattern = "(BonEcho)\/(\d+)\.(\d+)\.?([ab]?\d+)?"
+Does not contain EDA
+Contains IDA, degree 1, with: BonEcho/0.00...0o
+	IDA exploit string as JSON:	{"degree":1,"separators":["BonEcho/0.0"],"pumps":["0"],"suffix":"o"}
+	Prefix:		"BonEcho/0.0"
+	Pump 0:		"0"
+	Suffix:		"o"
+0. pattern = "(iPod|iPhone|iPad).+Version\/(\d+)\.(\d+)(?:\.(\d+))?.*[ +]Safari"
+Does not contain EDA
+Contains IDA, degree 1, with: iPodaVersion/0.0.0a...ar
+	IDA exploit string as JSON:	{"degree":1,"separators":["iPodaVersion/0.0.0"],"pumps":["a"],"suffix":"r"}
+	Prefix:		"iPodaVersion/0.0.0"
+	Pump 0:		"a"
+	Suffix:		"r"
+0. pattern = "(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\/"
+Does not contain EDA
+Contains IDA, degree 1, with: Version/0.0.0a...an/0
+	IDA exploit string as JSON:	{"degree":1,"separators":["Version/0.0.0"],"pumps":["a"],"suffix":"n/0"}
+	Prefix:		"Version/0.0.0"
+	Pump 0:		"a"
+	Suffix:		"n/0"
+0. pattern = "\b(Windows-Update-Agent|Microsoft-CryptoAPI|SophosUpdateManager|SophosAgent|Debian APT-HTTP|Ubuntu APT-HTTP|libcurl-agent|libwww-perl|urlgrabber|curl|Wget|OpenBSD ftp|jupdate)(?:[ \/](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?"
+SKIPPED
+0. pattern = "(Java)[\/ ]{0,1}\d+\.(\d+)\.(\d+)[_-]*([a-zA-Z0-9]+)*"
+Contains EDA with: Java0.0.0aaa...aaa\x200.
+	EDA exploit string as JSON:	{"degree":0,"separators":["Java0.0.0a"],"pumps":["aa"],"suffix":"a 0."}
+	Prefix:	"Java0.0.0a"
+	Pump:	"aa"
+	Suffix:	"a\x200."
+0. pattern = "(Wget)\/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)"
+Does not contain EDA
+Contains IDA, degree 1, with: Wget/0.00...00..
+	IDA exploit string as JSON:	{"degree":1,"separators":["Wget/0.0"],"pumps":["0"],"suffix":"0.."}
+	Prefix:		"Wget/0.0"
+	Pump 0:		"0"
+	Suffix:		"0.."
+0. pattern = "\bSmartWatch *\( *([^; ][^;]*[^; ]|[^; ]) *; *([^; ][^;]*[^; ]|[^; ]) *;"
+SKIPPED
+0. pattern = "; *(?:3Q_)([^;\/]+) +Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x203Q_a\x20...\x20\x20B\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; 3Q_a"],"pumps":[" "],"suffix":" B "}
+	Prefix:		";\x203Q_a"
+	Pump 0:		"\x20"
+	Suffix:		"\x20B\x20"
+0. pattern = "; *ASUS[ _]*([^;\/]+) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20ASUS\x20a...aA
+	IDA exploit string as JSON:	{"degree":1,"separators":["; ASUS "],"pumps":["a"],"suffix":"A"}
+	Prefix:		";\x20ASUS\x20"
+	Pump 0:		"a"
+	Suffix:		"A"
+0. pattern = "Build\/(?:[Cc]elkon)+_?([^;\/_\)]+)"
+Does not contain EDA
+Contains IDA, degree 1, with: Build/Celkona...ad/Celkon
+	IDA exploit string as JSON:	{"degree":1,"separators":["Build/Celkon"],"pumps":["a"],"suffix":"d/Celkon"}
+	Prefix:		"Build/Celkon"
+	Pump 0:		"a"
+	Suffix:		"d/Celkon"
+0. pattern = "; *([^;\/ ][^;\/]+|[^;\/]?)Coolpad[ _]([^;\/]+) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20aaCoolpad\x20a...Coolpad\x20aua
+	IDA exploit string as JSON:	{"degree":1,"separators":["; aa"],"pumps":["Coolpad a"],"suffix":"ua"}
+	Prefix:		";\x20aa"
+	Pump 0:		"Coolpad\x20a"
+	Suffix:		"ua"
+0. pattern = "; *([^\/]+_tenderloin) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20a...an
+	IDA exploit string as JSON:	{"degree":1,"separators":["; "],"pumps":["a"],"suffix":"n"}
+	Prefix:		";\x20"
+	Pump 0:		"a"
+	Suffix:		"n"
+0. pattern = "; *([^;\/ ][^;\/]+|[^;\/]) Build[\/ ]Huawei(MT1-U06|[A-Z]+\d+(?:[^\);\d][^\);]*|[^\);])(?=[\);]))[^\);]*\)"
+SKIPPED
+0. pattern = "; *(?:Ideos |IDEOS )([^;\/]+\s*|\s*)Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Ideos\x20a\x09...\x09u
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Ideos a"],"pumps":["\t"],"suffix":"u"}
+	Prefix:		";\x20Ideos\x20a"
+	Pump 0:		"\x09"
+	Suffix:		"u"
+0. pattern = "; *(?:(?:HTC|htc)(?:_blocked)*[ _\/])+([^ _\/]+)(?:[ _\/]([^ _\/]+)(?:[ _\/]([^ _\/]+)(?:[ _\/]([^ \/;]+))?)?)?(?: *Build|[;\)]| - )"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20HTC_blocked\x20a\x20a\x20a\x20a...a\x20a\x20a\x20a;\x20htc_b_
+	IDA exploit string as JSON:	{"degree":1,"separators":["; HTC_blocked "],"pumps":["a a a a"],"suffix":"; htc_b_"}
+	Prefix:		";\x20HTC_blocked\x20"
+	Pump 0:		"a\x20a\x20a\x20a"
+	Suffix:		";\x20htc_b_"
+0. pattern = "(?:[;,] *|^)(?:htccn_chs-)?HTC[ _-]?([^;]+?)(?: *Build|clay|Android|-?Mozilla| Opera| Profile| UNTRUSTED|[;\/\(\)]|$)"
+SKIPPED
+0. pattern = "; *(ImPAD) ?(\d+(?:.)*) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20ImPAD\x200a...au
+	IDA exploit string as JSON:	{"degree":1,"separators":["; ImPAD 0"],"pumps":["a"],"suffix":"u"}
+	Prefix:		";\x20ImPAD\x200"
+	Pump 0:		"a"
+	Suffix:		"u"
+0. pattern = "; *(?:LNV-)?(?:=?[Ll]enovo[ _\-]?|LENOVO[ _])+(.+?)(?:Build|[;\/\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20LNV-=Lenovo\x20a...aoL
+	IDA exploit string as JSON:	{"degree":1,"separators":["; LNV-\u003dLenovo "],"pumps":["a"],"suffix":"oL"}
+	Prefix:		";\x20LNV-=Lenovo\x20"
+	Pump 0:		"a"
+	Suffix:		"oL"
+0. pattern = "\b(?:Lenovo|LENOVO)+[ _\-]?([^,;:\/ ]+)"
+SKIPPED
+0. pattern = "; *(E[34][0-9]{2}|LS[6-8][0-9]{2}|VS[6-9][0-9]+[^;\/]+|Nexus 4|Nexus 5X?|GT540f?|Optimus (?:2X|G|4X HD)|OptimusX4HD) *(?:Build|;)"
+Does not contain EDA
+Contains IDA, degree 2, with: ;\x20VS60a...aa\x20...\x205
+	IDA exploit string as JSON:	{"degree":2,"separators":["; VS60","a"],"pumps":["a"," "],"suffix":"5"}
+	Prefix:		";\x20VS60"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"\x20"
+	Suffix:		"5"
+0. pattern = "; *(LG-)([A-Z]{1,2}\d{2,}[^,;\/\)\(]*?)(?:Build| V\d+|[,;\/\)\(]|$)"
+SKIPPED
+0. pattern = "; *(M-PP[^;\/]+|PhonePad ?\d{2,}[^;\/]+) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20PhonePad\x2000a...ae
+	IDA exploit string as JSON:	{"degree":1,"separators":["; PhonePad 00"],"pumps":["a"],"suffix":"e"}
+	Prefix:		";\x20PhonePad\x2000"
+	Pump 0:		"a"
+	Suffix:		"e"
+0. pattern = "; *(M-MP[^;\/]+|SmartPad ?\d{2,}[^;\/]+) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SmartPad\x2000a...at
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SmartPad 00"],"pumps":["a"],"suffix":"t"}
+	Prefix:		";\x20SmartPad\x2000"
+	Pump 0:		"a"
+	Suffix:		"t"
+0. pattern = "; *(?:meizu_|MEIZU )(.+?) *(?:Build|[;\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20meizu_a\x20...\x20izu
+	IDA exploit string as JSON:	{"degree":1,"separators":["; meizu_a"],"pumps":[" "],"suffix":"izu"}
+	Prefix:		";\x20meizu_a"
+	Pump 0:		"\x20"
+	Suffix:		"izu"
+0. pattern = "; *(Cynus)[ _](F5|T\d|.+?) *(?:Build|[;\/\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Cynus\x20a\x20...\x20\x20C
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Cynus a"],"pumps":[" "],"suffix":" C"}
+	Prefix:		";\x20Cynus\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"\x20C"
+0. pattern = "; *(Nokia)([ _\-]*)([^;\/]*) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Nokia\x20a...a\x20B
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Nokia "],"pumps":["a"],"suffix":" B"}
+	Prefix:		";\x20Nokia\x20"
+	Pump 0:		"a"
+	Suffix:		"\x20B"
+0. pattern = "; *(SKY[ _])?(IM\-[AT]\d{3}[^;\/]+).* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SKY\x20IM-A000aa...a;\x20S
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SKY IM-A000a"],"pumps":["a"],"suffix":"; S"}
+	Prefix:		";\x20SKY\x20IM-A000a"
+	Pump 0:		"a"
+	Suffix:		";\x20S"
+0. pattern = "; *Pantech([^;\/]+).* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Pantechaa...aec
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Pantecha"],"pumps":["a"],"suffix":"ec"}
+	Prefix:		";\x20Pantecha"
+	Pump 0:		"a"
+	Suffix:		"ec"
+0. pattern = "; *(?:Polaroid[ _])?((?:MIDC\d{3,}|PMID\d{2,}|PTAB\d{3,})[^;\/]*)(\/[^;\/]*)? Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Polaroid\x20MIDC000a...aMID
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Polaroid MIDC000"],"pumps":["a"],"suffix":"MID"}
+	Prefix:		";\x20Polaroid\x20MIDC000"
+	Pump 0:		"a"
+	Suffix:		"MID"
+0. pattern = "; *(POMP)[ _\-](.+?) *(?:Build|[;\/\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20POMP\x20a\x20...\x20POB
+	IDA exploit string as JSON:	{"degree":1,"separators":["; POMP a"],"pumps":[" "],"suffix":"POB"}
+	Prefix:		";\x20POMP\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"POB"
+0. pattern = "; *(SAMSUNG |Samsung )?((?:Galaxy (?:Note II|S\d)|GT-I9082|GT-I9205|GT-N7\d{3}|SM-N9005)[^;\/]*)\/?[^;\/]* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SAMSUNG\x20Galaxy\x20Note\x20IIaa...a\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SAMSUNG Galaxy Note IIa"],"pumps":["a"],"suffix":" "}
+	Prefix:		";\x20SAMSUNG\x20Galaxy\x20Note\x20IIa"
+	Pump 0:		"a"
+	Suffix:		"\x20"
+0. pattern = "; *(SAMSUNG[ _\-] *)+([^;\/]+) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SAMSUNG\x20\x20a...aUNG-
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SAMSUNG  "],"pumps":["a"],"suffix":"UNG-"}
+	Prefix:		";\x20SAMSUNG\x20\x20"
+	Pump 0:		"a"
+	Suffix:		"UNG-"
+0. pattern = "(?:; *|^)((?:GT\-[BIiNPS]\d{4}|I9\d{2}0[A-Za-z\+]?\b)[^;\/\)]*?)(?:Build|Linux|MIUI|[;\/\)])"
+SKIPPED
+0. pattern = "; *((?:SCH|SGH|SHV|SHW|SPH|SC|SM)\-[A-Za-z0-9 ]+)(\/?[^ ]*)? Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SCH-aa...a\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SCH-a"],"pumps":["a"],"suffix":" "}
+	Prefix:		";\x20SCH-a"
+	Pump 0:		"a"
+	Suffix:		"\x20"
+0. pattern = " ((?:SCH)\-[A-Za-z0-9 ]+)(\/?[^ ]*)? Build"
+Does not contain EDA
+Contains IDA, degree 1, with: \x20SCH-aa...aC
+	IDA exploit string as JSON:	{"degree":1,"separators":[" SCH-a"],"pumps":["a"],"suffix":"C"}
+	Prefix:		"\x20SCH-a"
+	Pump 0:		"a"
+	Suffix:		"C"
+0. pattern = "; *(Xperia (?:A8|Arc|Acro|Active|Live with Walkman|Mini|Neo|Play|Pro|Ray|X\d+)[^;\/]*) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Xperia\x20X0a...aive
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Xperia X0"],"pumps":["a"],"suffix":"ive"}
+	Prefix:		";\x20Xperia\x20X0"
+	Pump 0:		"a"
+	Suffix:		"ive"
+0. pattern = "; *(Sprint )(.+?) *(?:Build|[;\/])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Sprint\x20a\x20...\x20i
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Sprint a"],"pumps":[" "],"suffix":"i"}
+	Prefix:		";\x20Sprint\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"i"
+0. pattern = "\b(T-Mobile)_([^_]+)_(.*) Build"
+SKIPPED
+0. pattern = "; *XOLO[ _]([^;\/]*tab.*) Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20XOLO\x20atab...tab\x20\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; XOLO a"],"pumps":["tab"],"suffix":"  "}
+	Prefix:		";\x20XOLO\x20a"
+	Pump 0:		"tab"
+	Suffix:		"\x20\x20"
+0. pattern = "; *(ARIZONA|(?:ATLAS|Atlas) W|D930|Grand (?:[SX][^;]*|Era|Memo[^;]*)|JOE|(?:Kis|KIS)\b[^;]*|Libra|Light [^;]*|N8[056][01]|N850L|N8000|N9[15]\d{2}|N9810|NX501|Optik|(?:Vip )Racer[^;]*|RacerII|RACERII|San Francisco[^;]*|V9[AC]|V55|V881|Z[679][0-9]{2}[A-z]?) Build"
+SKIPPED
+0. pattern = "; *(SmartTab\d+)[^;]* Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SmartTab0a...aab
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SmartTab0"],"pumps":["a"],"suffix":"ab"}
+	Prefix:		";\x20SmartTab0"
+	Pump 0:		"a"
+	Suffix:		"ab"
+0. pattern = "; ?(Silk)\/(\d+)\.(\d+)(?:\.([0-9\-]+))? Build\b"
+SKIPPED
+0. pattern = "; *(e\d{4}[a-z]?_?v\d+|v89_[^;\/]+)[^;\/]+ Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20e0000a_v0a...ae
+	IDA exploit string as JSON:	{"degree":1,"separators":["; e0000a_v0"],"pumps":["a"],"suffix":"e"}
+	Prefix:		";\x20e0000a_v0"
+	Pump 0:		"a"
+	Suffix:		"e"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:ALCATEL)[^;]*; *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/an)ARM;
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"n)ARM;"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"n)ARM;"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:ASUS|Asus)[^;]*; *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/ast;AIEMobile/IE)
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"st;AIEMobile/IE)"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"st;AIEMobile/IE)"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:DELL|Dell)[^;]*; *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aM;\x20DELLI)IEMobile/IEM
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"M; DELLI)IEMobile/IEM"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"M;\x20DELLI)IEMobile/IEM"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:HTC|Htc|HTC_blocked)[^;]*; *(?:HTC)?([^;,\)]+)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20HTCa;\x20a...ast;HTCaIEMobile/IE)\x20WpsLondonTes
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; HTCa; "],"pumps":["IEMobile/a","a"],"suffix":"st;HTCaIEMobile/IE) WpsLondonTes"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20HTCa;\x20"
+	Pump 1:		"a"
+	Suffix:		"st;HTCaIEMobile/IE)\x20WpsLondonTes"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:HUAWEI)[^;]*; *(?:HUAWEI )?([^;,\)]+)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20HUAWEIa;\x20a...ah;A)IEMobile/IEM
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; HUAWEIa; "],"pumps":["IEMobile/a","a"],"suffix":"h;A)IEMobile/IEM"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20HUAWEIa;\x20"
+	Pump 1:		"a"
+	Suffix:		"h;A)IEMobile/IEM"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:LG|Lg)[^;]*; *(?:LG[ \-])?([^;,\)]+)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20LGa;\x20a...ah;ARM;Touch;
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; LGa; "],"pumps":["IEMobile/a","a"],"suffix":"h;ARM;Touch;"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20LGa;\x20"
+	Pump 1:		"a"
+	Suffix:		"h;ARM;Touch;"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:rv:11; )?(?:NOKIA|Nokia)[^;]*; *(?:NOKIA ?|Nokia ?|LUMIA ?|[Ll]umia ?)*(\d{3,}[^;\)]*)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20rv:11;\x20NOKIAa;\x20NOKIA\x20000a...aM;\x20L
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; rv:11; NOKIAa; NOKIA 000"],"pumps":["IEMobile/a","a"],"suffix":"M; L"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20rv:11;\x20NOKIAa;\x20NOKIA\x20000"
+	Pump 1:		"a"
+	Suffix:		"M;\x20L"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(RM-\d{3,})"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/ai)\x20T;IEMobile/IEM
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"i) T;IEMobile/IEM"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"i)\x20T;IEMobile/IEM"
+0. pattern = "(?:Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)]|WPDesktop;) ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(?:NOKIA ?|Nokia ?|LUMIA ?|[Ll]umia ?)*([^;\)]+)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20NOKIAa;\x20NOKIA\x20a...an)IEMo
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; NOKIAa; NOKIA "],"pumps":["IEMobile/a","a"],"suffix":"n)IEMo"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20NOKIAa;\x20NOKIA\x20"
+	Pump 1:		"a"
+	Suffix:		"n)IEMo"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:Microsoft(?: Corporation)?)[^;]*; *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aho;ARM;\x20To
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"ho;ARM; To"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"ho;ARM;\x20To"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:SAMSUNG)[^;]*; *(?:SAMSUNG )?([^;,\.\)]+)"
+Does not contain EDA
+Contains IDA, degree 2, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/aa)\x20ARM;\x20Touch;\x20SAMSUNGa;\x20a...ana)\x20WpsLo
+	IDA exploit string as JSON:	{"degree":2,"separators":["Windows Phone a; a","a) ARM; Touch; SAMSUNGa; "],"pumps":["IEMobile/a","a"],"suffix":"na) WpsLo"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Separator 1:	"a)\x20ARM;\x20Touch;\x20SAMSUNGa;\x20"
+	Pump 1:		"a"
+	Suffix:		"na)\x20WpsLo"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:TOSHIBA|FujitsuToshibaMobileCommun)[^;]*; *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/ast;\x20Touch;\x20FujitsuToshibaMobile
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"st; Touch; FujitsuToshibaMobile"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"st;\x20Touch;\x20FujitsuToshibaMobile"
+0. pattern = "Windows Phone [^;]+; .*?IEMobile\/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?([^;]+); *([^;,\) ][^;,\)]*|[^;,\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: Windows\x20Phone\x20a;\x20aIEMobile/a...IEMobile/an)\x20WpsLon
+	IDA exploit string as JSON:	{"degree":1,"separators":["Windows Phone a; a"],"pumps":["IEMobile/a"],"suffix":"n) WpsLon"}
+	Prefix:		"Windows\x20Phone\x20a;\x20a"
+	Pump 0:		"IEMobile/a"
+	Suffix:		"n)\x20WpsLon"
+0. pattern = "(?:^|; )SAMSUNG\-([A-Za-z0-9\-]+)(?:[^A-Za-z0-9\-].*)? Bada\/"
+SKIPPED
+0. pattern = "HPiPAQ([A-Za-z0-9]+)\/\d+.\d+"
+Does not contain EDA
+Contains IDA, degree 1, with: HPiPAQa/0a0...a0a
+	IDA exploit string as JSON:	{"degree":1,"separators":["HPiPAQa/0"],"pumps":["a0"],"suffix":"a"}
+	Prefix:		"HPiPAQa/0"
+	Pump 0:		"a0"
+	Suffix:		"a"
+0. pattern = "CFNetwork\/.* Darwin\/\d.*\(((?:Mac|iMac|PowerMac|PowerBook)[^\d]*)(\d+)(?:,|%2C)(\d+)"
+Does not contain EDA
+Contains IDA, degree 2, with: CFNetwork/a\x20Darwin/0...\x20Darwin/0a(Mac...(MacMa0%
+	IDA exploit string as JSON:	{"degree":2,"separators":["CFNetwork/a","a"],"pumps":[" Darwin/0","(Mac"],"suffix":"Ma0%"}
+	Prefix:		"CFNetwork/a"
+	Pump 0:		"\x20Darwin/0"
+	Separator 1:	"a"
+	Pump 1:		"(Mac"
+	Suffix:		"Ma0%"
+0. pattern = "(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _])?[A-Za-z0-9]+)"
+Does not contain EDA
+Contains IDA, degree 1, with: asusaASUSa...ASUSamer\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["asusa"],"pumps":["ASUSa"],"suffix":"mer "}
+	Prefix:		"asusa"
+	Pump 0:		"ASUSa"
+	Suffix:		"mer\x20"
+0. pattern = "\b(?:HTC\/|HTC\/[a-z0-9]+\/)?HTC[ _\-;]? *([^ ].*?|)(?:-?Mozilla|fingerPrint|[;\/\(\)]|$)"
+SKIPPED
+0. pattern = "(HbbTV)\/[0-9]+\.[0-9]+\.[0-9]+ \([^;]*; *(LG)E *; *([^; ][^;]*[^; ]|[^; ]?) *;[^;]*;[^;]*;\)"
+Does not contain EDA
+Contains IDA, degree 1, with: HbbTV/0.0.0\x20(a;\x20LGE\x20;\x20\x20...\x20b;\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["HbbTV/0.0.0 (a; LGE ; "],"pumps":[" "],"suffix":"b; "}
+	Prefix:		"HbbTV/0.0.0\x20(a;\x20LGE\x20;\x20"
+	Pump 0:		"\x20"
+	Suffix:		"b;\x20"
+0. pattern = "(HbbTV)\/1\.1\.1.*CE-HTML\/1\.\d;(Vendor\/)*(THOM[^;]*?)[;\s](?:.*SW-Version\/.*)?(LF[^;]+);?"
+Does not contain EDA
+Contains IDA, degree 3, with: HbbTV/1.1.1aCE-HTML/1.0;Vendor/THOMa\x09a...\x09aaSW-Version/...SW-Version/aLFa...LFa;THOMLCSW-V
+	IDA exploit string as JSON:	{"degree":3,"separators":["HbbTV/1.1.1aCE-HTML/1.0;Vendor/THOMa","a","a"],"pumps":["\ta","SW-Version/","LFa"],"suffix":";THOMLCSW-V"}
+	Prefix:		"HbbTV/1.1.1aCE-HTML/1.0;Vendor/THOMa"
+	Pump 0:		"\x09a"
+	Separator 1:	"a"
+	Pump 1:		"SW-Version/"
+	Separator 2:	"a"
+	Pump 2:		"LFa"
+	Suffix:		";THOMLCSW-V"
+0. pattern = "(HbbTV)\/[0-9]+\.[0-9]+\.[0-9]+ \([^;]*; *(?:CUS:([^;]*[^; ]|)|([^;]+[^; ]|[^;])) *; *([^; ][^;]*[^; ]|[^; ]?) *;.*;"
+Does not contain EDA
+Contains IDA, degree 2, with: HbbTV/0.0.0\x20(a;\x20a...a\x20;\x20\x20...\x20US
+	IDA exploit string as JSON:	{"degree":2,"separators":["HbbTV/0.0.0 (a; "," ; "],"pumps":["a"," "],"suffix":"US"}
+	Prefix:		"HbbTV/0.0.0\x20(a;\x20"
+	Pump 0:		"a"
+	Separator 1:	"\x20;\x20"
+	Pump 1:		"\x20"
+	Suffix:		"US"
+0. pattern = "(?:^LG[\-]?|^LGE[\-\/]?)([A-Za-z]+[0-9]+[A-Za-z]*)"
+SKIPPED
+0. pattern = "SymbianOS\/9\.\d.* Samsung[\/\-]([A-Za-z0-9 \-]+)"
+Does not contain EDA
+Contains IDA, degree 1, with: SymbianOS/9.0a\x20Samsung-a...\x20Samsung-aa$
+	IDA exploit string as JSON:	{"degree":1,"separators":["SymbianOS/9.0a"],"pumps":[" Samsung-a"],"suffix":"a$"}
+	Prefix:		"SymbianOS/9.0a"
+	Pump 0:		"\x20Samsung-a"
+	Suffix:		"a$"
+0. pattern = "Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *(.+?) Build[\/ ]"
+Does not contain EDA
+Contains IDA, degree 1, with: Android\x200.0-update1;\x20aa-\x20;\x20a...a-up
+	IDA exploit string as JSON:	{"degree":1,"separators":["Android 0.0-update1; aa- ; "],"pumps":["a"],"suffix":"-up"}
+	Prefix:		"Android\x200.0-update1;\x20aa-\x20;\x20"
+	Pump 0:		"a"
+	Suffix:		"-up"
+0. pattern = "Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *(.+?) Build[\/ ]"
+Does not contain EDA
+Contains IDA, degree 1, with: Android\x200.0;\x20aa--\x20;\x20a...a-
+	IDA exploit string as JSON:	{"degree":1,"separators":["Android 0.0; aa-- ; "],"pumps":["a"],"suffix":"-"}
+	Prefix:		"Android\x200.0;\x20aa--\x20;\x20"
+	Pump 0:		"a"
+	Suffix:		"-"
+0. pattern = "Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *(.+?) Build[\/ ]"
+Does not contain EDA
+Contains IDA, degree 1, with: Android\x200.0;\x20-\x20;\x20a...a\x200
+	IDA exploit string as JSON:	{"degree":1,"separators":["Android 0.0; - ; "],"pumps":["a"],"suffix":" 0"}
+	Prefix:		"Android\x200.0;\x20-\x20;\x20"
+	Pump 0:		"a"
+	Suffix:		"\x200"
+0. pattern = "Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *(.+?) Build[\/ ]"
+Does not contain EDA
+Contains IDA, degree 1, with: Android\x200.0;\x20-aa;\x20a...a\x200.
+	IDA exploit string as JSON:	{"degree":1,"separators":["Android 0.0; -aa; "],"pumps":["a"],"suffix":" 0."}
+	Prefix:		"Android\x200.0;\x20-aa;\x20"
+	Pump 0:		"a"
+	Suffix:		"\x200."
+0. pattern = "Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *(.+?) Build[\/ ]"
+Does not contain EDA
+Contains IDA, degree 1, with: Android\x200.0;a;\x20a...a\x200.
+	IDA exploit string as JSON:	{"degree":1,"separators":["Android 0.0;a; "],"pumps":["a"],"suffix":" 0."}
+	Prefix:		"Android\x200.0;a;\x20"
+	Pump 0:		"a"
+	Suffix:		"\x200."
+0. pattern = "(WebTV)\/\d+.\d+"
+Does not contain EDA
+Contains IDA, degree 1, with: WebTV/0a0...a0e
+	IDA exploit string as JSON:	{"degree":1,"separators":["WebTV/0"],"pumps":["a0"],"suffix":"e"}
+	Prefix:		"WebTV/0"
+	Pump 0:		"a0"
+	Suffix:		"e"
+0. pattern = "(Symbian|\bS60(Version|V\d)|\bS60\b|\((Series 60|Windows Mobile|Palm OS|Bada); Opera Mini|Windows CE|Opera Mobi|BREW|Brew|Mobile; .+Firefox\/|iPhone OS|Android|MobileSafari|Windows *Phone|\(webOS\/|PalmOS)"
+SKIPPED
+0. pattern = "(bot|BUbiNG|zao|borg|DBot|oegp|silk|Xenu|zeal|^NING|CCBot|crawl|htdig|lycos|slurp|teoma|voila|yahoo|Sogou|CiBra|Nutch|^Java\/|^JNLP\/|Daumoa|Genieo|ichiro|larbin|pompos|Scrapy|snappy|speedy|spider|msnbot|msrbot|vortex|^vortex|crawler|favicon|indexer|Riddler|scooter|scraper|scrubby|WhatWeb|WinHTTP|bingbot|BingPreview|openbot|gigabot|furlbot|polybot|seekbot|^voyager|archiver|Icarus6j|mogimogi|Netvibes|blitzbot|altavista|charlotte|findlinks|Retreiver|TLSProber|WordPress|SeznamBot|ProoXiBot|wsr\-agent|Squrl Java|EtaoSpider|PaperLiBot|SputnikBot|A6\-Indexer|netresearch|searchsight|baiduspider|YisouSpider|ICC\-Crawler|http%20client|Python-urllib|dataparksearch|converacrawler|Screaming Frog|AppEngine-Google|YahooCacheSystem|fast\-webcrawler|Sogou Pic Spider|semanticdiscovery|Innovazion Crawler|facebookexternalhit|Google.*\/\+\/web\/snippet|Google-HTTP-Java-Client|BlogBridge|IlTrovatore-Setaccio|InternetArchive|GomezAgent|WebThumbnail|heritrix|NewsGator|PagePeeker|Reaper|ZooShot|holmes|NL-Crawler|Pingdom|StatusCake|WhatsApp|masscan|Google Web Preview|Qwantify)"
+SKIPPED
+0. pattern = "HbbTV\/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*?(201[1-9]).*?\)"
+Does not contain EDA
+Contains IDA, degree 2, with: HbbTV/0.0.0\x20(a;a\x20;...;a\x20;a2011...20110.
+	IDA exploit string as JSON:	{"degree":2,"separators":["HbbTV/0.0.0 (a","a"],"pumps":[";a ;","2011"],"suffix":"0."}
+	Prefix:		"HbbTV/0.0.0\x20(a"
+	Pump 0:		";a\x20;"
+	Separator 1:	"a"
+	Pump 1:		"2011"
+	Suffix:		"0."
+0. pattern = "(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?.*Outlook-iOS-Android"
+Does not contain EDA
+Contains IDA, degree 1, with: CPU\x20OS\x200.0.0a...an
+	IDA exploit string as JSON:	{"degree":1,"separators":["CPU OS 0.0.0"],"pumps":["a"],"suffix":"n"}
+	Prefix:		"CPU\x20OS\x200.0.0"
+	Pump 0:		"a"
+	Suffix:		"n"
+0. pattern = "(iPhone|iPad|iPod).*Mac OS X.*Version\/(\d+)\.(\d+)"
+Does not contain EDA
+Contains IDA, degree 1, with: iPhoneaMac\x20OS\x20X...Mac\x20OS\x20Xsio
+	IDA exploit string as JSON:	{"degree":1,"separators":["iPhonea"],"pumps":["Mac OS X"],"suffix":"sio"}
+	Prefix:		"iPhonea"
+	Pump 0:		"Mac\x20OS\x20X"
+	Suffix:		"sio"
+0. pattern = "CFNetwork\/.* Darwin\/17\.\d+(?:[^\d].*|)?\(x86_64\)"
+Does not contain EDA
+Contains IDA, degree 1, with: CFNetwork/a\x20Darwin/17.0a...\x20Darwin/17.0ak
+	IDA exploit string as JSON:	{"degree":1,"separators":["CFNetwork/a"],"pumps":[" Darwin/17.0a"],"suffix":"k"}
+	Prefix:		"CFNetwork/a"
+	Pump 0:		"\x20Darwin/17.0a"
+	Suffix:		"k"
+0. pattern = "CFNetwork\/.* Darwin\/16\.\d+(?:[^\d].*|)?\(x86_64\)"
+Does not contain EDA
+Contains IDA, degree 1, with: CFNetwork/a\x20Darwin/16.0a...\x20Darwin/16.0ak
+	IDA exploit string as JSON:	{"degree":1,"separators":["CFNetwork/a"],"pumps":[" Darwin/16.0a"],"suffix":"k"}
+	Prefix:		"CFNetwork/a"
+	Pump 0:		"\x20Darwin/16.0a"
+	Suffix:		"k"
+0. pattern = "CFNetwork\/8.* Darwin\/15\.\d+(?:[^\d].*|)?\(x86_64\)"
+Does not contain EDA
+Contains IDA, degree 1, with: CFNetwork/8a\x20Darwin/15.0a...\x20Darwin/15.0a8
+	IDA exploit string as JSON:	{"degree":1,"separators":["CFNetwork/8a"],"pumps":[" Darwin/15.0a"],"suffix":"8"}
+	Prefix:		"CFNetwork/8a"
+	Pump 0:		"\x20Darwin/15.0a"
+	Suffix:		"8"
+0. pattern = "\b(iOS[ \/]|iOS; |iPhone(?:\/| v|[ _]OS[\/,]|; | OS : |\d,\d\/|\d,\d; )|iPad\/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?"
+SKIPPED
+0. pattern = "(Fedora|Red Hat|PCLinuxOS|Puppy|Ubuntu|Kindle|Bada|Lubuntu|BackTrack|Slackware|(?:Free|Open|Net|\b)BSD)[\/ ](\d+)\.(\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+SKIPPED
+0. pattern = "(Linux)[ \/](\d+)\.(\d+)(?:\.(\d+))?.*gentoo"
+Does not contain EDA
+Contains IDA, degree 1, with: Linux\x200.0.0a...a0.
+	IDA exploit string as JSON:	{"degree":1,"separators":["Linux 0.0.0"],"pumps":["a"],"suffix":"0."}
+	Prefix:		"Linux\x200.0.0"
+	Pump 0:		"a"
+	Suffix:		"0."
