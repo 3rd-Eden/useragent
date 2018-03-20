@@ -390,6 +390,6 @@ For small changes between version please review the [changelog][changelog].
 MIT
 
 [browserscope]: http://www.browserscope.org/
-[benchmark]: /3rd-Eden/useragent/blob/master/benchmark/run.js
-[changelog]: /3rd-Eden/useragent/blob/master/CHANGELOG.md
+[benchmark]: https://github.com/3rd-Eden/useragent/blob/master/benchmark/run.js
+[changelog]: https://github.com/3rd-eden/useragent/blob/master/CHANGELOG.md
 [npm]: http://npmjs.org
