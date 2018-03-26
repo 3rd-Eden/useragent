@@ -91,6 +91,13 @@ npm install yamlparser --save
 npm install request --save
 ```
 
+You can override remote location by passing a uri string instead of a boolean:
+
+```js
+var useragent = require('useragent');
+useragent('http://my/own/regexes.yaml');
+```
+
 #### useragent.parse(useragent string[, js useragent]);
 
 This is the actual user agent parser, this is where all the magic is happening.
