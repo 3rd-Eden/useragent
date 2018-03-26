@@ -2,7 +2,7 @@
 
 Useragent originated as port of [browserscope.org][browserscope]'s user agent
 parser project also known as ua-parser. Useragent allows you to parse user agent
-string with high accuracy by using hand tuned dedicated regular expressions for
+strings with high [performance](#high-performance) and accuracy by using [hand tuned](#hand-tuned-regular-expressions) regular expressions for
 browser matching. This database is needed to ensure that every browser is
 correctly parsed as every browser vendor implements it's own user agent schema.
 This is why regular user agent parsers have major issues because they will
@@ -39,6 +39,12 @@ Count (54), Cycles (3), Elapsed (5.512), Hz (1018.7561434659247)
 
 Module: "useragent" is the user agent fastest parser.
 ```
+
+### Hand tuned regular expressions
+
+This module relies on [uap-core][uap-core]'s `regexes.yaml` user agent database to parse user agent strings.
+
+This database is up-to-date thanks to [contributors][uap-core-contributors] such as you. Feel free to submit [issues][uap-core-issues] and [pull requests][uap-core-pull-requests].
 
 ---
 
@@ -390,6 +396,10 @@ For small changes between version please review the [changelog][changelog].
 MIT
 
 [browserscope]: http://www.browserscope.org/
-[benchmark]: /3rd-Eden/useragent/blob/master/benchmark/run.js
-[changelog]: /3rd-Eden/useragent/blob/master/CHANGELOG.md
+[benchmark]: https://github.com/3rd-Eden/useragent/blob/master/benchmark/run.js
+[uap-core]: https://github.com/ua-parser/uap-core
+[uap-core-contributors]: https://github.com/ua-parser/uap-core/graphs/contributors
+[uap-core-issues]: https://github.com/ua-parser/uap-core/issues
+[uap-core-pull-requests]: https://github.com/ua-parser/uap-core/pulls
+[changelog]: https://github.com/3rd-eden/useragent/blob/master/CHANGELOG.md
 [npm]: http://npmjs.org
