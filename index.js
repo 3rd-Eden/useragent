@@ -360,39 +360,55 @@ Device.prototype.toJSON = function toJSON() {
  * Int3rNetz when we want to. We will be using the compiled version by default
  * but users can opt-in for updates.
  *
- * @param {Boolean} refresh Refresh the dataset from the remote
+ * @param {updateRequestCallback} [cb] - callback to be invoked after request completes
  * @api public
  */
-module.exports = function updater() {
+module.exports = function updater(cb) {
+  var update
+  cb = typeof cb === 'function' ? cb : function noop () {}
+
   try {
-    require('./lib/update').update(function updating(err, results) {
-      if (err) {
-        console.log('[useragent] Failed to update the parsed due to an error:');
-        console.log('[useragent] '+ (err.message ? err.message : err));
-        return;
-      }
-
-      regexps = results;
-
-      // OperatingSystem parsers:
-      osparsers = regexps.os;
-      osparserslength = osparsers.length;
-
-      // UserAgent parsers:
-      agentparsers = regexps.browser;
-      agentparserslength = agentparsers.length;
-
-      // Device parsers:
-      deviceparsers = regexps.device;
-      deviceparserslength = deviceparsers.length;
-    });
+    update = require('./lib/update').update
   } catch (e) {
     console.error('[useragent] If you want to use automatic updating, please add:');
     console.error('[useragent]   - request (npm install request --save)');
     console.error('[useragent]   - yamlparser (npm install yamlparser --save)');
     console.error('[useragent] To your own package.json');
+    cb(e)
+    return
   }
+
+  update(function updating(err, results) {
+    if (err) {
+      console.log('[useragent] Failed to update the parsed due to an error:');
+      console.log('[useragent] '+ (err.message ? err.message : err));
+      cb(err)
+      return;
+    }
+
+    regexps = results;
+
+    // OperatingSystem parsers:
+    osparsers = regexps.os;
+    osparserslength = osparsers.length;
+
+    // UserAgent parsers:
+    agentparsers = regexps.browser;
+    agentparserslength = agentparsers.length;
+
+    // Device parsers:
+    deviceparsers = regexps.device;
+    deviceparserslength = deviceparsers.length;
+
+    cb(undefined, results)
+  });
 };
+
+/**
+ * @callback updateRequestCallback
+ * @param {Error=}
+ * @param {object=}
+ */
 
 // Override the exports with our newly set module.exports
 exports = module.exports;
