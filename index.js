@@ -512,7 +512,8 @@ exports.parse = function parse(userAgent, jsAgent) {
  * @param {String} jsAgent Optional UA from js to detect chrome frame
  * @api public
  */
-var LRU = require('lru-cache')(5000);
+var LRUCache = require('lru-cache'),
+    LRU = new LRUCache(5000);
 exports.lookup = function lookup(userAgent, jsAgent) {
   var key = (userAgent || '')+(jsAgent || '')
     , cached = LRU.get(key);
