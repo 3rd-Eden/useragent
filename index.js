@@ -20,6 +20,10 @@ var agentparsers = regexps.browser
 var deviceparsers = regexps.device
   , deviceparserslength = deviceparsers.length;
 
+// Default for unknown version
+var UnknownFamily = 'Other';
+var UnknownVersion = '0';
+
 /**
  * The representation of a parsed user agent.
  *
@@ -32,11 +36,27 @@ var deviceparsers = regexps.device
  * @api public
  */
 function Agent(family, major, minor, patch, source) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
   this.source = source || '';
+}
+
+function replaceRegExResult(matches, templates) {
+    var r = [];
+    var m = matches.map(function(v){ v = typeof v === 'string' ? v.replace(/\&/g, '&&').replace(/\$/g, '&D') : v; });
+    for(var t=1; t<=4; t++) {     // template[1..4]
+        var tmpl = templates[t];
+        r[t] = tmpl[0];
+        if (typeof r[t] === 'string') {
+            tmpl[1].forEach(function(i){
+                r[t] = r[t].replace(new RegExp('\\$'+i, 'g'), matches[i] != undefined ? matches[i] : '');
+            });
+            r[t] = r[t].replace(/&D/g, '$').replace(/&&/g, '&');
+        }
+    }
+    return r;
 }
 
 /**
@@ -58,7 +78,7 @@ Object.defineProperty(Agent.prototype, 'os', {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+        res = replaceRegExResult(res, parser);
         break;
       }
     }
@@ -68,9 +88,9 @@ Object.defineProperty(Agent.prototype, 'os', {
           ? new OperatingSystem()
           : new OperatingSystem(
                 res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+              , res[2]
+              , res[3]
+              , res[4]
             )
     }).os;
   },
@@ -109,7 +129,7 @@ Object.defineProperty(Agent.prototype, 'device', {
       if (res = parsers[i][0].exec(userAgent)) {
         parser = parsers[i];
 
-        if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+        res = replaceRegExResult(res, parser);
         break;
       }
     }
@@ -119,9 +139,9 @@ Object.defineProperty(Agent.prototype, 'device', {
           ? new Device()
           : new Device(
                 res[1]
-              , parser[2] || res[2]
-              , parser[3] || res[3]
-              , parser[4] || res[4]
+              , res[2]
+              , res[3]
+              , res[4]
             )
     }).device;
   },
@@ -161,7 +181,7 @@ Agent.prototype.toAgent = function toAgent() {
  */
 Agent.prototype.toString = function toString() {
   var agent = this.toAgent()
-    , os = this.os !== 'Other' ? this.os : false;
+    , os = this.os !== UnknownFamily ? this.os : false;
 
   return agent + (os ? ' / ' + os : '');
 };
@@ -220,10 +240,10 @@ Agent.prototype.toJSON = function toJSON() {
  * @api public
  */
 function OperatingSystem(family, major, minor, patch) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
 }
 
 /**
@@ -293,10 +313,10 @@ OperatingSystem.prototype.toJSON = function toJSON(){
  * @api public
  */
 function Device(family, major, minor, patch) {
-  this.family = family || 'Other';
-  this.major = major || '0';
-  this.minor = minor || '0';
-  this.patch = patch || '0';
+  this.family = family || UnknownFamily;
+  this.major = major || UnknownVersion;
+  this.minor = minor || UnknownVersion;
+  this.patch = patch || UnknownVersion;
 }
 
 /**
@@ -461,12 +481,12 @@ exports.parse = function parse(userAgent, jsAgent) {
     if (res = parsers[i][0].exec(userAgent)) {
       parser = parsers[i];
 
-      if (parser[1]) res[1] = parser[1].replace('$1', res[1]);
+      res = replaceRegExResult(res, parser);
       if (!jsAgent) return new Agent(
           res[1]
-        , parser[2] || res[2]
-        , parser[3] || res[3]
-        , parser[4] || res[4]
+        , res[2]
+        , res[3]
+        , res[4]
         , userAgent
       );
 
@@ -617,6 +637,15 @@ exports.fromJSON = function fromJSON(details) {
 
   return agent;
 };
+
+
+exports.setUnknownFamilyString = function setUnknownFamilyString(s) {
+  UnknownFamily = s;
+}
+
+exports.setUnknownVersionString = function setUnknownVersionString(s) {
+  UnknownVersion = s;
+}
 
 /**
  * Library version.
