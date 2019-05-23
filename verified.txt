@@ -1,0 +1,185 @@
+0. pattern = "(?:\/[A-Za-z0-9\.]+)? *((?:[A-Za-z0-9\-_\!\[\]:][A-Za-z0-9 \-_\!\[\]:]*)?(?:[Aa]rchiver|[Ii]ndexer|[Ss]craper|[Bb]ot|[Ss]pider|[Cc]rawl[a-z]*))\/(\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: /aa...aaCrawl...Crawld
+	IDA exploit string as JSON:	{"degree":2,"separators":["/a","a"],"pumps":["a","Crawl"],"suffix":"d"}
+	Prefix:		"/a"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"Crawl"
+	Suffix:		"d"
+IDA length: 1006
+IDA time: 3.76778 ms
+0. pattern = "(?:\/[A-Za-z0-9\.]+)? *((?:[A-Za-z0-9_\!\[\]:][A-Za-z0-9 _\!\[\]:]*)?(?:[Aa]rchiver|[Ii]ndexer|[Ss]craper|[Bb]ot|[Ss]pider|[Cc]rawl[a-z]*)) (\d+)(?:\.(\d+)(?:\.(\d+))?)?"
+Does not contain EDA
+Contains IDA, degree 2, with: /aa...aaCrawl...Crawld
+	IDA exploit string as JSON:	{"degree":2,"separators":["/a","a"],"pumps":["a","Crawl"],"suffix":"d"}
+	Prefix:		"/a"
+	Pump 0:		"a"
+	Separator 1:	"a"
+	Pump 1:		"Crawl"
+	Suffix:		"d"
+IDA length: 1006
+IDA time: 4.05500 ms
+1. pattern = "(iPod|iPod touch|iPhone|iPad);.*CPU.{0,40}OS[ +](\d+)_(\d+)(?:_(\d+))?.*Mobile.*?[ +]Safari"
+Does not contain EDA
+Contains IDA, degree 3, with: iPod;aCPU...CPUaOS\x200_0_0a...aaMobile...Mobileou
+	IDA exploit string as JSON:	{"degree":3,"separators":["iPod;a","aOS 0_0_0","a"],"pumps":["CPU","a","Mobile"],"suffix":"ou"}
+	Prefix:		"iPod;a"
+	Pump 0:		"CPU"
+	Separator 1:	"aOS\x200_0_0"
+	Pump 1:		"a"
+	Separator 2:	"a"
+	Pump 2:		"Mobile"
+	Suffix:		"ou"
+IDA length: 1008
+IDA time: 0.91285 ms
+0. pattern = "; *(?:3Q_)([^;\/]+) +Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x203Q_a\x20...\x20\x20B\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; 3Q_a"],"pumps":[" "],"suffix":" B "}
+	Prefix:		";\x203Q_a"
+	Pump 0:		"\x20"
+	Suffix:		"\x20B\x20"
+IDA length: 1001
+IDA time: 0.82396 ms
+0. pattern = "; *(?:Ideos |IDEOS )([^;\/]+\s*|\s*)Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Ideos\x20a\x09...\x09u
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Ideos a"],"pumps":["\t"],"suffix":"u"}
+	Prefix:		";\x20Ideos\x20a"
+	Pump 0:		"\x09"
+	Suffix:		"u"
+IDA length: 1001
+IDA time: 0.98225 ms
+1. pattern = "(?:[;,] *|^)(?:htccn_chs-)?HTC[ _-]?([^;]+?)(?: *Build|clay|Android|-?Mozilla| Opera| Profile| UNTRUSTED|[;\/\(\)]|$)"
+Does not contain EDA
+Contains IDA, degree 1, with: ,\x20htccn_chs-HTC\x20a\x20...\x20,
+	IDA exploit string as JSON:	{"degree":1,"separators":[", htccn_chs-HTC a"],"pumps":[" "],"suffix":","}
+	Prefix:		",\x20htccn_chs-HTC\x20a"
+	Pump 0:		"\x20"
+	Suffix:		","
+IDA length: 1001
+IDA time: 0.77034 ms
+0. pattern = "; *(?:meizu_|MEIZU )(.+?) *(?:Build|[;\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20meizu_a\x20...\x20izu
+	IDA exploit string as JSON:	{"degree":1,"separators":["; meizu_a"],"pumps":[" "],"suffix":"izu"}
+	Prefix:		";\x20meizu_a"
+	Pump 0:		"\x20"
+	Suffix:		"izu"
+IDA length: 1001
+IDA time: 0.79134 ms
+0. pattern = "; *(Cynus)[ _](F5|T\d|.+?) *(?:Build|[;\/\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Cynus\x20a\x20...\x20\x20C
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Cynus a"],"pumps":[" "],"suffix":" C"}
+	Prefix:		";\x20Cynus\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"\x20C"
+IDA length: 1001
+IDA time: 0.77713 ms
+0. pattern = "; *(SKY[ _])?(IM\-[AT]\d{3}[^;\/]+).* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SKY\x20IM-A000aa...a;\x20S
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SKY IM-A000a"],"pumps":["a"],"suffix":"; S"}
+	Prefix:		";\x20SKY\x20IM-A000a"
+	Pump 0:		"a"
+	Suffix:		";\x20S"
+IDA length: 1001
+IDA time: 0.81785 ms
+0. pattern = "; *Pantech([^;\/]+).* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Pantechaa...aec
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Pantecha"],"pumps":["a"],"suffix":"ec"}
+	Prefix:		";\x20Pantecha"
+	Pump 0:		"a"
+	Suffix:		"ec"
+IDA length: 1001
+IDA time: 0.82503 ms
+0. pattern = "; *(POMP)[ _\-](.+?) *(?:Build|[;\/\)])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20POMP\x20a\x20...\x20POB
+	IDA exploit string as JSON:	{"degree":1,"separators":["; POMP a"],"pumps":[" "],"suffix":"POB"}
+	Prefix:		";\x20POMP\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"POB"
+IDA length: 1001
+IDA time: 0.92436 ms
+0. pattern = "; *(SAMSUNG |Samsung )?((?:Galaxy (?:Note II|S\d)|GT-I9082|GT-I9205|GT-N7\d{3}|SM-N9005)[^;\/]*)\/?[^;\/]* Build\/"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SAMSUNG\x20Galaxy\x20Note\x20IIaa...a\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SAMSUNG Galaxy Note IIa"],"pumps":["a"],"suffix":" "}
+	Prefix:		";\x20SAMSUNG\x20Galaxy\x20Note\x20IIa"
+	Pump 0:		"a"
+	Suffix:		"\x20"
+IDA length: 1001
+IDA time: 0.81541 ms
+0. pattern = "; *((?:SCH|SGH|SHV|SHW|SPH|SC|SM)\-[A-Za-z0-9 ]+)(\/?[^ ]*)? Build"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20SCH-aa...a\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["; SCH-a"],"pumps":["a"],"suffix":" "}
+	Prefix:		";\x20SCH-a"
+	Pump 0:		"a"
+	Suffix:		"\x20"
+IDA length: 1001
+IDA time: 3.85004 ms
+0. pattern = " ((?:SCH)\-[A-Za-z0-9 ]+)(\/?[^ ]*)? Build"
+Does not contain EDA
+Contains IDA, degree 1, with: \x20SCH-aa...aC
+	IDA exploit string as JSON:	{"degree":1,"separators":[" SCH-a"],"pumps":["a"],"suffix":"C"}
+	Prefix:		"\x20SCH-a"
+	Pump 0:		"a"
+	Suffix:		"C"
+IDA length: 1001
+IDA time: 3.87499 ms
+0. pattern = "; *(Sprint )(.+?) *(?:Build|[;\/])"
+Does not contain EDA
+Contains IDA, degree 1, with: ;\x20Sprint\x20a\x20...\x20i
+	IDA exploit string as JSON:	{"degree":1,"separators":["; Sprint a"],"pumps":[" "],"suffix":"i"}
+	Prefix:		";\x20Sprint\x20a"
+	Pump 0:		"\x20"
+	Suffix:		"i"
+IDA length: 1001
+IDA time: 0.78530 ms
+0. pattern = "CFNetwork\/.* Darwin\/\d.*\(((?:Mac|iMac|PowerMac|PowerBook)[^\d]*)(\d+)(?:,|%2C)(\d+)"
+Does not contain EDA
+Contains IDA, degree 2, with: CFNetwork/a\x20Darwin/0...\x20Darwin/0a(Mac...(MacMa0%
+	IDA exploit string as JSON:	{"degree":2,"separators":["CFNetwork/a","a"],"pumps":[" Darwin/0","(Mac"],"suffix":"Ma0%"}
+	Prefix:		"CFNetwork/a"
+	Pump 0:		"\x20Darwin/0"
+	Separator 1:	"a"
+	Pump 1:		"(Mac"
+	Suffix:		"Ma0%"
+IDA length: 1004
+IDA time: 1.63701 ms
+0. pattern = "(HbbTV)\/[0-9]+\.[0-9]+\.[0-9]+ \([^;]*; *(LG)E *; *([^; ][^;]*[^; ]|[^; ]?) *;[^;]*;[^;]*;\)"
+Does not contain EDA
+Contains IDA, degree 1, with: HbbTV/0.0.0\x20(a;\x20LGE\x20;\x20\x20...\x20b;\x20
+	IDA exploit string as JSON:	{"degree":1,"separators":["HbbTV/0.0.0 (a; LGE ; "],"pumps":[" "],"suffix":"b; "}
+	Prefix:		"HbbTV/0.0.0\x20(a;\x20LGE\x20;\x20"
+	Pump 0:		"\x20"
+	Suffix:		"b;\x20"
+IDA length: 1001
+IDA time: 0.76013 ms
+0. pattern = "(HbbTV)\/[0-9]+\.[0-9]+\.[0-9]+ \([^;]*; *(?:CUS:([^;]*[^; ]|)|([^;]+[^; ]|[^;])) *; *([^; ][^;]*[^; ]|[^; ]?) *;.*;"
+Does not contain EDA
+Contains IDA, degree 2, with: HbbTV/0.0.0\x20(a;\x20a...a\x20;\x20\x20...\x20US
+	IDA exploit string as JSON:	{"degree":2,"separators":["HbbTV/0.0.0 (a; "," ; "],"pumps":["a"," "],"suffix":"US"}
+	Prefix:		"HbbTV/0.0.0\x20(a;\x20"
+	Pump 0:		"a"
+	Separator 1:	"\x20;\x20"
+	Pump 1:		"\x20"
+	Suffix:		"US"
+IDA length: 1001
+IDA time: 0.40746 ms
+0. pattern = "HbbTV\/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*?(201[1-9]).*?\)"
+Does not contain EDA
+Contains IDA, degree 2, with: HbbTV/0.0.0\x20(a;a\x20;...;a\x20;a2011...20110.
+	IDA exploit string as JSON:	{"degree":2,"separators":["HbbTV/0.0.0 (a","a"],"pumps":[";a ;","2011"],"suffix":"0."}
+	Prefix:		"HbbTV/0.0.0\x20(a"
+	Pump 0:		";a\x20;"
+	Separator 1:	"a"
+	Pump 1:		"2011"
+	Suffix:		"0."
+IDA length: 1001
+IDA time: 3.36262 ms
