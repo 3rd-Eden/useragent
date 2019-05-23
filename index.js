@@ -419,8 +419,11 @@ function isSafe(userAgent) {
 
   for (var i = 0; i < userAgent.length; i++) {
     code = userAgent.charCodeAt(i);
-    // numbers between 0 and 9, letters between a and z, spaces and control
-    if ((code >= 48 && code <= 57) || (code >= 97 && code <= 122) || code <= 32) {
+    if ((code >= 48 && code <= 57) || // numbers
+        (code >= 65 && code <= 90) || // letters A-Z
+        (code >= 97 && code <= 122) || // letters a-z
+        code <= 32 // spaces and control
+      ) {
       consecutive++;
     } else {
       consecutive = 0;
