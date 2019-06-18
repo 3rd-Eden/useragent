@@ -33,6 +33,10 @@ describe('useragent', function () {
     assume(useragent.is).is.a('function')
   });
 
+  it('should expose the updater function', function () {
+    assume(useragent).is.a('function');
+  });
+
   describe('#parse', function () {
     it('correctly transforms everything to the correct instances', function () {
       var agent = useragent.parse(ua);
