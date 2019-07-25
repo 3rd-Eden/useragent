@@ -7,7 +7,7 @@
  */
 require('../lib/update').update(function updating(err, data) {
   if (err) {
-    console.error('Update unsuccessfull due to reasons');
+    console.error('Update unsuccessful due to reasons');
     console.log(err.message);
     console.log(err.stack);
 

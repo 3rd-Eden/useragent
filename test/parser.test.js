@@ -114,6 +114,39 @@ describe('useragent', function () {
       assume(agent.os.minor).equals('22');
       assume(agent.os.patch).equals('74257');
     });
+
+    it('correctly parses Googlebot', function () {
+      var agent = useragent.parse('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html');
+      assume(agent.device.family).equals('Spider');
+      assume(agent.family).equals('Googlebot');
+      assume(agent.major).equals('2');
+      assume(agent.minor).equals('1');
+    });
+
+    // Pending review of https://github.com/ua-parser/uap-core/pull/421
+    // it('correctly parses Twitterbot', function () {
+    //   var agent = useragent.parse('Twitterbot/1.0');
+    //   assume(agent.device.family).equals('Spider');
+    //   assume(agent.family).equals('Twitterbot');
+    //   assume(agent.major).equals('1');
+    //   assume(agent.minor).equals('0');
+    // });
+
+    it('correctly parses LinkedInBot', function () {
+      var agent = useragent.parse('LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient +http://www.linkedin.com)');
+      assume(agent.device.family).equals('Spider');
+      assume(agent.family).equals('LinkedInBot');
+      assume(agent.major).equals('1');
+      assume(agent.minor).equals('0');
+    });
+
+    it('correctly parses facebookexternalhit', function () {
+      var agent = useragent.parse('facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)');
+      assume(agent.device.family).equals('Spider');
+      assume(agent.family).equals('FacebookBot');
+      assume(agent.major).equals('1');
+      assume(agent.minor).equals('1');
+    });
   });
 
   describe('#fromJSON', function () {
