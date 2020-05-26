@@ -71,7 +71,7 @@ Include the `useragent` parser in you node.js application:
 var useragent = require('useragent');
 ```
 
-The `useragent` library allows you do use the automatically installed RegExp
+The `useragent` library allows you to use the pre-bundled RegExp
 library or you can fetch it live from the remote servers. So if you are
 paranoid and always want your RegExp library to be up to date to match with
 agent the widest range of `useragent` strings you can do:
@@ -97,7 +97,7 @@ This is the actual user agent parser, this is where all the magic is happening.
 The function accepts 2 arguments, both should be a `string`. The first argument
 should the user agent string that is known on the server from the
 `req.headers.useragent` header. The other argument is optional and should be
-the user agent string that you see in the browser, this can be send from the
+the user agent string that you see in the browser, this can be sent from the
 browser using a xhr request or something like this. This allows you detect if
 the user is browsing the web using the `Chrome Frame` extension.
 
