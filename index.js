@@ -548,6 +548,7 @@ exports.is = function is(useragent) {
       , safari: false
       , webkit: false
       , android: false
+      , edge: false
       , version: (ua.match(exports.is.versionRE) || [0, "0"])[1]
     };
 
@@ -556,6 +557,10 @@ exports.is = function is(useragent) {
 
     if (~ua.indexOf('android')){
       details.android = true;
+    }
+
+    if (~ua.indexOf('edg')) {
+      details.edge = true;
     }
 
     if (~ua.indexOf('chrome')) {
