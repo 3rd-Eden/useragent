@@ -96,7 +96,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('15.0.874');
       assume(agent.toString()).equals('Chrome 15.0.874 / Mac OS X 10.7.1');
       assume(agent.toAgent()).equals('Chrome 15.0.874');
-      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Mac","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
     });
 
     it('correctly parses iOS8', function () {
@@ -158,7 +158,8 @@ describe('useragent', function () {
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
       , ipod = 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
       , android = 'Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
-      , chromecast = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257';
+      , chromecast = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.22.74257'
+      , edge = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.56';
 
     it('should not throw errors when called without arguments', function () {
       useragent.is();
@@ -269,6 +270,18 @@ describe('useragent', function () {
       assume(useragent.is(chromecast).opera).equals(false);
       assume(useragent.is(chromecast).mobile_safari).equals(false);
       assume(useragent.is(chromecast).android).equals(false);
+    });
+
+    it('should correctly detect edge', function () {
+      assume(useragent.is(edge).chrome).equals(true);
+      assume(useragent.is(edge).webkit).equals(true);
+      assume(useragent.is(edge).safari).equals(false);
+      assume(useragent.is(edge).firefox).equals(false);
+      assume(useragent.is(edge).mozilla).equals(false);
+      assume(useragent.is(edge).ie).equals(false);
+      assume(useragent.is(edge).opera).equals(false);
+      assume(useragent.is(edge).mobile_safari).equals(false);
+      assume(useragent.is(edge).android).equals(false);
     });
   });
 });
