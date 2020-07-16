@@ -1,13 +1,12 @@
 {
-    "name": "ua-benchmarker"
-  , "description": "benchmarks the different user agent parsers to see their parse performance"
-  , "version": "0.0.0"
-  , "dependencies": {
-        "microtime": ""
-      , "benchmark": ""
-      , "useragent": "1.1.0"
-      , "ua-parser": "0.3.1"
-      , "useragent_parser": "1.0.0"
-      , "useragent-parser": "0.1.1"
+    "name": "ua-benchmarker",
+    "description": "benchmarks the different user agent parsers to see their parse performance",
+    "version": "0.0.0",
+    "dependencies": {
+        "benchmark": "2.1.2",
+        "useragent": "2.3.0",
+        "ua-parser": "0.3.5",
+        "useragent_parser": "1.0.0",
+        "useragent-parser": "0.1.1"
     }
 }

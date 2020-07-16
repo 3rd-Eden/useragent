@@ -448,10 +448,6 @@ function isSafe(userAgent) {
  * @api public
  */
 exports.parse = function parse(userAgent, jsAgent) {
-  if (userAgent && userAgent.length > 1000) {
-    userAgent = userAgent.substring(0, 1000);
-  }
-
   if (!userAgent || !isSafe(userAgent)) return new Agent();
 
   var length = agentparserslength

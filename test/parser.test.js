@@ -96,7 +96,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('15.0.874');
       assume(agent.toString()).equals('Chrome 15.0.874 / Mac OS X 10.7.1');
       assume(agent.toAgent()).equals('Chrome 15.0.874');
-      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Mac","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
     });
 
     it('correctly parses iOS8', function () {

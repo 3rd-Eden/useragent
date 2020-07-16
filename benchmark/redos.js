@@ -1,17 +1,15 @@
 'use strict';
 
 /**
- * Benchmark dependencies
+ * Benchmark dependencies.
  */
-var benchmark = require('benchmark')
-  , yaml = require('yamlparser')
-  , path = require('path')
-  , fs = require('fs');
+var benchmark = require('benchmark');
 
 /**
- * Useragent parsers
+ * Useragent parsers.
  */
-var useragent = require('../')
+var useragent2 = require('../')
+  , useragent = require('useragent')
   , uaparser = require('ua-parser')
   , useragent_parser = require('useragent_parser')
   , useragent_parser2 = require('useragent-parser');
@@ -19,28 +17,28 @@ var useragent = require('../')
 /**
  * Setup the test-files.
  */
-var useragentlist = path.join(__dirname, '..', 'test', 'fixtures', 'testcases.yaml')
-  , yammy = yaml.eval(fs.readFileSync(useragentlist).toString()).test_cases
-  , testcases = yammy.map(function (test) {
-      return test.user_agent_string;
-    })
-  , length = testcases.length;
+var testcases = [
+    "A".repeat(100),
+    "A".repeat(300),
+    "A".repeat(700),
+    "A".repeat(1000)
+  ]
+  , length = 4;
 
 /**
  * Setup the benchmark
  */
-
 var froomfroom = new benchmark.Suite;
 
 froomfroom
+.add('useragent latest', function () {
+  for (var i = 0; i < length; i++ ) {
+    useragent2.parse(testcases[i]);
+  }
+})
 .add('useragent', function () {
   for (var i = 0; i < length; i++ ) {
     useragent.parse(testcases[i]);
-  }
-})
-.add('useragent.lookup', function () {
-  for (var i = 0; i < length; i++ ) {
-    useragent.lookup(testcases[i]);
   }
 })
 .add('useragent_parser', function () {

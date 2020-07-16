@@ -3,8 +3,7 @@
 /**
  * Benchmark dependencies.
  */
-var microtime = require('microtime')
-  , benchmark = require('benchmark')
+var benchmark = require('benchmark')
   , yaml = require('yamlparser')
   , path = require('path')
   , fs = require('fs');
@@ -33,7 +32,7 @@ var useragentlist = path.join(__dirname, '..', 'test', 'fixtures', 'testcases.ya
 var froomfroom = new benchmark.Suite;
 
 froomfroom
-.add('useragent', function () {
+.add('useragent latest', function () {
   for (var i = 0; i < length; i++ ) {
     useragent.parse(testcases[i]);
   }
@@ -65,7 +64,7 @@ froomfroom
   );
 })
 .on('complete', function () {
-  console.log('Module: "'+ this.filter('fastest').pluck('name') +'" is the user agent fastest parser.');
+  console.log('Module: "'+ this.filter('fastest').map('name') +'" is the user agent fastest parser.');
 });
 
 /**

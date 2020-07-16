@@ -4,8 +4,7 @@
 /**
  * Benchmark dependencies.
  */
-var microtime = require('microtime')
-  , benchmark = require('benchmark')
+var benchmark = require('benchmark')
   , yaml = require('yamlparser')
   , path = require('path')
   , fs = require('fs');
@@ -42,7 +41,7 @@ froomfroom
     useragent2.parse(testcases[i]);
   }
 })
-.add('useragent1', function () {
+.add('useragent', function () {
   for (var i = 0; i < length; i++ ) {
     useragent.parse(testcases[i]);
   }
@@ -59,7 +58,7 @@ froomfroom
   );
 })
 .on('complete', function () {
-  console.log(this.filter('fastest').pluck('name') + ' is the fastest parser');
+  console.log(this.filter('fastest').map('name') + ' is the fastest parser');
 });
 
 /**

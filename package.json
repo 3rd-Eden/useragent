@@ -37,6 +37,7 @@
     "mocha": "5.0.x",
     "pre-commit": "1.2.x",
     "request": "^2.88.0",
+    "safe-regex": "^2.1.1",
     "semver": "5.5.x",
     "yamlparser": "0.0.x"
   },
