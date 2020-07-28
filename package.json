@@ -35,10 +35,7 @@
   "devDependencies": {
     "assume": "1.5.x",
     "mocha": "5.0.x",
-    "pre-commit": "1.2.x",
-    "request": "^2.88.0",
-    "semver": "5.5.x",
-    "yamlparser": "0.0.x"
+    "pre-commit": "1.2.x"    
   },
   "pre-commit": [
     "test",
@@ -51,6 +48,9 @@
     "prepublish": "npm run update"
   },
   "dependencies": {
+    "request": "^2.88.0",
+    "yamlparser": "0.0.x",
+    "semver": "5.5.x",
     "lru-cache": "4.1.x",
     "tmp": "0.0.x"
   }
