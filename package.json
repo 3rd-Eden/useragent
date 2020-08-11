@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "lru-cache": "4.1.x",
+    "re2": "^1.15.4",
     "tmp": "0.0.x"
   }
 }
