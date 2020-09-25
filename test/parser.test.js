@@ -96,7 +96,7 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('15.0.874');
       assume(agent.toString()).equals('Chrome 15.0.874 / Mac OS X 10.7.1');
       assume(agent.toAgent()).equals('Chrome 15.0.874');
-      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Mac","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
     });
 
     it('correctly parses iOS8', function () {
@@ -153,6 +153,7 @@ describe('useragent', function () {
     var chrome = ua
       , firefox = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0) Gecko/20100101 Firefox/8.0'
       , ie = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; yie8)'
+      , edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43'
       , ie11 = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
       , opera = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; de) Opera 11.51'
       , safari = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; da-dk) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
@@ -209,6 +210,19 @@ describe('useragent', function () {
       assume(useragent.is(ie11).opera).equals(false);
       assume(useragent.is(ie11).mobile_safari).equals(false);
       assume(useragent.is(ie11).android).equals(false);
+    });
+
+    it('should correctly detect edge', function () {
+      assume(useragent.is(edge).chrome).equals(true);
+      assume(useragent.is(edge).webkit).equals(true);
+      assume(useragent.is(edge).safari).equals(false);
+      assume(useragent.is(edge).firefox).equals(false);
+      assume(useragent.is(edge).mozilla).equals(false);
+      assume(useragent.is(edge).ie).equals(false);
+      assume(useragent.is(edge).edge).equals(true);
+      assume(useragent.is(edge).opera).equals(false);
+      assume(useragent.is(edge).mobile_safari).equals(false);
+      assume(useragent.is(edge).android).equals(false);
     });
 
     it('should correctly detect opera', function () {
