@@ -542,6 +542,7 @@ exports.is = function is(useragent) {
         chrome: false
       , firefox: false
       , ie: false
+      , edge: false
       , mobile_safari: false
       , mozilla: false
       , opera: false
@@ -556,6 +557,10 @@ exports.is = function is(useragent) {
 
     if (~ua.indexOf('android')){
       details.android = true;
+    }
+
+    if (~ua.indexOf('edg')){
+      details.edge = true;
     }
 
     if (~ua.indexOf('chrome')) {
