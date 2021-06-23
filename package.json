@@ -37,8 +37,7 @@
     "mocha": "5.0.x",
     "pre-commit": "1.2.x",
     "request": "^2.88.0",
-    "semver": "5.5.x",
-    "yamlparser": "0.0.x"
+    "semver": "5.5.x"
   },
   "pre-commit": [
     "test",
@@ -52,6 +51,7 @@
   },
   "dependencies": {
     "lru-cache": "4.1.x",
-    "tmp": "0.0.x"
+    "tmp": "0.0.x",
+    "yamlparser": "0.0.x"
   }
 }
