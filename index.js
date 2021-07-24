@@ -516,7 +516,8 @@ exports.parse = function parse(userAgent, jsAgent) {
  * @api public
  */
 var lruCache = require('lru-cache');
-var LRU = new lruCache(5000);
+var options = {max: 5000}
+var LRU = new lruCache(options);
 exports.lookup = function lookup(userAgent, jsAgent) {
   var key = (userAgent || '')+(jsAgent || '')
     , cached = LRU.get(key);
