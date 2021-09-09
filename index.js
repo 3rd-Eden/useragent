@@ -357,13 +357,14 @@ Device.prototype.toJSON = function toJSON() {
 
 /**
  * Small nifty thick that allows us to download a fresh set regexs from a remote
- * source. Package uses the compiled version by default, but allow for updating from
- * the default source (no args) or a custom source, via the `remote` parameter.
+ * source. Package uses the compiled version by default, but allows for updating 
+ * from the default source (no args) or a custom source, via the "remote"
+ * parameter.
  *
- * @param {String} remote optionally specify a custom URL for regex sourcing
+ * @param {String} [remote] optionally specify a custom URL for regex sourcing
  * @api public
  */
-module.exports = function updater(remote) {
+ module.exports = function updater(remote) {
   try {
     require('./lib/update').update(remote, function updating(err, results) {
       if (err) {
@@ -415,10 +416,15 @@ function isSafe(userAgent) {
   var consecutive = 0
     , code = 0;
 
+  if (userAgent.length > 1000) return false;
+
   for (var i = 0; i < userAgent.length; i++) {
     code = userAgent.charCodeAt(i);
-    // numbers between 0 and 9, letters between a and z
-    if ((code >= 48 && code <= 57) || (code >= 97 && code <= 122)) {
+    if ((code >= 48 && code <= 57) || // numbers
+        (code >= 65 && code <= 90) || // letters A-Z
+        (code >= 97 && code <= 122) || // letters a-z
+        code <= 32 // spaces and control
+      ) {
       consecutive++;
     } else {
       consecutive = 0;
@@ -443,6 +449,10 @@ function isSafe(userAgent) {
  * @api public
  */
 exports.parse = function parse(userAgent, jsAgent) {
+  if (userAgent && userAgent.length > 1000) {
+    userAgent = userAgent.substring(0, 1000);
+  }
+
   if (!userAgent || !isSafe(userAgent)) return new Agent();
 
   var length = agentparserslength
@@ -506,7 +516,8 @@ exports.parse = function parse(userAgent, jsAgent) {
  * @param {String} jsAgent Optional UA from js to detect chrome frame
  * @api public
  */
-var LRU = require('lru-cache')(5000);
+var lruCache = require('lru-cache');
+var LRU = new lruCache(5000);
 exports.lookup = function lookup(userAgent, jsAgent) {
   var key = (userAgent || '')+(jsAgent || '')
     , cached = LRU.get(key);
