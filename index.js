@@ -356,16 +356,16 @@ Device.prototype.toJSON = function toJSON() {
 };
 
 /**
- * Small nifty thick that allows us to download a fresh set regexs from t3h
- * Int3rNetz when we want to. We will be using the compiled version by default
- * but users can opt-in for updates.
+ * Small nifty thick that allows us to download a fresh set regexs from a remote
+ * source. Package uses the compiled version by default, but allow for updating from
+ * the default source (no args) or a custom source, via the `remote` parameter.
  *
- * @param {Boolean} refresh Refresh the dataset from the remote
+ * @param {String} remote optionally specify a custom URL for regex sourcing
  * @api public
  */
-module.exports = function updater() {
+module.exports = function updater(remote) {
   try {
-    require('./lib/update').update(function updating(err, results) {
+    require('./lib/update').update(remote, function updating(err, results) {
       if (err) {
         console.log('[useragent] Failed to update the parsed due to an error:');
         console.log('[useragent] '+ (err.message ? err.message : err));
@@ -415,15 +415,10 @@ function isSafe(userAgent) {
   var consecutive = 0
     , code = 0;
 
-  if (userAgent.length > 1000) return false;
-
   for (var i = 0; i < userAgent.length; i++) {
     code = userAgent.charCodeAt(i);
-    if ((code >= 48 && code <= 57) || // numbers
-        (code >= 65 && code <= 90) || // letters A-Z
-        (code >= 97 && code <= 122) || // letters a-z
-        code <= 32 // spaces and control
-      ) {
+    // numbers between 0 and 9, letters between a and z
+    if ((code >= 48 && code <= 57) || (code >= 97 && code <= 122)) {
       consecutive++;
     } else {
       consecutive = 0;
@@ -448,10 +443,6 @@ function isSafe(userAgent) {
  * @api public
  */
 exports.parse = function parse(userAgent, jsAgent) {
-  if (userAgent && userAgent.length > 1000) {
-    userAgent = userAgent.substring(0, 1000);
-  }
-
   if (!userAgent || !isSafe(userAgent)) return new Agent();
 
   var length = agentparserslength
@@ -515,8 +506,7 @@ exports.parse = function parse(userAgent, jsAgent) {
  * @param {String} jsAgent Optional UA from js to detect chrome frame
  * @api public
  */
-var lruCache = require('lru-cache');
-var LRU = new lruCache(5000);
+var LRU = require('lru-cache')(5000);
 exports.lookup = function lookup(userAgent, jsAgent) {
   var key = (userAgent || '')+(jsAgent || '')
     , cached = LRU.get(key);
