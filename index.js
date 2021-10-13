@@ -356,16 +356,17 @@ Device.prototype.toJSON = function toJSON() {
 };
 
 /**
- * Small nifty thick that allows us to download a fresh set regexs from t3h
- * Int3rNetz when we want to. We will be using the compiled version by default
- * but users can opt-in for updates.
+ * Small nifty thick that allows us to download a fresh set regexs from a remote
+ * source. Package uses the compiled version by default, but allows for updating 
+ * from the default source (no args) or a custom source, via the "remote"
+ * parameter.
  *
- * @param {Boolean} refresh Refresh the dataset from the remote
+ * @param {String} [remote] optionally specify a custom URL for regex sourcing
  * @api public
  */
-module.exports = function updater() {
+ module.exports = function updater(remote) {
   try {
-    require('./lib/update').update(function updating(err, results) {
+    require('./lib/update').update(remote, function updating(err, results) {
       if (err) {
         console.log('[useragent] Failed to update the parsed due to an error:');
         console.log('[useragent] '+ (err.message ? err.message : err));

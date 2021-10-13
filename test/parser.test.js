@@ -42,7 +42,7 @@ describe('useragent', function () {
       assume(agent.device).is.instanceOf(useragent.Device)
     });
 
-    it('correctly parsers the operating system', function () {
+    it('correctly parses the operating system', function () {
       var os = useragent.parse(ua).os;
 
       assume(os.toString()).equals('Mac OS X 10.7.1');
@@ -84,7 +84,7 @@ describe('useragent', function () {
       assume(JSON.stringify(agent)).equals('{"family":"Other","major":"0","minor":"0","patch":"0","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Other","major":"0","minor":"0","patch":"0"}}');
     });
 
-    it('should correctly parse chromes user agent', function () {
+    it('should correctly parse the Chrome user agent', function () {
       var agent = useragent.parse(ua);
 
       assume(agent.family).equals('Chrome');
@@ -96,7 +96,21 @@ describe('useragent', function () {
       assume(agent.toVersion()).equals('15.0.874');
       assume(agent.toString()).equals('Chrome 15.0.874 / Mac OS X 10.7.1');
       assume(agent.toAgent()).equals('Chrome 15.0.874');
-      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Other","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+      assume(JSON.stringify(agent)).equals('{"family":"Chrome","major":"15","minor":"0","patch":"874","device":{"family":"Mac","major":"0","minor":"0","patch":"0"},"os":{"family":"Mac OS X","major":"10","minor":"7","patch":"1"}}');
+    });
+
+    it('should correctly parse the Apple Mail user agent', function () {
+      var agent = useragent.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko)');
+
+      assume(agent.family).equals('Apple Mail');
+      assume(agent.major).equals('605');
+      assume(agent.minor).equals('1');
+      assume(agent.patch).equals('15');
+
+      assume(agent.os.toString()).equals('Mac OS X 10.15.3');
+      assume(agent.toVersion()).equals('605.1.15');
+      assume(agent.toString()).equals('Apple Mail 605.1.15 / Mac OS X 10.15.3');
+      assume(agent.toAgent()).equals('Apple Mail 605.1.15');
     });
 
     it('correctly parses iOS8', function () {
